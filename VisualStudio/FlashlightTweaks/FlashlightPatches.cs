@@ -15,13 +15,8 @@
     {
         internal static bool Prefix(FlashlightItem __instance, ref bool __result)
         {
-            if (__instance.IsOn())
-            {
-                __result = true;
-                return false;
-            }
-
-            return true;
+            __result = __instance.IsOn();
+            return false;
         }
     }
 
@@ -30,24 +25,20 @@
     {
         internal static void Postfix(FlashlightItem __instance)
         {
-            if (!GameManager.GetAuroraManager().AuroraIsActive())
-            {
-                float tODHours = GameManager.GetTimeOfDayComponent().GetTODHours(Time.deltaTime);
+            float tODHours = GameManager.GetTimeOfDayComponent().GetTODHours(Time.deltaTime);
 
-                if (__instance.m_State == FlashlightItem.State.Low)
-                {
-                    __instance.m_CurrentBatteryCharge -= tODHours / __instance.m_LowBeamDuration;
-                }
-                else if (__instance.m_State == FlashlightItem.State.High)
-                {
-                    __instance.m_CurrentBatteryCharge -= tODHours / __instance.m_HighBeamDuration;
-                    GameAudioManager.PlaySound(__instance.m_IntensityAudioEvent, __instance.gameObject);
-                }
-                if (__instance.m_CurrentBatteryCharge <= 0f)
-                {
-                    __instance.m_CurrentBatteryCharge = 0f;
-                    __instance.m_State = FlashlightItem.State.Off;
-                }
+            if (__instance.m_State == FlashlightItem.State.Low)
+            {
+                __instance.m_CurrentBatteryCharge -= tODHours / __instance.m_LowBeamDuration;
+            }
+            else if (__instance.m_State == FlashlightItem.State.High)
+            {
+                __instance.m_CurrentBatteryCharge -= tODHours / __instance.m_HighBeamDuration;
+            }
+            if (__instance.m_CurrentBatteryCharge <= 0f)
+            {
+                __instance.m_CurrentBatteryCharge = 0f;
+                __instance.m_State = FlashlightItem.State.Off;
             }
         }
     }
