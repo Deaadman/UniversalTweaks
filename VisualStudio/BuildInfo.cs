@@ -6,7 +6,7 @@
         /// <summary>The machine readable name of the mod (no special characters or spaces)</summary>
         public const string Name                            = "UniversalTweaks";
         /// <summary>Who made the mod</summary>
-        public const string Author                          = "AuthourName";
+        public const string Author                          = "Deadman";
         /// <summary>Current version (e.g. 1.0.0, 1.0.0-alpha, 1.0.0-beta, 1.0.0-rc, etc.) </summary>
         public const string Version                         = "1.0.0";
         /// <summary>Name used on GUI's, like ModSettings</summary>
