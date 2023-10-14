@@ -1,0 +1,73 @@
+name: Bug Report
+description: Report an issue which you are experiencing with this mod installed.
+title: "[Bug Report]: "
+labels: [bug-report]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug. Not only will this help you, it will also help others!
+  - type: input
+    id: game_version
+    attributes:
+      label: The Long Dark Version
+      description: Please specify which version of The Long Dark you are using.
+      placeholder: e.g., v2.24
+    validations:
+      required: true
+  - type: input
+    id: mod_version
+    attributes:
+      label: Mod Version
+      description: Please specify the version of the mod you are using.
+      placeholder: e.g., v1.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: other_mods_installed
+    attributes:
+      label: Other Mods Installed
+      description: Please list any other mods you had installed at the time of the issue. This can help identify potential mod conflicts.
+      placeholder: |
+        1. ModName v1.0.0
+        2. AnotherMod v2.3.4
+        ...
+    validations:
+      required: false
+  - type: textarea
+    id: issue_description
+    attributes:
+      label: Describe the Issue
+      description: Please describe the problem in detail.
+      placeholder: Describe what happened and what you expected...
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction_steps
+    attributes:
+      label: Steps to Reproduce
+      description: Please describe the steps required to reproduce the issue.
+      placeholder: |
+        1. Start the game...
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: log_output
+    attributes:
+      label: Log Output
+      description: |
+        Please drag and drop your latest Latest.Log here from your MelonLoader folder in your game's directory.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Upload your screenshots here, as it will help visualise the issue.
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for providing this information. The more detailed and accurate you can be, the easier it will be for the mod developer to address the issue.

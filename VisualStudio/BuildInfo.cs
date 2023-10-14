@@ -17,7 +17,7 @@
 
         #region Optional
         /// <summary>What the mod does</summary>
-        public const string Description                     = "A Template Workspace.";
+        public const string Description                     = "A modification which tweaks gameplay elements within The Long Dark.";
         /// <summary>Company that made it</summary>
         public const string Company                         = null;
         /// <summary>A valid download link</summary>
