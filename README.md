@@ -13,10 +13,10 @@
 
 ## GENERAL INFORMATION:
 
-Universal Tweaks is a modification that enhances existing gameplay elements by modifing things within [**The Long Dark**](https://www.hinterlandgames.com/the-long-dark/), that just makes sense.
+Universal Tweaks is a modification that enhances existing gameplay elements by modifying things within [**The Long Dark**](https://www.hinterlandgames.com/the-long-dark/), that just makes sense.
 
 ### Features:
--  **Flashlights:** Flashlights now work after an aurora is over, but only charged during an aurora.
+-  **Flashlights:** Flashlights now work after an aurora is over, but only charge during an aurora.
 
 >**Note**: More features are to come, if you have any requests which just make sense open a feature request under [**issues**](https://github.com/Deaadman/UniversalTweaks/issues)!
 
