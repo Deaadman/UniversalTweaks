@@ -21,6 +21,10 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 - Flashlight Tweaks
 	- Prevent `High` state if there isn't an aurora (may balance things)
 	- Figure out why the `Intense` audio won't play without an aurora.
+- Spray Paint Tweaks
+	- Remove the limiter of where paint can be placed (sprayed). Suggested by **FarcryBliss**.
+- Food Tweaks
+	- Remove pies giving the player headaches. Suggested by **Valerie**.
 
 ---
 
