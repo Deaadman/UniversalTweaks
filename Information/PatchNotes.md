@@ -10,6 +10,7 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 | Versions: |
 | - |
 | [vX.X.X](#vxxx) |
+| [v1.1.0 - Survivours Ease Update](#v110---survivours-ease-update) |
 | [v1.0.0 - Initial Launch](#v100---initial-launch) |
 
 ---
@@ -25,10 +26,25 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 	- Allow a small chance of wolves to be scared by the `High` state flashlight without an aurora (only at night).
 - Spray Paint Tweaks
 	- Remove the limiter of where paint can be placed (sprayed). Suggested by **FarcryBliss**.
-- Food Tweaks
-	- Remove pies giving the player headaches. Suggested by **Valerie**.
 - Snow Shelter Tweaks
 	- Slow down the decay rate of snow shelters, this gives them more of a purpose rather than being emergency shelters. Suggested by **StrayCat**.
+
+---
+
+## v1.1.0 - Survivours Ease Update:
+
+> **Upcoming Release...**
+
+### Highlights / Key Changes:
+- Removed `Headache` debuff from Peach and Rose Hip Pies - Suggested by **Valerie**.
+
+### Added:
+- Added a new `FoodTweaks` folder.
+- Added a new `FoodTweaks.cs` file.
+- Added two methods `PieItems()` and `RemoveHeadacheDebuffFromItems()`.
+	- These handle getting the items, and removing the debuff.
+- Added the `OnSceneWasInitialized()` method to `Main.cs`.
+	- This calls the `PieItems()` method, once the method is called - it isn't called again.
 
 ---
 

@@ -6,5 +6,13 @@ namespace UniversalTweaks
         {
             Logging.LogStarter();
         }
+
+        public override void OnSceneWasInitialized(int buildIndex, string sceneName)
+        {
+            if (!FoodTweaks.debuffDestroyed)
+            {
+                FoodTweaks.PieItems();
+            }
+        }
     }
 }
