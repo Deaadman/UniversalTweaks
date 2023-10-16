@@ -1,4 +1,4 @@
-b<p align="center">
+<p align="center">
     <a href="#"><img src="https://raw.githubusercontent.com/Deaadman/UniversalTweaks/release/Images/PatchNotesHeading.png"></a>
 
 ---
