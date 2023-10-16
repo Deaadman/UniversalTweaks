@@ -21,10 +21,14 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 - Flashlight Tweaks
 	- Prevent `High` state if there isn't an aurora (may balance things)
 	- Figure out why the `Intense` audio won't play without an aurora.
+	- Disable flashlight flicker if there is not aurora.
+	- Allow a small chance of wolves to be scared by the `High` state flashlight without an aurora (only at night).
 - Spray Paint Tweaks
 	- Remove the limiter of where paint can be placed (sprayed). Suggested by **FarcryBliss**.
 - Food Tweaks
 	- Remove pies giving the player headaches. Suggested by **Valerie**.
+- Snow Shelter Tweaks
+	- Slow down the decay rate of snow shelters, this gives them more of a purpose rather than being emergency shelters. Suggested by **StrayCat**.
 
 ---
 
