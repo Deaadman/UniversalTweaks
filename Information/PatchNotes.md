@@ -1,4 +1,4 @@
-<p align="center">
+b<p align="center">
     <a href="#"><img src="https://raw.githubusercontent.com/Deaadman/UniversalTweaks/release/Images/TitleCardPatchNotes.png"></a>
 
 ---
@@ -26,8 +26,6 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 	- Allow a small chance of wolves to be scared by the `High` state flashlight without an aurora (only at night).
 - Spray Paint Tweaks
 	- Remove the limiter of where paint can be placed (sprayed). Suggested by **FarcryBliss**.
-- Snow Shelter Tweaks
-	- Slow down the decay rate of snow shelters, this gives them more of a purpose rather than being emergency shelters. Suggested by **StrayCat**.
 
 ---
 
@@ -37,6 +35,7 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 
 ### Highlights / Key Changes:
 - Removed `Headache` debuff from Peach and Rose Hip Pies - Suggested by **Valerie**.
+- Reduced how quickly snow shelters decay per day, from `100` to `50` HP - Suggested by **StrayCat**.
 
 ### Added:
 - Added a new `FoodTweaks` folder.
@@ -45,6 +44,11 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 	- These handle getting the items, and removing the debuff.
 - Added the `OnSceneWasInitialized()` method to `Main.cs`.
 	- This calls the `PieItems()` method, once the method is called - it isn't called again.
+<br></br>
+- Added a new `SnowShelterTweaks` folder.
+- Added a new `SnowShelterTweaks.cs` file.
+- Added a harmony patch `SnowShelterManager.InstantiateSnowShelter()`.
+	- This targets everytime a new snow shelter is made, then `__result.m_DailyDecayHP` changes from `100` to `50`.
 
 ---
 
