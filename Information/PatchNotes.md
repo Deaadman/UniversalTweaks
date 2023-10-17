@@ -26,6 +26,7 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 	- Allow a small chance of wolves to be scared by the `High` state flashlight without an aurora (only at night).
 - Spray Paint Tweaks
 	- Remove the limiter of where paint can be placed (sprayed). Suggested by **FarcryBliss**.
+	- More specifically around where you'd previously painted, you can't paint anywhere near a previous spray.
 
 ---
 
