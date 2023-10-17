@@ -24,9 +24,6 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 	- Figure out why the `Intense` audio won't play without an aurora.
 	- Disable flashlight flicker if there is not aurora.
 	- Allow a small chance of wolves to be scared by the `High` state flashlight without an aurora (only at night).
-- Spray Paint Tweaks
-	- Remove the limiter of where paint can be placed (sprayed). Suggested by **FarcryBliss**.
-	- More specifically around where you'd previously painted, you can't paint anywhere near a previous spray.
 
 ---
 
@@ -35,8 +32,11 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 > **Upcoming Release...**
 
 ### Highlights / Key Changes:
+- Fixed a small `UISprite` misalignment on the `FeedFire` panel. 
 - Removed `Headache` debuff from Peach and Rose Hip Pies - Suggested by **Valerie**.
 - Reduced how quickly snow shelters decay per day, from `100` to `50` HP - Suggested by **StrayCat**.
+- Changed the spacing between how close decals can be placed - Suggested by **FarcryBliss**..
+	- Currently under testing to find the right value, or whether it should be changed. 
 
 ### Added:
 - Added a new `FoodTweaks` folder.
@@ -55,6 +55,12 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 - Added a new `UITweaks.cs` file.
 - Added a harmony patch `Panel_FeedFire.Initialize()`.
 	- This targets when the panel is built, then changes the `localPosition` and `localScale` of the `m_Sprite_FireFill` UISprite.
+<br></br>
+- Added a new `DecalTweaks` folder.
+- Added a new `DecalTweaks.cs` file.
+- Added a harmony patch `DynamicDecalsManager.Start()`.
+	- This targets the `m_DecalOverlapLeniencyPercent` field and adjusts it from `20%` to `??%`.
+	- This harmony patch has currently been commented out, testing whether it should even be implemented.
 
 ### Changed / Updated:
 - Changed the following access modifiers to `private`.
@@ -63,6 +69,12 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 	- `FlashlightBatteryDrain` class and it's `Postfix`.
 	- `SnowShelterDecayRate` class and it's `Postfix`.
 	- `RemoveHeadacheDebuffFromItems` method.
+<br></br>
+- Updated the `FlashlightPatches.cs` name to `FlashlightTweaks.cs`.
+
+### Removed:
+- Removed the `OnInitializeMelon()` method which calls the `LogStarter()` method.
+	- A message displaying that the mod as loaded and on what version no longer shows, as MelonLoader already does that.
 
 ---
 
