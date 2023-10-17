@@ -3,9 +3,9 @@
     internal class SnowShelterTweaks
     {
         [HarmonyPatch(typeof(SnowShelterManager), nameof(SnowShelterManager.InstantiateSnowShelter))]
-        internal class SnowShelterDecayRate
+        private class SnowShelterDecayRate
         {
-            static void Postfix(ref SnowShelter __result)
+            private static void Postfix(ref SnowShelter __result)
             {
                 if (__result != null)
                 {

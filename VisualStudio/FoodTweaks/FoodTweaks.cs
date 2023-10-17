@@ -12,7 +12,7 @@ namespace UniversalTweaks
             RemoveHeadacheDebuffFromItems("GEAR_CookedPieRoseHip");
         }
 
-        internal static void RemoveHeadacheDebuffFromItems(string itemName)
+        private static void RemoveHeadacheDebuffFromItems(string itemName)
         {
             GearItem item = GearItem.LoadGearItemPrefab(itemName);
             if (item != null)

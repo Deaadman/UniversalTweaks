@@ -3,9 +3,9 @@
     internal class FlashlightTweaks
     {
         [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.GetNormalizedCharge))]
-        internal class FlashlightKeepBatteryCharge
+        private class FlashlightKeepBatteryCharge
         {
-            internal static bool Prefix(FlashlightItem __instance, ref float __result)
+            private static bool Prefix(FlashlightItem __instance, ref float __result)
             {
                 __result = __instance.m_CurrentBatteryCharge;
                 return false;
@@ -13,9 +13,9 @@
         }
 
         [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.IsLit))]
-        internal class FlashlightFunctionality
+        private class FlashlightFunctionality
         {
-            internal static bool Prefix(FlashlightItem __instance, ref bool __result)
+            private static bool Prefix(FlashlightItem __instance, ref bool __result)
             {
                 __result = __instance.IsOn();
                 return false;
@@ -23,9 +23,9 @@
         }
 
         [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.Update))]
-        internal class FlashlightBatteryDrain
+        private class FlashlightBatteryDrain
         {
-            internal static void Postfix(FlashlightItem __instance)
+            private static void Postfix(FlashlightItem __instance)
             {
                 float tODHours = GameManager.GetTimeOfDayComponent().GetTODHours(Time.deltaTime);
 

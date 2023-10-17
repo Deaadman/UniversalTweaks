@@ -50,6 +50,19 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 - Added a new `SnowShelterTweaks.cs` file.
 - Added a harmony patch `SnowShelterManager.InstantiateSnowShelter()`.
 	- This targets everytime a new snow shelter is made, then `__result.m_DailyDecayHP` changes from `100` to `50`.
+<br></br>
+- Added a new `UITweaks` folder.
+- Added a new `UITweaks.cs` file.
+- Added a harmony patch `Panel_FeedFire.Initialize()`.
+	- This targets when the panel is built, then changes the `localPosition` and `localScale` of the `m_Sprite_FireFill` UISprite.
+
+### Changed / Updated:
+- Changed the following access modifiers to `private`.
+	- `FlashlightKeepBatteryChange` class and it's `Prefix.`
+	- `FlashlightFunctionality` class and it's `Prefix`.
+	- `FlashlightBatteryDrain` class and it's `Postfix`.
+	- `SnowShelterDecayRate` class and it's `Postfix`.
+	- `RemoveHeadacheDebuffFromItems` method.
 
 ---
 
