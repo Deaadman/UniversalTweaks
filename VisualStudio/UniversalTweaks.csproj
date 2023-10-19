@@ -16,13 +16,21 @@
 		<ReleaseFolderPath>D:\The Long Dark\Mods\Maintained\UniversalTweaks\Release</ReleaseFolderPath>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <None Remove="Data\Localization.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Data\Localization.json" />
+	</ItemGroup>
+
 	<!-- List of used references -->
 	<ItemGroup>
 		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="2.23.0" />
-
+		<PackageReference Include="STBlade.Modding.TLD.LocalizationUtilities" Version="2.0.0" />
+		
 		<!-- Uncomment whatever is required for your needs. -->
 		<!-- <PackageReference Include="STBlade.Modding.TLD.ModSettings" Version="1.9.0" /> -->
-		<!-- <PackageReference Include="STBlade.Modding.TLD.LocalizationUtilities" Version="2.0.0" /> -->
 		<!-- <PackageReference Include="STBlade.Modding.TLD.ModComponent" Version="6.2.1" /> -->
 		<!-- <PackageReference Include="STBlade.Modding.TLD.CraftingRevisions" Version="2.2.1" /> -->
 		<!-- <PackageReference Include="STBlade.Modding.TLD.GearSpawner" Version="2.3.1" /> -->
@@ -38,10 +46,11 @@
 		<Using Include="MelonLoader" />
 		<Using Include="UnityEngine" />
 
+		<Using Include="LocalizationUtilities" />
+		
 		<!-- Uncomment whatever is required for your needs. -->
 		<!-- <Using Include="ModSettings" /> -->
 		<!-- <Using Include="ModComponent" /> -->
-		<!-- <Using Include="LocalizationUtilities" /> -->
 		<!-- <Using Include="CraftingRevisions" /> -->
 		<!-- <Using Include="GearSpawner" /> -->
 		<!-- <Using Include="ModData" /> -->

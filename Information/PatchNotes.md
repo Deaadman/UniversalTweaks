@@ -10,7 +10,7 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 | Versions: |
 | - |
 | [vX.X.X](#vxxx) |
-| [v1.1.0 - Survivours Ease Update](#v110---survivours-ease-update) |
+| [v1.1.0 - Polished Perfection Update](#v110---polished-perfection-update) |
 | [v1.0.0 - Initial Launch](#v100---initial-launch) |
 
 ---
@@ -27,7 +27,7 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 
 ---
 
-## v1.1.0 - Survivours Ease Update:
+## v1.1.0 - Polished Perfection Update:
 
 > **Upcoming Release...**
 
@@ -35,32 +35,46 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 - Fixed a small `UISprite` misalignment on the `FeedFire` panel. 
 - Removed `Headache` debuff from Peach and Rose Hip Pies - Suggested by **Valerie**.
 - Reduced how quickly snow shelters decay per day, from `100` to `50` HP - Suggested by **StrayCat**.
-- Changed the spacing between how close decals can be placed - Suggested by **FarcryBliss**..
-	- Currently under testing to find the right value, or whether it should be changed. 
+- Decals (spray paint) now have no restrictions to how close they can be placed to one another - Suggested by **FarcryBliss**..
+- Snares now have an option to reset them from the inspect menu if a bunny was caught - Suggested by **Mentat**.
+- Now requires LocalizationUtilities as a dependent mod.
 
 ### Added:
-- Added a new `FoodTweaks` folder.
-- Added a new `FoodTweaks.cs` file.
+- Added a `FoodTweaks` folder.
+- Added a `FoodTweaks.cs` file.
 - Added two methods `PieItems()` and `RemoveHeadacheDebuffFromItems()`.
 	- These handle getting the items, and removing the debuff.
 - Added the `OnSceneWasInitialized()` method to `Main.cs`.
 	- This calls the `PieItems()` method, once the method is called - it isn't called again.
 <br></br>
-- Added a new `SnowShelterTweaks` folder.
-- Added a new `SnowShelterTweaks.cs` file.
+- Added a `SnowShelterTweaks` folder.
+- Added a `SnowShelterTweaks.cs` file.
 - Added a harmony patch `SnowShelterManager.InstantiateSnowShelter()`.
 	- This targets everytime a new snow shelter is made, then `__result.m_DailyDecayHP` changes from `100` to `50`.
 <br></br>
-- Added a new `UITweaks` folder.
-- Added a new `UITweaks.cs` file.
+- Added a `UITweaks` folder.
+- Added a `UITweaks.cs` file.
 - Added a harmony patch `Panel_FeedFire.Initialize()`.
 	- This targets when the panel is built, then changes the `localPosition` and `localScale` of the `m_Sprite_FireFill` UISprite.
 <br></br>
-- Added a new `DecalTweaks` folder.
-- Added a new `DecalTweaks.cs` file.
+- Added a `DecalTweaks` folder.
+- Added a `DecalTweaks.cs` file.
 - Added a harmony patch `DynamicDecalsManager.Start()`.
-	- This targets the `m_DecalOverlapLeniencyPercent` field and adjusts it from `20%` to `??%`.
-	- This harmony patch has currently been commented out, testing whether it should even be implemented.
+	- This targets the `m_DecalOverlapLeniencyPercent` field and adjusts it from `20%` to `100%`.
+	- This means that decals now have no restrictions with how close they can be placed to one another.
+<br></br>
+- Added a `SnareTweaks` folder.
+- Added a `SnareTweaks.cs` file.
+- Added two harmony patches `PlayerManager.InitLabelsForGear()` and `PlayerManager.UpdateInspectGear()`.
+	- `InitLabelsForGear()` adds the `Equip` action button for the snare when the state is set to `WithRabbit`.
+	- `UpdateInspectGear()` is the function that allows the snare to be set to `Set` from the inspect menu.
+<br></br>
+- Added a `Data` folder.
+- Added a `Localization.json` file.
+- Added a `LoadLocalizations()` method.
+	- This handles all the different languages for the `GAMEPLAY_SetSnare` localization.
+	- Universal Tweaks now requires LocalizationUtilities as a dependent mod.
+- Added the `LoadLocalizations()` method to `OnInitializeMelon()`.
 
 ### Changed / Updated:
 - Changed the following access modifiers to `private`.
@@ -73,8 +87,8 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 - Updated the `FlashlightPatches.cs` name to `FlashlightTweaks.cs`.
 
 ### Removed:
-- Removed the `OnInitializeMelon()` method which calls the `LogStarter()` method.
-	- A message displaying that the mod as loaded and on what version no longer shows, as MelonLoader already does that.
+- Removed the `LogStarter()` method within `OnInitializeMelon()`.
+	- This was a message displaying that the mod as loaded and on what version no longer shows, as MelonLoader already does that.
 
 ---
 

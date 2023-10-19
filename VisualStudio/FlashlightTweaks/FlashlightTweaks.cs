@@ -44,5 +44,71 @@
                 }
             }
         }
+
+        #region Revisit Later
+        /* [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.Awake))]
+        internal static class Test2
+        {
+            private static void Postfix(FlashlightItem __instance)
+            {
+                if (!GameManager.GetAuroraManager().AuroraIsActive())
+                {
+                    DisableLightRandomIntensity(__instance.m_LightIndoor);
+                    DisableLightRandomIntensity(__instance.m_LightOutdoor);
+                    DisableLightRandomIntensity(__instance.m_LightIndoorHigh);
+                    DisableLightRandomIntensity(__instance.m_LightOutdoorHigh);
+                }
+                else
+                {
+                    EnableLightRandomIntensity(__instance.m_LightIndoor);
+                    EnableLightRandomIntensity(__instance.m_LightOutdoor);
+                    EnableLightRandomIntensityHigh(__instance.m_LightIndoorHigh);
+                    EnableLightRandomIntensityHigh(__instance.m_LightOutdoorHigh);
+                }
+            }
+        }
+
+        private static void DisableLightRandomIntensity(Light lightComponent)
+        {
+            if (lightComponent != null)
+            {
+                LightRandomIntensity intensityComponent = lightComponent.gameObject.GetComponent<LightRandomIntensity>();
+                if (intensityComponent != null)
+                {
+                    intensityComponent.m_IntervalSeconds = 0;
+                    intensityComponent.m_Min = 0;
+                    intensityComponent.m_Max = 0;
+                }
+            }
+        }
+
+        private static void EnableLightRandomIntensity(Light lightComponent)
+        {
+            if (lightComponent != null)
+            {
+                LightRandomIntensity intensityComponent = lightComponent.gameObject.GetComponent<LightRandomIntensity>();
+                if (intensityComponent != null)
+                {
+                    intensityComponent.m_IntervalSeconds = 0.15f;
+                    intensityComponent.m_Min = 2;
+                    intensityComponent.m_Max = 4;
+                }
+            }
+        }
+
+        private static void EnableLightRandomIntensityHigh(Light lightComponent)
+        {
+            if (lightComponent != null)
+            {
+                LightRandomIntensity intensityComponent = lightComponent.gameObject.GetComponent<LightRandomIntensity>();
+                if (intensityComponent != null)
+                {
+                    intensityComponent.m_IntervalSeconds = 0.15f;
+                    intensityComponent.m_Min = 10;
+                    intensityComponent.m_Max = 20;
+                }
+            }
+        } */
+        #endregion
     }
 }
