@@ -26,7 +26,7 @@
         }
 
         [HarmonyPatch(typeof(PlayerManager), nameof(PlayerManager.UpdateInspectGear))]
-        private static class UpdateInspectGear_Patch
+        private static class SnareItemInspectEquipFunctionality
         {
             private static bool Prefix(PlayerManager __instance)
             {

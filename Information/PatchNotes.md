@@ -10,7 +10,7 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 | Versions: |
 | - |
 | [vX.X.X](#vxxx) |
-| [v1.1.0 - Polished Perfection Update](#v110---polished-perfection-update) |
+| [v1.1.0 - Ton of Tweaks Update](#v110---ton-of-tweaks-update) |
 | [v1.0.0 - Initial Launch](#v100---initial-launch) |
 
 ---
@@ -27,54 +27,55 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 
 ---
 
-## v1.1.0 - Polished Perfection Update:
+## v1.1.0 - Ton of Tweaks Update:
 
 > **Upcoming Release...**
 
 ### Highlights / Key Changes:
 - Fixed a small `UISprite` misalignment on the `FeedFire` panel. 
+- Now requires LocalizationUtilities as a dependent mod.
 - Removed `Headache` debuff from Peach and Rose Hip Pies - Suggested by **Valerie**.
 - Reduced how quickly snow shelters decay per day, from `100` to `50` HP - Suggested by **StrayCat**.
-- Decals (spray paint) now have no restrictions to how close they can be placed to one another - Suggested by **FarcryBliss**..
+- Decals (spray paint) now have no restrictions to how close they can be placed to one another - Suggested by **FarcryBliss**.
 - Snares now have an option to reset them from the inspect menu if a bunny was caught - Suggested by **Mentat**.
-- Now requires LocalizationUtilities as a dependent mod.
+- Aiming with revolver no longer requires you to be stationary - Suggested by **Romain**.
 
 ### Added:
-- Added a `FoodTweaks` folder.
+- Added a `Tweaks` folder.
+<br></br>
 - Added a `FoodTweaks.cs` file.
 - Added two methods `PieItems()` and `RemoveHeadacheDebuffFromItems()`.
 	- These handle getting the items, and removing the debuff.
 - Added the `OnSceneWasInitialized()` method to `Main.cs`.
 	- This calls the `PieItems()` method, once the method is called - it isn't called again.
 <br></br>
-- Added a `SnowShelterTweaks` folder.
 - Added a `SnowShelterTweaks.cs` file.
 - Added a harmony patch `SnowShelterManager.InstantiateSnowShelter()`.
 	- This targets everytime a new snow shelter is made, then `__result.m_DailyDecayHP` changes from `100` to `50`.
 <br></br>
-- Added a `UITweaks` folder.
 - Added a `UITweaks.cs` file.
 - Added a harmony patch `Panel_FeedFire.Initialize()`.
 	- This targets when the panel is built, then changes the `localPosition` and `localScale` of the `m_Sprite_FireFill` UISprite.
 <br></br>
-- Added a `DecalTweaks` folder.
 - Added a `DecalTweaks.cs` file.
 - Added a harmony patch `DynamicDecalsManager.Start()`.
 	- This targets the `m_DecalOverlapLeniencyPercent` field and adjusts it from `20%` to `100%`.
 	- This means that decals now have no restrictions with how close they can be placed to one another.
 <br></br>
-- Added a `SnareTweaks` folder.
 - Added a `SnareTweaks.cs` file.
 - Added two harmony patches `PlayerManager.InitLabelsForGear()` and `PlayerManager.UpdateInspectGear()`.
 	- `InitLabelsForGear()` adds the `Equip` action button for the snare when the state is set to `WithRabbit`.
 	- `UpdateInspectGear()` is the function that allows the snare to be set to `Set` from the inspect menu.
 <br></br>
-- Added a `Data` folder.
 - Added a `Localization.json` file.
-- Added a `LoadLocalizations()` method.
+- Added a `LoadLocalizations()` method to be called in `OnInitializeMelon()`.
 	- This handles all the different languages for the `GAMEPLAY_SetSnare` localization.
 	- Universal Tweaks now requires LocalizationUtilities as a dependent mod.
-- Added the `LoadLocalizations()` method to `OnInitializeMelon()`.
+<br></br>
+- Added a `GunTweaks.cs` file.
+- Added two harmony patches `vp_FPSPlayer.Update()` and `Panel_HUD.Update()`.
+	- `vp_FPSPlayer.Update()` removes the walking restrictions when aiming with a revolver.
+	- `Panel_HUD.Update()` removes the `m_AimingLimitedMobility` sprite that comes up when aiming with a revolver.
 
 ### Changed / Updated:
 - Changed the following access modifiers to `private`.
