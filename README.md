@@ -16,15 +16,31 @@
 Universal Tweaks is a modification that enhances existing gameplay elements by modifying things within [**The Long Dark**](https://www.hinterlandgames.com/the-long-dark/), that just makes sense.
 
 ### Features:
--  **Flashlights:** Flashlights now work after an aurora is over, but only charge during an aurora.
+- **Flashlights:** Now continue to function after an aurora is over, but are only charged during an aurora.
+- **Snares:** Can now be reset from the inspect menu after a rabbit is captured.
+- **Revolvers:** No longer lock the players movement, feel free to walk while aiming.
+- **Spray Paint:** No longer has any restrictions with how close they can be placed to one another.
+- **Pies:** No longer give the player the `Headache` debuff.
+- **Snow Shelters** Now decay twice as slow.
 
->**Note**: More features are to come, if you have any requests which just make sense open a feature request under [**issues**](https://github.com/Deaadman/UniversalTweaks/issues)!
+>**Note**: Many of these features were suggested by people in [**The Long Dark Modding Discord**](https://discord.gg/2mnXAZfGXQ), if have a request either create an [**issue**](https://github.com/Deaadman/UniversalTweaks/issues) or ask me in the discord!
+
+---
 
 ## USEFUL LINKS:
 
 - [**Patch Notes**](https://github.com/Deaadman/UniversalTweaks/blob/release/Information/PatchNotes.md): Explore existing updates and stay informed about upcoming changes.
 - [**Compatibility**](https://github.com/Deaadman/UniversalTweaks/blob/release/Information/Compatibility.md): Review what is compatible, incompatible, or unsupported.
-- [**Mod Showcase**](https://github.com/Deaadman/UniversalTweaks/blob/release/Information/Showcase.md): Images which showcase the different features of this modification.
+
+---
+
+## SHOWCASES / VIDEOS:
+
+### Official Videos:
+- Coming Soon.
+
+### Fan Videos:
+- [**Universal Tweaks Showcase - By Lithar**](https://youtu.be/ECODXUVC-kc?si=XTFacviOQr3Zo-F9)
 
 ---
 
@@ -35,6 +51,19 @@ Universal Tweaks is a modification that enhances existing gameplay elements by m
 3. Navigate to the game's mod directory: `[Path to The Long Dark Installation]/mods`.
 4. Copy the `UniversalTweaks.dll` from your `Downloads` folder and paste it into the `mods` directory.
 5. Launch the game. The mod should be enabled.
+
+---
+
+## CONTRIBUTIONS:
+
+### Feature Requests:
+- [**Romain**](https://github.com/RomainDeschampsFR) - Moving while aiming during with a revolver.
+- **FarcryBliss** - Spray paint restrictions.
+- **Mentat** - Snares reset option.
+- **StrayCat** - Snow Shelter slower decay.
+- **Valerie** - `Headache` debuff removal from pies.
+
+>**Note**: For more information, visit the [**patch notes**](https://github.com/Deaadman/UniversalTweaks/blob/release/Information/PatchNotes.md).
 
 ---
 

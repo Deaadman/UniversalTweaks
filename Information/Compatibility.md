@@ -5,7 +5,7 @@
 
 This document outlines the compatibility of this modification with various versions of The Long Dark and other modifications. The goal is to inform users about the versions this mod is compatible with and to identify potential incompatibilities or unsupported modifications.
 
->**Last Checked:** Compatibility was last verified on the **14th of October 2023**.
+>**Last Checked:** Compatibility was last verified on the **23rd of October 2023**.
 
 ---
 
@@ -14,6 +14,8 @@ This modification has been tested and is confirmed to be compatible with the fol
 
 - [**The Long Dark**](https://store.steampowered.com/news/app/305620) - Version: **v2.24**  
 - [**MelonLoader**](https://github.com/LavaGang/MelonLoader/releases) - Version: **v0.6.1**   
+<br></br>
+- [**Localization Utilities**](https://github.com/dommrogers/LocalizationUtilities/releases) - Version: **v2.0.0** 
 
 > **Note:** It's crucial to ensure that you're using the versions listed above or later. Older versions may not be compatible and can lead to unexpected issues.
 

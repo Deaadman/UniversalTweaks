@@ -1,14 +1,13 @@
-﻿namespace UniversalTweaks
+﻿namespace UniversalTweaks;
+
+internal class DecalTweaks
 {
-    internal class DecalTweaks
+    [HarmonyPatch(typeof(DynamicDecalsManager), nameof(DynamicDecalsManager.Start))]
+    private class RemoveSprayPaintRestrictions
     {
-        [HarmonyPatch(typeof(DynamicDecalsManager), nameof(DynamicDecalsManager.Start))]
-        private class RemoveSprayPaintRestrictions
+        private static void Postfix(DynamicDecalsManager __instance)
         {
-            private static void Postfix(DynamicDecalsManager __instance)
-            {
-                __instance.m_DecalOverlapLeniencyPercent = 1;
-            }
+            __instance.m_DecalOverlapLeniencyPercent = 1;
         }
     }
 }

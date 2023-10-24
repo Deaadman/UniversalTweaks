@@ -1,37 +1,36 @@
-namespace UniversalTweaks
+namespace UniversalTweaks;
+
+public class Main : MelonMod
 {
-    public class Main : MelonMod
+    public override void OnInitializeMelon()
     {
-        public override void OnInitializeMelon()
+        LoadLocalizations();
+    }
+
+    public override void OnSceneWasInitialized(int buildIndex, string sceneName)
+    {
+        if (!FoodTweaks.debuffDestroyed)
         {
-            LoadLocalizations();
+            FoodTweaks.PieItems();
         }
+    }
 
-        public override void OnSceneWasInitialized(int buildIndex, string sceneName)
+    private static void LoadLocalizations()
+    {
+        const string JSONfile = "UniversalTweaks.Data.Localization.json";
+
+        try
         {
-            if (!FoodTweaks.debuffDestroyed)
-            {
-                FoodTweaks.PieItems();
-            }
+            using Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(JSONfile) ?? throw new InvalidOperationException($"Failed to load resource: {JSONfile}");
+            using StreamReader reader = new(stream);
+
+            string results = reader.ReadToEnd();
+
+            LocalizationManager.LoadJsonLocalization(results);
         }
-
-        private static void LoadLocalizations()
+        catch (Exception ex)
         {
-            const string JSONfile = "UniversalTweaks.Data.Localization.json";
-
-            try
-            {
-                using Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(JSONfile) ?? throw new InvalidOperationException($"Failed to load resource: {JSONfile}");
-                using StreamReader reader = new(stream);
-
-                string results = reader.ReadToEnd();
-
-                LocalizationManager.LoadJsonLocalization(results);
-            }
-            catch (Exception ex)
-            {
-                Logging.LogError(ex.Message);
-            }
+            Logging.LogError(ex.Message);
         }
     }
 }

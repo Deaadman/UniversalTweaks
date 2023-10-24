@@ -1,16 +1,15 @@
-﻿namespace UniversalTweaks
+﻿namespace UniversalTweaks;
+
+internal class SnowShelterTweaks
 {
-    internal class SnowShelterTweaks
+    [HarmonyPatch(typeof(SnowShelterManager), nameof(SnowShelterManager.InstantiateSnowShelter))]
+    private class SnowShelterDecayRate
     {
-        [HarmonyPatch(typeof(SnowShelterManager), nameof(SnowShelterManager.InstantiateSnowShelter))]
-        private class SnowShelterDecayRate
+        private static void Postfix(ref SnowShelter __result)
         {
-            private static void Postfix(ref SnowShelter __result)
+            if (__result != null)
             {
-                if (__result != null)
-                {
-                    __result.m_DailyDecayHP = 50f;
-                }
+                __result.m_DailyDecayHP = 50f;
             }
         }
     }

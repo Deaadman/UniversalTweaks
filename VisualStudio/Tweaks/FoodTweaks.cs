@@ -1,28 +1,27 @@
 ﻿using Il2CppTLD.Gear;
 
-namespace UniversalTweaks
+namespace UniversalTweaks;
+
+internal class FoodTweaks
 {
-    internal class FoodTweaks
+    internal static bool debuffDestroyed = false;
+
+    internal static void PieItems()
     {
-        internal static bool debuffDestroyed = false;
+        RemoveHeadacheDebuffFromItems("GEAR_CookedPiePeach");
+        RemoveHeadacheDebuffFromItems("GEAR_CookedPieRoseHip");
+    }
 
-        internal static void PieItems()
+    private static void RemoveHeadacheDebuffFromItems(string itemName)
+    {
+        GearItem item = GearItem.LoadGearItemPrefab(itemName);
+        if (item != null)
         {
-            RemoveHeadacheDebuffFromItems("GEAR_CookedPiePeach");
-            RemoveHeadacheDebuffFromItems("GEAR_CookedPieRoseHip");
-        }
-
-        private static void RemoveHeadacheDebuffFromItems(string itemName)
-        {
-            GearItem item = GearItem.LoadGearItemPrefab(itemName);
-            if (item != null)
+            CausesHeadacheDebuff debuffScript = item.gameObject.GetComponent<CausesHeadacheDebuff>();
+            if (debuffScript != null)
             {
-                CausesHeadacheDebuff debuffScript = item.gameObject.GetComponent<CausesHeadacheDebuff>();
-                if (debuffScript != null)
-                {
-                    UnityEngine.Object.Destroy(debuffScript);
-                    debuffDestroyed = true;
-                }
+                UnityEngine.Object.Destroy(debuffScript);
+                debuffDestroyed = true;
             }
         }
     }
