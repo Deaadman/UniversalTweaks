@@ -38,7 +38,7 @@ So please note that the upcoming ideas provided within these patch notes isn't f
 
 ## v1.1.0 - Ton of Tweaks Update:
 
-> Released on the **23rd of October 2023**.
+> Released on the **24rd of October 2023**.
 
 ### Highlights / Key Changes:
 - Snares now have an option to reset them from the inspect menu if a bunny was caught - Suggested by **Mentat**.
