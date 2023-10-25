@@ -5,25 +5,25 @@
 
 <p align="center">
     <a href="https://github.com/Deaadman/UniversalTweaks/releases/latest"><img src="https://img.shields.io/github/v/release/Deaadman/UniversalTweaks?label=latest&style=for-the-badge"></a>
-	<a href="https://github.com/Deaadman/UniversalTweaks/releases"><img src="https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/total.svg?style=for-the-badge"></a>
-	<a href="https://github.com/Deaadman/UniversalTweaks/releases"><img src="https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/latest/total.svg?style=for-the-badge"></a>
+    <a href="https://github.com/Deaadman/UniversalTweaks/releases"><img src="https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/total.svg?style=for-the-badge"></a>
+    <a href="https://github.com/Deaadman/UniversalTweaks/releases"><img src="https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/latest/total.svg?style=for-the-badge"></a>
     <a href="https://github.com/Deaadman/UniversalTweaks/issues"><img src="https://img.shields.io/github/issues/Deaadman/UniversalTweaks?style=for-the-badge"></a>
 
 ---
 
 ## GENERAL INFORMATION:
 
-Universal Tweaks is a modification that enhances existing gameplay elements by modifying things within [**The Long Dark**](https://www.hinterlandgames.com/the-long-dark/), that just makes sense.
+Universal Tweaks is a modification that enhances existing gameplay elements by modifying things within [**The Long Dark**](https://www.hinterlandgames.com/the-long-dark/) that just make sense.
 
 ### Features:
 - **Flashlights:** Now continue to function after an aurora is over, but are only charged during an aurora.
 - **Snares:** Can now be reset from the inspect menu after a rabbit is captured.
-- **Revolvers:** No longer lock the players movement, feel free to walk while aiming.
-- **Spray Paint:** No longer has any restrictions with how close they can be placed to one another.
+- **Revolvers:** No longer lock the player's movement; feel free to walk while aiming.
+- **Spray Paint:** No longer has any restrictions on how close they can be placed to one another.
 - **Pies:** No longer give the player the `Headache` debuff.
-- **Snow Shelters** Now decay twice as slow.
+- **Snow Shelters:** Now decay twice as slow.
 
->**Note**: Many of these features were suggested by people in [**The Long Dark Modding Discord**](https://discord.gg/2mnXAZfGXQ), if have a request either create an [**issue**](https://github.com/Deaadman/UniversalTweaks/issues) or ask me in the discord!
+>**Note**: Many of these features were suggested by people in [**The Long Dark Modding Discord**](https://discord.gg/2mnXAZfGXQ). If you have a request, either create an [**issue**](https://github.com/Deaadman/UniversalTweaks/issues) or ask me in the discord!
 
 ---
 
@@ -40,7 +40,8 @@ Universal Tweaks is a modification that enhances existing gameplay elements by m
 - Coming Soon.
 
 ### Fan Videos:
-- [**Universal Tweaks Showcase - By Lithar**](https://youtu.be/ECODXUVC-kc?si=XTFacviOQr3Zo-F9)
+- [**Universal Tweaks v1.0.0 Showcase - By Lithar**](https://youtu.be/ECODXUVC-kc?si=XTFacviOQr3Zo-F9)
+- [**Universal Tweaks v1.1.0 Showcase - By Lithar**](https://youtu.be/BL8JDfg02O4?si=e59K-19N7qvqgenO)
 
 ---
 
@@ -57,7 +58,7 @@ Universal Tweaks is a modification that enhances existing gameplay elements by m
 ## CONTRIBUTIONS:
 
 ### Feature Requests:
-- [**Romain**](https://github.com/RomainDeschampsFR) - Moving while aiming during with a revolver.
+- [**Romain**](https://github.com/RomainDeschampsFR) - Moving while aiming with a revolver.
 - **FarcryBliss** - Spray paint restrictions.
 - **Mentat** - Snares reset option.
 - **StrayCat** - Snow Shelter slower decay.
@@ -70,7 +71,7 @@ Universal Tweaks is a modification that enhances existing gameplay elements by m
 ## LICENSING:
 This modification is licensed under the **MIT License.**
 
-Under the MIT License you have the right to:
+Under the MIT License, you have the right to:
 
 - Use this mod for any purpose, whether it's personal or commercial.
 - Modify the mod to suit your needs, and those modifications can be kept private or shared with others.

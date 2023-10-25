@@ -8,7 +8,7 @@ public static class BuildInfo
     /// <summary>Who made the mod</summary>
     public const string Author                          = "Deadman";
     /// <summary>Current version (e.g. 1.0.0, 1.0.0-alpha, 1.0.0-beta, 1.0.0-rc, etc.) </summary>
-    public const string Version                         = "1.1.0";
+    public const string Version                         = "1.1.1";
     /// <summary>Name used on GUI's, like ModSettings</summary>
     public const string GUIName                         = "Universal Tweaks";
     /// <summary>The minimum Melon Loader version that your mod requires.</summary>

@@ -9,18 +9,19 @@ internal class SnareTweaks
     {
         private static void Postfix(PlayerManager __instance)
         {
-            snareItem = __instance.m_Gear.m_SnareItem;
-
-            if (snareItem != null && snareItem.m_State == SnareState.WithRabbit)
+            if (snareItem = __instance.m_Gear.m_SnareItem)
             {
-                InterfaceManager.TryGetPanel<Panel_HUD>(out var hudPanel);
-                hudPanel.m_InspectMode_Equip.gameObject.SetActive(true);
-                hudPanel.m_InspectMode_Equip.text = Localization.Get("GAMEPLAY_SetSnare");
-            }
-            else
-            {
-                InterfaceManager.TryGetPanel<Panel_HUD>(out var hudPanel);
-                hudPanel.m_InspectMode_Equip.gameObject.SetActive(false);
+                if (snareItem != null && snareItem.m_State == SnareState.WithRabbit)
+                {
+                    InterfaceManager.TryGetPanel<Panel_HUD>(out var hudPanel);
+                    hudPanel.m_InspectMode_Equip.gameObject.SetActive(true);
+                    hudPanel.m_InspectMode_Equip.text = Localization.Get("GAMEPLAY_SetSnare");
+                }
+                else
+                {
+                    InterfaceManager.TryGetPanel<Panel_HUD>(out var hudPanel);
+                    hudPanel.m_InspectMode_Equip.gameObject.SetActive(false);
+                }
             }
         }
     }
@@ -28,7 +29,7 @@ internal class SnareTweaks
     [HarmonyPatch(typeof(PlayerManager), nameof(PlayerManager.UpdateInspectGear))]
     private static class SnareItemInspectEquipFunctionality
     {
-        private static bool Prefix(PlayerManager __instance)
+        private static void Postfix(PlayerManager __instance)
         {
             if (snareItem != null && snareItem.m_State == SnareState.WithRabbit)
             {
@@ -37,12 +38,8 @@ internal class SnareTweaks
                     __instance.ExitInspectGearMode(false);
 
                     snareItem.SetState(SnareState.Set);
-
-                    return false;
                 }
             }
-
-            return true;
         }
     }
 }
