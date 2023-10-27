@@ -37,12 +37,24 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 	- Then decline the player's health if they are overheating for too long.
 	- Display this by overlapping the temperature circle with a red circle.
 <br></br>
-- More null checks?
-	- Will help prevent errors.
-	- Allow the mod to run more smoothly if an error is encountered.
+- UI Tweaks
+	- Remove the Wintermute label in `Panel_MainMenu` if Wintermute isn't installed.
+	- Possibly add a menu to display metrics, which may include:
+		- FPS
+		- CPU Usage and Temp
+		- GPU Usage and Temp
+	- Add labels for equippable items in `Panel_HUD` which displayes the current item in hand. (Like Fortnite).
 <br></br>
-- ModSettings support
-	- Add settings for players to change, such as the decay rate for the snow shelters.
+- Programming
+	- Add more `null` checks.
+		- Will help prevent errors.
+		- Allow the mod to run more smoothly if an error is encountered.
+<br></br>
+- Mod Integration
+	- Integrate Disable Breath Effects mod with this one.
+	- Integrate [**TLD_NonPotableToiletWater**](https://github.com/Ezinw/TLD_NonPotableToiletWater/releases) mod with this one, ask for permission first.
+	- ModSettings support
+		- Add settings for players to change, such as the decay rate for the snow shelters.
 
 ---
 
