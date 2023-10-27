@@ -25,6 +25,7 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 	- Figure out why the `Intense` audio won't play without an aurora.
 	- Disable flashlight flicker if there is not an aurora.
 	- Allow a small chance of wolves to be scared by the `High` state flashlight without an aurora (only at night).
+	- Make the flashlight start at a random battery percentage, rather than `100%` all the time.
 <br></br>
 - First Person Handedness - Suggested by [**Romain**](https://github.com/RomainDeschampsFR).
 	- Add an option to switch between left and right hand.
@@ -102,4 +103,47 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 <br></br>
 - Added a `SnareTweaks.cs` script.
 - Added two harmony patches `PlayerManager.InitLabelsForGear()` and `PlayerManager.UpdateInspectGear()`.
+	- `InitLabelsForGear()` adds the `Equip` action button for the snare when the state is set to `WithRabbit`.
+	- `UpdateInspectGear()` is the function that allows the snare to be set to `Set` from the inspect menu.
+<br></br>
+- Added a `Localization.json` file.
+- Added the `LoadLocalizations()` method to be called in the `OnInitializeMelon()` method.
+	- This handles all the different languages for the `GAMEPLAY_SetSnare` localization.
+	- Universal Tweaks now requires LocalizationUtilities as a dependent mod.
+<br></br>
+- Added a `GunTweaks.cs` script.
+- Added two harmony patches `vp_FPSPlayer.Update()` and `Panel_HUD.Update()`.
+	- `vp_FPSPlayer.Update()` removes the walking restrictions when aiming with a revolver.
+	- `Panel_HUD.Update()` removes the `m_AimingLimitedMobility` sprite that comes up when aiming with a revolver.
+
+### Changed / Updated:
+- Changed the following access modifiers to `private`.
+	- `FlashlightKeepBatteryChange` class and it's `Prefix.`
+	- `FlashlightFunctionality` class and it's `Prefix`.
+	- `FlashlightBatteryDrain` class and it's `Postfix`.
+	- `SnowShelterDecayRate` class and it's `Postfix`.
+	- `RemoveHeadacheDebuffFromItems` method.
+<br></br>
+- Updated the `FlashlightPatches.cs` name to `FlashlightTweaks.cs`.
+- Updated all the `namespace UniversalTweaks{}` to `namespace UniversalTweaks;` - this is the newer C# 10.0 Syntax.
+
+### Removed:
+- Removed the `LogStarter()` method within `OnInitializeMelon()`.
+	- This was a message displaying that the mod as loaded and on what version no longer shows, as MelonLoader already does that.
+
+---
+
+## v1.0.0 - Initial Launch:
+
+> Released on the **14th of October 2023**.
+### Highlights / Key Changes:
+- Flashlights now work without an aurora.
+	- Flashlights are only charged during an aurora, so use wisely.
+
+### Added:
+- Added a new `FlashlightPatches.cs` file.
+- Added three harmony patches which target specific things.
+	- `FlashlightItem.GetNormalizedCharge` targets the battery of the flashlight.
+	- `FlashlightItem.IsLit` allows for the flashlight to turn on and off.
+	- `FlashlightItem.Update` drains the battery without an aurora.
 	- `InitLabelsForGear()` adds the `Equip` action button

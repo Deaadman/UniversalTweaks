@@ -7,7 +7,10 @@
     <a href="https://github.com/Deaadman/UniversalTweaks/releases/latest"><img src="https://img.shields.io/github/v/release/Deaadman/UniversalTweaks?label=latest&style=for-the-badge"></a>
     <a href="https://github.com/Deaadman/UniversalTweaks/releases"><img src="https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/total.svg?style=for-the-badge"></a>
     <a href="https://github.com/Deaadman/UniversalTweaks/releases"><img src="https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/latest/total.svg?style=for-the-badge"></a>
+
+<p align="center">
     <a href="https://github.com/Deaadman/UniversalTweaks/issues"><img src="https://img.shields.io/github/issues/Deaadman/UniversalTweaks?style=for-the-badge"></a>
+    <img src="https://img.shields.io/badge/Translated-5.26%25-red?style=for-the-badge">
 
 ---
 
