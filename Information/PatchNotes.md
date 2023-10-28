@@ -10,7 +10,7 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 | Versions: |
 | - |
 | [vX.X.X](#vxxx) |
-| [v1.2.0](#v120---???) |
+| [v1.2.0 - ???](#v120---) |
 | [v1.1.1](#v111) |
 | [v1.1.0 - Ton of Tweaks Update](#v110---ton-of-tweaks-update) |
 | [v1.0.0 - Initial Launch](#v100---initial-launch) |
@@ -101,7 +101,7 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 > Released on the **25th of October 2023**.
 
 ### Highlights / Key Changes:
-- Snares now have an option to reset them from the inspect menu if a bunny was caught - Suggested by **Mentat**.
+- Fixed issue of `SnareTweaks` disabling all other equip prompts.
 
 ### Changed / Updated:
 - Changed the `SnareItemInspectEquipFunctionality` harmony patch from a `Prefix` method to a `Postfix`.
