@@ -1,9 +1,9 @@
-﻿namespace UniversalTweaks;
+﻿namespace UniversalTweaks.Tweaks;
 
 internal class FlashlightTweaks
 {
     [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.GetNormalizedCharge))]
-    private class FlashlightKeepBatteryCharge
+    private static class FlashlightKeepBatteryCharge
     {
         private static bool Prefix(FlashlightItem __instance, ref float __result)
         {
@@ -13,7 +13,7 @@ internal class FlashlightTweaks
     }
 
     [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.IsLit))]
-    private class FlashlightFunctionality
+    private static class FlashlightFunctionality
     {
         private static bool Prefix(FlashlightItem __instance, ref bool __result)
         {
@@ -23,7 +23,7 @@ internal class FlashlightTweaks
     }
 
     [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.Update))]
-    private class FlashlightBatteryDrain
+    private static class FlashlightBatteryDrain
     {
         private static void Postfix(FlashlightItem __instance)
         {
@@ -42,6 +42,29 @@ internal class FlashlightTweaks
                 __instance.m_CurrentBatteryCharge = 0f;
                 __instance.m_State = FlashlightItem.State.Off;
             }
+        }
+    }
+
+    [HarmonyPatch(typeof(LightRandomIntensity), nameof(LightRandomIntensity.Update))]
+    private static class FlashlightFlicker
+    {
+        private static bool Prefix()
+        {
+            if (!GameManager.GetAuroraManager().AuroraIsActive())
+            {
+                return false;
+            }
+
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.Awake))]
+    private static class FlashlightRandomCharge
+    {
+        private static void Prefix(FlashlightItem __instance)
+        {
+            __instance.m_CurrentBatteryCharge = UnityEngine.Random.Range(0f, 1f);
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿namespace UniversalTweaks;
+﻿namespace UniversalTweaks.Tweaks;
 
 internal class UITweaks
 {
     [HarmonyPatch(typeof(Panel_FeedFire), nameof(Panel_FeedFire.Initialize))]
-    private class FireSpriteFix
+    private static class FireSpriteFix
     {
         private static void Postfix(Panel_FeedFire __instance)
         {

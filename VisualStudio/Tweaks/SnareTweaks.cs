@@ -1,4 +1,4 @@
-﻿namespace UniversalTweaks;
+﻿namespace UniversalTweaks.Tweaks;
 
 internal class SnareTweaks
 {

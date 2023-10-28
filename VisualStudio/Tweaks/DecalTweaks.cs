@@ -1,9 +1,9 @@
-﻿namespace UniversalTweaks;
+﻿namespace UniversalTweaks.Tweaks;
 
 internal class DecalTweaks
 {
     [HarmonyPatch(typeof(DynamicDecalsManager), nameof(DynamicDecalsManager.Start))]
-    private class RemoveSprayPaintRestrictions
+    private static class RemoveSprayPaintRestrictions
     {
         private static void Postfix(DynamicDecalsManager __instance)
         {

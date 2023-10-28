@@ -1,9 +1,9 @@
-﻿namespace UniversalTweaks;
+﻿namespace UniversalTweaks.Tweaks;
 
 internal class GunTweaks
 {
     [HarmonyPatch(typeof(vp_FPSPlayer), nameof(vp_FPSPlayer.Update))]
-    private class RevolverMovementUnblocked
+    private static class RevolverMovementUnblocked
     {
         private static void Postfix(vp_FPSPlayer __instance)
         {
@@ -16,7 +16,7 @@ internal class GunTweaks
     }
 
     [HarmonyPatch(typeof(Panel_HUD), nameof(Panel_HUD.Update))]
-    private class RevolverLimitedMobilityUIDisable
+    private static class RevolverLimitedMobilityUIDisable
     {
         private static void Postfix(Panel_HUD __instance)
         {

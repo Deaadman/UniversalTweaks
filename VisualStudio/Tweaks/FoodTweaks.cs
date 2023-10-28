@@ -1,6 +1,6 @@
 ﻿using Il2CppTLD.Gear;
 
-namespace UniversalTweaks;
+namespace UniversalTweaks.Tweaks;
 
 internal class FoodTweaks
 {

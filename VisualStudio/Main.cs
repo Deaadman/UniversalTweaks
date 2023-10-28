@@ -9,9 +9,9 @@ public class Main : MelonMod
 
     public override void OnSceneWasInitialized(int buildIndex, string sceneName)
     {
-        if (!FoodTweaks.debuffDestroyed)
+        if (!Tweaks.FoodTweaks.debuffDestroyed)
         {
-            FoodTweaks.PieItems();
+            Tweaks.FoodTweaks.PieItems();
         }
     }
 

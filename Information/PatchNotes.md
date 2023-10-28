@@ -10,6 +10,7 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 | Versions: |
 | - |
 | [vX.X.X](#vxxx) |
+| [v1.2.0](#v120---???) |
 | [v1.1.1](#v111) |
 | [v1.1.0 - Ton of Tweaks Update](#v110---ton-of-tweaks-update) |
 | [v1.0.0 - Initial Launch](#v100---initial-launch) |
@@ -23,9 +24,7 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 - Flashlight Tweaks
 	- Prevent `High` state if there isn't an aurora (may balance things)
 	- Figure out why the `Intense` audio won't play without an aurora.
-	- Disable flashlight flicker if there is not an aurora.
 	- Allow a small chance of wolves to be scared by the `High` state flashlight without an aurora (only at night).
-	- Make the flashlight start at a random battery percentage, rather than `100%` all the time.
 <br></br>
 - First Person Handedness - Suggested by [**Romain**](https://github.com/RomainDeschampsFR).
 	- Add an option to switch between left and right hand.
@@ -44,6 +43,7 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 		- CPU Usage and Temp
 		- GPU Usage and Temp
 	- Add labels for equippable items in `Panel_HUD` which displayes the current item in hand. (Like Fortnite).
+	- Remove the spray paint option from the radial menu if there is no spray paint can in your inventory.
 <br></br>
 - Programming
 	- Add more `null` checks.
@@ -55,6 +55,44 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 	- Integrate [**TLD_NonPotableToiletWater**](https://github.com/Ezinw/TLD_NonPotableToiletWater/releases) mod with this one, ask for permission first.
 	- ModSettings support
 		- Add settings for players to change, such as the decay rate for the snow shelters.
+<br></br>
+- Multicoloured items?
+	- Flares
+	- Spray Paint Cans
+
+---
+
+## v1.2.0 - ???:
+
+> **Upcoming Release...**
+
+### Highlights / Key Changes:
+- Flashlights no longer flicker if no aurora is active.
+- Flashlights no longer spawn with 100% charge, it's now completely random.
+
+### Added:
+- Added the following harmony patches to the `FlashlightTweaks.cs` script.
+	- `LightRandomIntensity.Update`
+		- This patch checks to see if an aurora is currently active, if it isn't it stops the original script from running.
+	- `FlashlightItem.Awake`
+		- This patch utilises `UnityEngine.Random.Range(0f, 1f);` to set a random float to `m_CurrentBatteryCharge`.
+
+### Changed / Updated:
+- Updated the following `private` classes to `static private`.
+	- In the `FlashlightTweaks` script.
+		- `FlashlightKeepBatteryCharge` class.
+		- `FlashlightFunctionality` class.
+		- `FlashlightBatteryDrain` class.
+	- In the `DecalTweaks` script.
+		- `RemoveSprayPaintRestrictions` class.
+	- In the `GunTweaks` script.
+		- `RevolverMovementUnblocked` class.
+		- `RevolverLimitedMobilityUIDisable` class.
+	- In the `SnowShelterTweaks` script.
+		- `ShowShelterDecayRate` class.
+	- In the `UITweaks` script.
+		- `FireSpriteFix` class.
+- Updated all the scripts namespaces that are in the `Tweaks` folder to `namespace UniversalTweaks.Tweaks;` from `namespace UniversalTweaks;`.
 
 ---
 
