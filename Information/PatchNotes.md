@@ -1,4 +1,4 @@
-<p align="center">
+b<p align="center">
     <a href="#"><img src="https://raw.githubusercontent.com/Deaadman/UniversalTweaks/release/Images/PatchNotesHeading.png"></a>
 
 ---
@@ -37,7 +37,6 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 	- Display this by overlapping the temperature circle with a red circle.
 <br></br>
 - UI Tweaks
-	- Remove the Wintermute label in `Panel_MainMenu` if Wintermute isn't installed.
 	- Possibly add a menu to display metrics, which may include:
 		- FPS
 		- CPU Usage and Temp
@@ -69,6 +68,7 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 ### Highlights / Key Changes:
 - Flashlights no longer flicker if no aurora is active.
 - Flashlights no longer spawn with 100% charge, it's now completely random.
+- Removed both `Wintermute` and `Expansion` menu items from the Main Menu if they aren't installed.
 
 ### Added:
 - Added the following harmony patches to the `FlashlightTweaks.cs` script.
@@ -76,6 +76,11 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 		- This patch checks to see if an aurora is currently active, if it isn't it stops the original script from running.
 	- `FlashlightItem.Awake`
 		- This patch utilises `UnityEngine.Random.Range(0f, 1f);` to set a random float to `m_CurrentBatteryCharge`.
+<br></br>
+- Added the following harmony patches to the `UITweaks.cs` script.
+	- `Panel_MainMenu.Initialize`
+		- This patch checks to see whether the user has `Wintermute` or `TFTFT` installed, if not it calls a custom `RemoveMainMenuItem()` method.
+		- This method iterates through all menu items, and finds the types specified. Once found, it removes them and refreshes the menu.
 
 ### Changed / Updated:
 - Updated the following `private` classes to `static private`.
