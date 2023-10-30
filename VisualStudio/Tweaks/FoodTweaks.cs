@@ -10,6 +10,7 @@ internal class FoodTweaks
     {
         RemoveHeadacheDebuffFromItems("GEAR_CookedPiePeach");
         RemoveHeadacheDebuffFromItems("GEAR_CookedPieRoseHip");
+        RemoveHeadacheDebuffFromItems("GEAR_MRE");
     }
 
     private static void RemoveHeadacheDebuffFromItems(string itemName)
