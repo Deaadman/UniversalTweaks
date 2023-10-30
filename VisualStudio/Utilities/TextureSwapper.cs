@@ -1,4 +1,4 @@
-﻿namespace UniversalTweaks.Miscellaneous;
+﻿namespace UniversalTweaks.Utilities;
 
 internal static class TextureSwapper
 {
@@ -55,7 +55,7 @@ public static class GearItem_LoadGearItemPrefab
                 matID = 0,
                 textures = new Dictionary<string, Texture2D>
                 {
-                    { "_MainTex", Main.MRETexture }
+                    { "_MainTex", MelonModImplementation.MRETexture }
                 }
             };
 

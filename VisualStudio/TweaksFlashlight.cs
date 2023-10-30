@@ -1,7 +1,16 @@
-﻿namespace UniversalTweaks.Tweaks;
+﻿namespace UniversalTweaks;
 
-internal class FlashlightTweaks
+internal class TweaksFlashlight
 {
+    [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.Awake))]
+    private static class FlashlightRandomCharge
+    {
+        private static void Prefix(FlashlightItem __instance)
+        {
+            __instance.m_CurrentBatteryCharge = UnityEngine.Random.Range(0f, 1f);
+        }
+    }
+
     [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.GetNormalizedCharge))]
     private static class FlashlightKeepBatteryCharge
     {
@@ -56,15 +65,6 @@ internal class FlashlightTweaks
             }
 
             return true;
-        }
-    }
-
-    [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.Awake))]
-    private static class FlashlightRandomCharge
-    {
-        private static void Prefix(FlashlightItem __instance)
-        {
-            __instance.m_CurrentBatteryCharge = UnityEngine.Random.Range(0f, 1f);
         }
     }
 }

@@ -1,4 +1,4 @@
-b<p align="center">
+<p align="center">
     <a href="#"><img src="https://raw.githubusercontent.com/Deaadman/UniversalTweaks/release/Images/PatchNotesHeading.png"></a>
 
 ---
@@ -41,8 +41,9 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 		- FPS
 		- CPU Usage and Temp
 		- GPU Usage and Temp
-	- Add labels for equippable items in `Panel_HUD` which displayes the current item in hand. (Like Fortnite).
+	- Add labels for equippable items in `Panel_HUD` which displays the current item in hand. (Like Fortnite).
 	- Remove the spray paint option from the radial menu if there is no spray paint can in your inventory.
+	- Make the white reticle always visible - Suggested by **wheelchaircutie**.
 <br></br>
 - Programming
 	- Add more `null` checks.
@@ -50,8 +51,6 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 		- Allow the mod to run more smoothly if an error is encountered.
 <br></br>
 - Mod Integration
-	- Integrate Disable Breath Effects mod with this one.
-	- Integrate [**TLD_NonPotableToiletWater**](https://github.com/Ezinw/TLD_NonPotableToiletWater/releases) mod with this one, ask for permission first.
 	- ModSettings support
 		- Add settings for players to change, such as the decay rate for the snow shelters.
 <br></br>
@@ -66,12 +65,16 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 > **Upcoming Release...**
 
 ### Highlights / Key Changes:
+- Integrated the mods:
+	- [**Disable Breath Effects**](https://github.com/Thekillergreece/DisableBreathEffect) - by [**Thekillergreece**](https://github.com/Thekillergreece) and [**zeobviouslyfakeacc**](https://github.com/zeobviouslyfakeacc) 
+	- [**TLD_NonPotableToiletWater**](https://github.com/Ezinw/TLD_NonPotableToiletWater) - by [**Ezinw**](https://github.com/Ezinw).
+- Now requires [**ModSettings**](https://github.com/DigitalzombieTLD/ModSettings) as a dependent mod.
+- Removed both `Wintermute` and `Expansion` menu items from the Main Menu if they aren't installed.
 - Flashlights no longer flicker if no aurora is active.
 - Flashlights no longer spawn with 100% charge, it's now completely random.
-- Removed both `Wintermute` and `Expansion` menu items from the Main Menu if they aren't installed.
 
 ### Added:
-- Added the following harmony patches to the `FlashlightTweaks.cs` script.
+- Added the following harmony patches to the `TweaksFlashlight.cs` script.
 	- `LightRandomIntensity.Update`
 		- This patch checks to see if an aurora is currently active, if it isn't it stops the original script from running.
 	- `FlashlightItem.Awake`
@@ -81,23 +84,71 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 	- `Panel_MainMenu.Initialize`
 		- This patch checks to see whether the user has `Wintermute` or `TFTFT` installed, if not it calls a custom `RemoveMainMenuItem()` method.
 		- This method iterates through all menu items, and finds the types specified. Once found, it removes them and refreshes the menu.
+<br></br>
+- Added a `TweaksWater.cs` script.
+	- This contains a `WaterSource.Deserialize` harmony patch which sets the `m_CurrentLiquidQuality` to `NonPotable` on any WaterSource component.
+	- This feature comes from the mod [**TLD_NonPotableToiletWater**](https://github.com/Ezinw/TLD_NonPotableToiletWater) by [**Ezinw**](https://github.com/Ezinw) - but was reprogrammed for more efficiency.
+<br></br>
+- Added a `TweaksBreath.cs` script.
+	- This contains a `Breath.PlayBreathEffect` harmony patch which grabs the original `m_ColdBreathTempThreshold`, `m_VeryColdBreathTempThreshold` and `m_FreezingBreathTempThreshold` values before modifying them.
+	- This allows for players to enable and disable the effect at will through [**ModSettings**](https://github.com/DigitalzombieTLD/ModSettings).
 
 ### Changed / Updated:
+- Changed the entire solution structure of this mod to this:
+	- 📁 **Properties**
+		- 📄 `AssemblyInfo.cs`
+		- 📄 `BuildInfo.cs`
+		- 📄 `Settings.cs`
+	- 📁 **Resources**
+		- 📄 `Localization.json`
+		- 📄 `UniversalTweaksAssetBundle`
+	- 📁 **Utilities**
+		- 📄 `AssetBundleLoader.cs`
+		- 📄 `Logging.cs`
+		- 📄 `TextureSwapper.cs`
+	- 📄 `MelonModImplementation.cs`
+	- 📄 `TweaksBreath.cs`
+	- 📄 `TweaksDecals.cs`
+	- 📄 `TweaksFlashlight.cs`
+	- 📄 `TweaksFood.cs`
+	- 📄 `TweaksGuns.cs`
+	- 📄 `TweaksSnare.cs`
+	- 📄 `TweaksSnowShelter.cs`
+	- 📄 `TweaksUserInterface.cs`
+	- 📄 `TweaksWater.cs`
+- As it was previously this (Version v1.1.1):
+	- 📁 **Data**
+		- 📄 `Localization.json`
+	- 📁 **Miscellaneous**
+		- 📄 `Logging.cs`
+	- 📁 **Properties**
+		- 📄 `AssemblyInfo.cs`
+	- 📁 **Tweaks**
+		- 📄 `DecalTweaks.cs`
+		- 📄 `FlashlightTweaks.cs`
+		- 📄 `FoodTweaks.cs`
+		- 📄 `GunTweaks.cs`
+		- 📄 `SnareTweaks.cs`
+		- 📄 `SnowShelterTweaks.cs`
+		- 📄 `UITweaks.cs`
+	- 📄 `BuildInfo.cs`
+	- 📄 `Main.cs`
+
+<br></br>
 - Updated the following `private` classes to `static private`.
-	- In the `FlashlightTweaks` script.
+	- In the `TweaksFlashlight` script.
 		- `FlashlightKeepBatteryCharge` class.
 		- `FlashlightFunctionality` class.
 		- `FlashlightBatteryDrain` class.
-	- In the `DecalTweaks` script.
+	- In the `TweaksDecals` script.
 		- `RemoveSprayPaintRestrictions` class.
-	- In the `GunTweaks` script.
+	- In the `TweaksGuns` script.
 		- `RevolverMovementUnblocked` class.
 		- `RevolverLimitedMobilityUIDisable` class.
-	- In the `SnowShelterTweaks` script.
+	- In the `TweaksSnowShelter` script.
 		- `ShowShelterDecayRate` class.
-	- In the `UITweaks` script.
+	- In the `TweaksUserInterface` script.
 		- `FireSpriteFix` class.
-- Updated all the scripts namespaces that are in the `Tweaks` folder to `namespace UniversalTweaks.Tweaks;` from `namespace UniversalTweaks;`.
 
 ---
 
@@ -131,7 +182,7 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 - Removed `Headache` debuff from Peach and Rose Hip Pies - Suggested by **Valerie**.
 - Reduced how quickly snow shelters decay per day, from `100` to `50` HP - Suggested by **StrayCat**.
 - Fixed a small `UISprite` misalignment on the `FeedFire` panel. 
-- Now requires `LocalizationUtilities` as a dependent mod.
+- Now requires [**LocalizationUtilities**](https://github.com/dommrogers/LocalizationUtilities) as a dependent mod.
 
 ### Added:
 - Added a `Tweaks` folder.

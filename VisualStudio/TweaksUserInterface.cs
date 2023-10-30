@@ -1,9 +1,9 @@
 ﻿using Il2CppTLD.OptionalContent;
 using static Il2Cpp.Panel_MainMenu.MainMenuItem;
 
-namespace UniversalTweaks.Tweaks;
+namespace UniversalTweaks;
 
-internal class UITweaks
+internal class TweaksUserInterface
 {
     [HarmonyPatch(typeof(Panel_FeedFire), nameof(Panel_FeedFire.Initialize))]
     private static class FireSpriteFix

@@ -5,6 +5,9 @@
 
 <p align="center">
     <a href="https://github.com/Deaadman/UniversalTweaks/releases/latest"><img src="https://img.shields.io/github/v/release/Deaadman/UniversalTweaks?label=latest&style=for-the-badge"></a>
+    <a href="https://github.com/Deaadman/UniversalTweaks/blob/release/PatchNotes.md"><img src="https://img.shields.io/badge/Patch Notes-Click Here-blue?style=for-the-badge"></a>
+
+<p align="center">
     <a href="https://github.com/Deaadman/UniversalTweaks/releases"><img src="https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/total.svg?style=for-the-badge"></a>
     <a href="https://github.com/Deaadman/UniversalTweaks/releases"><img src="https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/latest/total.svg?style=for-the-badge"></a>
 
@@ -30,10 +33,26 @@ Universal Tweaks is a modification that enhances existing gameplay elements by m
 
 ---
 
-## USEFUL LINKS:
+## COMPATIBILITY:
 
-- [**Patch Notes**](https://github.com/Deaadman/UniversalTweaks/blob/release/Information/PatchNotes.md): Explore existing updates and stay informed about upcoming changes.
-- [**Compatibility**](https://github.com/Deaadman/UniversalTweaks/blob/release/Information/Compatibility.md): Review what is compatible, incompatible, or unsupported.
+### Required Dependencies:
+For optimal functionality of this modification, ensure you have the following versions or newer:
+
+- [**The Long Dark**](https://store.steampowered.com/news/app/305620) - Version: **v2.24**  
+- [**MelonLoader**](https://github.com/LavaGang/MelonLoader/releases) - Version: **v0.6.1**   
+- [**Localization Utilities**](https://github.com/dommrogers/LocalizationUtilities/releases) - Version: **v2.0.0** 
+- [**Mod Settings**](https://github.com/DigitalzombieTLD/ModSettings) - Version: **v2.0.0** 
+
+### Compatible Mods:
+
+This mod is intended to be compatible with most mods unless mentioned in the 'Incompatible Mods' section. Always check for updates and go through mod descriptions to ensure full compatibility.
+
+### Incompatible Mods:
+
+Avoid using the following mods with this modification as combining this mod with incompatible ones might result in game crashes, data loss, or unforeseen issues. 
+
+- **[Disable Breath Effects](https://github.com/Thekillergreece/DisableBreathEffect)**
+- **[TLD_NonPotableToiletWater](https://github.com/Ezinw/TLD_NonPotableToiletWater)**
 
 ---
 
@@ -43,8 +62,9 @@ Universal Tweaks is a modification that enhances existing gameplay elements by m
 - Coming Soon.
 
 ### Fan Videos:
-- [**Universal Tweaks v1.0.0 Showcase - By Lithar**](https://youtu.be/ECODXUVC-kc?si=XTFacviOQr3Zo-F9)
-- [**Universal Tweaks v1.1.0 Showcase - By Lithar**](https://youtu.be/BL8JDfg02O4?si=e59K-19N7qvqgenO)
+- Universal Tweaks Showcases - [**By Lithar**](https://www.youtube.com/@Lithar1987)
+    - [**v1.0.0**](https://youtu.be/ECODXUVC-kc?si=XTFacviOQr3Zo-F9)
+    - [**v1.1.0**](https://youtu.be/BL8JDfg02O4?si=e59K-19N7qvqgenO)
 
 ---
 
@@ -58,16 +78,19 @@ Universal Tweaks is a modification that enhances existing gameplay elements by m
 
 ---
 
-## CONTRIBUTIONS:
+## **CONTRIBUTIONS**:
 
-### Feature Requests:
-- [**Romain**](https://github.com/RomainDeschampsFR) - Moving while aiming with a revolver.
-- **FarcryBliss** - Spray paint restrictions.
-- **Mentat** - Snares reset option.
-- **StrayCat** - Snow Shelter slower decay.
-- **Valerie** - `Headache` debuff removal from pies.
+### **Integrated Mods**:
+- **[Disable Breath Effects](https://github.com/Thekillergreece/DisableBreathEffect)**: From [**Thekillergreece**](https://github.com/Thekillergreece) and [**zeobviouslyfakeacc**](https://github.com/zeobviouslyfakeacc).
+  
+- **[TLD_NonPotableToiletWater](https://github.com/Ezinw/TLD_NonPotableToiletWater)**: From [**Ezinw**](https://github.com/Ezinw).
 
->**Note**: For more information, visit the [**patch notes**](https://github.com/Deaadman/UniversalTweaks/blob/release/Information/PatchNotes.md).
+### **Feature Requests**:
+- [**Romain**](https://github.com/RomainDeschampsFR) suggested **moving while aiming with a revolver**.
+- **FarcryBliss** proposed **spray paint restrictions**.
+- **Mentat** brought up the **snares reset option**.
+- **StrayCat** recommended a **slower decay for Snow Shelters**.
+- **Valerie** asked for the **headache debuff removal from pies**.
 
 ---
 

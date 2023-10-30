@@ -1,32 +1,35 @@
+using UniversalTweaks.Utilities;
+using UniversalTweaks.Properties;
+
 namespace UniversalTweaks;
 
-public class Main : MelonMod
+internal sealed class MelonModImplementation : MelonMod
 {
-    internal static AssetBundle? BrownMREAssetBundle { get; } = Miscellaneous.AssetBundleLoader.LoadBundle("UniversalTweaks.AssetBundles.UniversalTweaksAssetBundle");
+    internal static AssetBundle? UniversalTweaksAssetBundle { get; } = AssetBundleLoader.LoadBundle("UniversalTweaks.Resources.UniversalTweaksAssetBundle");
 
-    // New fields to store the loaded textures
     // public static Texture2D? IconTexture { get; private set; }
-    public static Texture2D? MRETexture { get; private set; }
+    internal static Texture2D? MRETexture { get; private set; }
 
     public override void OnInitializeMelon()
     {
         // IconTexture = BrownMREAssetBundle.LoadAsset<Texture2D>("Assets/BrownMRE/ico_GearItem__MRE.png");
-        MRETexture = BrownMREAssetBundle.LoadAsset<Texture2D>("Assets/UniversalTweaks/BrownMRE/GEAR_FoodBrownMRE_Dif.png");
+        MRETexture = UniversalTweaksAssetBundle.LoadAsset<Texture2D>("Assets/UniversalTweaks/BrownMRE/GEAR_FoodBrownMRE_Dif.png");
 
+        Settings.OnLoad();
         LoadLocalizations();
     }
 
     public override void OnSceneWasInitialized(int buildIndex, string sceneName)
     {
-        if (!Tweaks.FoodTweaks.debuffDestroyed)
+        if (!TweaksFood.debuffDestroyed)
         {
-            Tweaks.FoodTweaks.PieItems();
+            TweaksFood.PieItems();
         }
     }
 
     private static void LoadLocalizations()
     {
-        const string JSONfile = "UniversalTweaks.Data.Localization.json";
+        const string JSONfile = "UniversalTweaks.Resources.Localization.json";
 
         try
         {

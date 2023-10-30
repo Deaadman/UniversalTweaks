@@ -1,6 +1,6 @@
-﻿namespace UniversalTweaks.Tweaks;
+﻿namespace UniversalTweaks;
 
-internal class SnareTweaks
+internal class TweaksSnare
 {
     private static SnareItem? snareItem;
 

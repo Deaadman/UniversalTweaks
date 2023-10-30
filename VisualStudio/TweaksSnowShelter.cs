@@ -1,6 +1,6 @@
-﻿namespace UniversalTweaks.Tweaks;
+﻿namespace UniversalTweaks;
 
-internal class SnowShelterTweaks
+internal class TweaksSnowShelter
 {
     [HarmonyPatch(typeof(SnowShelterManager), nameof(SnowShelterManager.InstantiateSnowShelter))]
     private static class SnowShelterDecayRate

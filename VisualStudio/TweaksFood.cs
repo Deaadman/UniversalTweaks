@@ -1,8 +1,8 @@
 ﻿using Il2CppTLD.Gear;
 
-namespace UniversalTweaks.Tweaks;
+namespace UniversalTweaks;
 
-internal class FoodTweaks
+internal class TweaksFood
 {
     internal static bool debuffDestroyed = false;
 
