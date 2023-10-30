@@ -17,12 +17,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="AssetBundles\UniversalTweaks" />
+	  <None Remove="AssetBundles\UniversalTweaksAssetBundle" />
 	  <None Remove="Data\Localization.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="AssetBundles\UniversalTweaks" />
+	  <EmbeddedResource Include="AssetBundles\UniversalTweaksAssetBundle" />
 	  <EmbeddedResource Include="Data\Localization.json" />
 	</ItemGroup>
 
