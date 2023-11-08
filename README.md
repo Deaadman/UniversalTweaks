@@ -81,9 +81,8 @@ Avoid using the following mods with this modification as combining this mod with
 ## **CONTRIBUTIONS**:
 
 ### **Integrated Mods**:
-- **[Disable Breath Effects](https://github.com/Thekillergreece/DisableBreathEffect)**: From [**Thekillergreece**](https://github.com/Thekillergreece) and [**zeobviouslyfakeacc**](https://github.com/zeobviouslyfakeacc).
-  
-- **[TLD_NonPotableToiletWater](https://github.com/Ezinw/TLD_NonPotableToiletWater)**: From [**Ezinw**](https://github.com/Ezinw).
+- **[Disable Breath Effects](https://github.com/Thekillergreece/DisableBreathEffect)** by [**Thekillergreece**](https://github.com/Thekillergreece) and [**zeobviouslyfakeacc**](https://github.com/zeobviouslyfakeacc).
+- **[TLD_NonPotableToiletWater](https://github.com/Ezinw/TLD_NonPotableToiletWater)** by [**Ezinw**](https://github.com/Ezinw).
 
 ### **Feature Requests**:
 - [**Romain**](https://github.com/RomainDeschampsFR) suggested **moving while aiming with a revolver**.

@@ -1,4 +1,4 @@
-<p align="center">
+bbbbbb<p align="center">
     <a href="#"><img src="https://raw.githubusercontent.com/Deaadman/UniversalTweaks/release/Images/PatchNotesHeading.png"></a>
 
 ---
@@ -27,9 +27,10 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 	- Allow a small chance of wolves to be scared by the `High` state flashlight without an aurora (only at night).
 <br></br>
 - First Person Handedness - Suggested by [**Romain**](https://github.com/RomainDeschampsFR).
-	- Add an option to switch between left and right hand.
-	- Allow players to change this using `ModSettings`.
 	- Fix animation tracking points that break when switched to the left hand.
+<br></br>
+- ModSettings
+	- Add options for players to customise every tweak.
 <br></br>
 - Temperature Rising Debuff?
 	- Add new thresholds if the temperature is too hot.
@@ -50,10 +51,6 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 		- Will help prevent errors.
 		- Allow the mod to run more smoothly if an error is encountered.
 <br></br>
-- Mod Integration
-	- ModSettings support
-		- Add settings for players to change, such as the decay rate for the snow shelters.
-<br></br>
 - Multicoloured items?
 	- Flares
 	- Spray Paint Cans
@@ -69,7 +66,12 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 	- [**Disable Breath Effects**](https://github.com/Thekillergreece/DisableBreathEffect) - by [**Thekillergreece**](https://github.com/Thekillergreece) and [**zeobviouslyfakeacc**](https://github.com/zeobviouslyfakeacc) 
 	- [**TLD_NonPotableToiletWater**](https://github.com/Ezinw/TLD_NonPotableToiletWater) - by [**Ezinw**](https://github.com/Ezinw).
 - Now requires [**ModSettings**](https://github.com/DigitalzombieTLD/ModSettings) as a dependent mod.
+	- Players can enabled or disable breath effects
+	- Players can change the snow shelther daily decay rate
+- Added a left-handed option for animations (experimental) - Suggested by [**Romain**](https://github.com/RomainDeschampsFR).
+- Added localization support for [**ModMenu**](https://github.com/Deaadman/ModMenu).
 - Removed both `Wintermute` and `Expansion` menu items from the Main Menu if they aren't installed.
+- Swapped the original MRE texture with a new Brown MRE - Suggested by **Bisexual Bastard**.
 - Flashlights no longer flicker if no aurora is active.
 - Flashlights no longer spawn with 100% charge, it's now completely random.
 
@@ -84,6 +86,9 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 	- `Panel_MainMenu.Initialize`
 		- This patch checks to see whether the user has `Wintermute` or `TFTFT` installed, if not it calls a custom `RemoveMainMenuItem()` method.
 		- This method iterates through all menu items, and finds the types specified. Once found, it removes them and refreshes the menu.
+	- `Panel_HUD.Initialize`
+		- This calls adds the `DisplayMetrics` class as a component to the `Panel_HUD` gameobject.
+		- Then calls the `Initialize` method from the `DisplayMetrics` class to setup all the gameobjects and labels.
 <br></br>
 - Added a `TweaksWater.cs` script.
 	- This contains a `WaterSource.Deserialize` harmony patch which sets the `m_CurrentLiquidQuality` to `NonPotable` on any WaterSource component.
@@ -92,6 +97,28 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 - Added a `TweaksBreath.cs` script.
 	- This contains a `Breath.PlayBreathEffect` harmony patch which grabs the original `m_ColdBreathTempThreshold`, `m_VeryColdBreathTempThreshold` and `m_FreezingBreathTempThreshold` values before modifying them.
 	- This allows for players to enable and disable the effect at will through [**ModSettings**](https://github.com/DigitalzombieTLD/ModSettings).
+<br></br>
+- Added a `AssetBundleLoader.cs` file
+	- Contains an easy method to load any assetbundle
+<br></br>
+- Added a `TextureSwapper.cs` script.
+	- This script loads the `UniversalTweaksAssetBundle` assetbundle, then loads the `2DTextures` within and stores them in a dictionary
+	- Then it finds a `MeshRenderer` on all meshes that are childs of the `GEAR_MRE` prefab and swaps out the original one with the custom one loaded in the dictionary.
+	- Something similar happens with the `ico` expect it's through a harmony patch.
+<br></br>
+- Added a `FirstPersonHandedness.cs` script.
+	- Currently it switches the scale of `x` to either `1` or `-1` based on which setting is chosen.
+	- While it sort of works, some animations doesn't work properly so it's marked as `experimental`.
+<br></br>
+- Added a `Settings.cs` script.
+	- Setting to enable / disable the breath effect.
+	- Setting to switch between left and right handed (experimental).
+<br></br>
+- Added a `DisplayMetrics.cs` script.
+	- Contains two methods `Initialize` and `Update`, both are just currently dummy methods as they don't do anything right now.
+<br></br>
+- Added a `UserInterfaceUtilities.cs` script.
+	- Contains a bunch of methods to easily setup `GameObjects`, `UILabels` and `UISprites`.
 
 ### Changed / Updated:
 - Changed the entire solution structure of this mod to this:
@@ -106,6 +133,9 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 		- 📄 `AssetBundleLoader.cs`
 		- 📄 `Logging.cs`
 		- 📄 `TextureSwapper.cs`
+		- 📄 `UserInterfaceUtilities.cs`
+	- 📄 `DisplayMetrics.cs`
+	- 📄 `FirstPersonHandedness.cs`
 	- 📄 `MelonModImplementation.cs`
 	- 📄 `TweaksBreath.cs`
 	- 📄 `TweaksDecals.cs`
@@ -133,7 +163,6 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 		- 📄 `UITweaks.cs`
 	- 📄 `BuildInfo.cs`
 	- 📄 `Main.cs`
-
 <br></br>
 - Updated the following `private` classes to `static private`.
 	- In the `TweaksFlashlight` script.
@@ -149,6 +178,13 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 		- `ShowShelterDecayRate` class.
 	- In the `TweaksUserInterface` script.
 		- `FireSpriteFix` class.
+<br></br>
+- Update the `Localization.json` file to include new strings.
+	- `GAMEPLAY_UniversalTweaks` and `GAMEPLAY_UniversalTweaksDescription` - this is to support the upcoming [**ModMenu**](https://github.com/Deaadman/ModMenu) mod.
+<br></br>
+- Updated the `TweaksFood.cs` script.
+	- Instead of two methods which get the `GEAR_` item then pass it to the `RemoveHeadacheDebuffFromItem`, it has now been restructured to just `RemoveHeadacheDebuff` which takes a list of `strings`.
+	- These strings get the `GEAR_` item from `GearItem.LoadGearItemPrefab` and destroys any `CausesHeadaccheDebuff` component attached to the prefab.
 
 ---
 

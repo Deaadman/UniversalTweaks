@@ -4,25 +4,18 @@ namespace UniversalTweaks;
 
 internal class TweaksFood
 {
-    internal static bool debuffDestroyed = false;
-
-    internal static void PieItems()
+    internal static void RemoveHeadacheDebuff(params string[] itemNames)
     {
-        RemoveHeadacheDebuffFromItems("GEAR_CookedPiePeach");
-        RemoveHeadacheDebuffFromItems("GEAR_CookedPieRoseHip");
-        RemoveHeadacheDebuffFromItems("GEAR_MRE");
-    }
-
-    private static void RemoveHeadacheDebuffFromItems(string itemName)
-    {
-        GearItem item = GearItem.LoadGearItemPrefab(itemName);
-        if (item != null)
+        foreach (var itemName in itemNames)
         {
-            CausesHeadacheDebuff debuffScript = item.gameObject.GetComponent<CausesHeadacheDebuff>();
-            if (debuffScript != null)
+            GearItem item = GearItem.LoadGearItemPrefab(itemName);
+            if (item != null)
             {
-                UnityEngine.Object.Destroy(debuffScript);
-                debuffDestroyed = true;
+                CausesHeadacheDebuff debuffScript = item.gameObject.GetComponent<CausesHeadacheDebuff>();
+                if (debuffScript != null)
+                {
+                    UnityEngine.Object.Destroy(debuffScript);
+                }
             }
         }
     }

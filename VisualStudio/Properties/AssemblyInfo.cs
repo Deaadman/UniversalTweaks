@@ -8,6 +8,7 @@
 [assembly: AssemblyTrademark(BuildInfo.Trademark)]
 [assembly: AssemblyCulture(BuildInfo.Culture)]
 
+[assembly: AssemblyVersion(BuildInfo.AssemblyVersion)]
 [assembly: AssemblyInformationalVersion(BuildInfo.Version)]
 [assembly: AssemblyFileVersion(BuildInfo.Version)]
 
@@ -16,4 +17,4 @@
 
 [assembly: VerifyLoaderVersion(BuildInfo.MelonLoaderVersion, true)]
 [assembly: MelonPriority(BuildInfo.Priority)]
-[assembly: MelonIncompatibleAssemblies(BuildInfo.IncompatibleMods)]
+[assembly: MelonIncompatibleAssemblies("DisableBreathEffect", "NonPotableToiletWater")]

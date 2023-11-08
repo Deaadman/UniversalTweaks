@@ -2,69 +2,62 @@
 
 internal static class TextureSwapper
 {
-    public class ObjectTextureData
+    private static readonly AssetBundle? universalTweaksAssetBundle = AssetBundleLoader.LoadBundle("UniversalTweaks.Resources.UniversalTweaksAssetBundle");
+    private static readonly Dictionary<string, Texture2D> textures = LoadTexturesFromAssetBundle();
+
+    private static Dictionary<string, Texture2D> LoadTexturesFromAssetBundle()
     {
-        public int matID = 0;
-        public Dictionary<string, Texture2D> textures;
+        var loadedTextures = new Dictionary<string, Texture2D>();
+        if (universalTweaksAssetBundle == null) return loadedTextures;
+
+        foreach (var texture in universalTweaksAssetBundle.LoadAllAssets<Texture2D>())
+        {
+            loadedTextures[texture.name] = texture;
+        }
+
+        return loadedTextures;
     }
 
-    public static void ApplyTexture(GearItem gi, ObjectTextureData objTextures)
+    internal static void SwapMREMainTexture(string originalTextureName, string newTextureName)
     {
-        MeshRenderer[] rends = gi.gameObject.GetComponentsInChildren<MeshRenderer>();
-        Logging.Log($"Applying texture to GearItem: {gi.gameObject.name}");
+        if (!textures.TryGetValue(newTextureName, out var newTexture)) return;
 
-        foreach (KeyValuePair<string, Texture2D> texData in objTextures.textures)
+        var gearItem = GearItem.LoadGearItemPrefab("GEAR_MRE");
+        if (gearItem == null) return;
+
+        foreach (var renderer in gearItem.GetComponentsInChildren<Renderer>(true))
         {
-            foreach (MeshRenderer rend in rends)
+            foreach (var material in renderer.materials)
             {
-                foreach (Material mat in rend.materials)
+                if (material.mainTexture.name == originalTextureName)
                 {
-                    if (mat.HasProperty(texData.Key))
-                    {
-                        mat.SetTexture(texData.Key, texData.Value);
-                        Logging.Log($"Texture applied to: {gi.gameObject.name} on material: {mat.name}");
-                    }
-                    else
-                    {
-                        Logging.LogWarning($"Material {mat.name} does not have property: {texData.Key}");
-                    }
+                    material.mainTexture = newTexture;
                 }
             }
         }
     }
-}
 
-[HarmonyPatch(typeof(GearItem), nameof(GearItem.LoadGearItemPrefab))]
-public static class GearItem_LoadGearItemPrefab
-{
-    public static void Postfix(GearItem __result, string name)
+    [HarmonyPatch(typeof(Utils), nameof(Utils.GetInventoryIconTexture), new Type[] { typeof(GearItem) })]
+    private static class SwapMREIconTexture
     {
-        if (__result == null || __result.gameObject == null)
+        private static bool Prefix(GearItem gi, ref Texture2D __result)
         {
-            Logging.LogWarning("GearItem or its GameObject is null!");
-            return;
-        }
-
-        string objName = name.ToLower();
-        Logging.Log($"Loaded GearItem prefab with name: {objName}");
-
-        if (objName == "gear_mre") // Check against the specific prefab name
-        {
-            var objTextures = new TextureSwapper.ObjectTextureData
+            if (gi.name == "GEAR_MRE")
             {
-                matID = 0,
-                textures = new Dictionary<string, Texture2D>
+                var textures = LoadTexturesFromAssetBundle();
+                if (textures.Count == 0)
                 {
-                    { "_MainTex", MelonModImplementation.MRETexture }
+                    return true;
                 }
-            };
 
-            TextureSwapper.ApplyTexture(__result, objTextures);
-            Logging.Log($"Applied custom texture for GearItem: {objName}");
-        }
-        else
-        {
-            Logging.LogWarning($"Not applying custom texture for GearItem: {objName}");
+                if (textures.TryGetValue("ico_GearItem__BrownMRE", out Texture2D? newTexture))
+                {
+                    __result = newTexture;
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

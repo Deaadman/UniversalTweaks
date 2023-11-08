@@ -48,4 +48,16 @@ internal class TweaksUserInterface
             __instance.m_BasicMenu.Refresh();
         }
     }
+
+    // Below is Initialising DisplayMetrics
+
+    [HarmonyPatch(typeof(Panel_HUD), nameof(Panel_HUD.Initialize))]
+    private static class Testing
+    {
+        private static void Postfix(Panel_HUD __instance)
+        {
+            var displayMetrics = __instance.gameObject.AddComponent<DisplayMetrics>();
+            displayMetrics.Initialize();
+        }
+    }
 }

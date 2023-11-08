@@ -1,4 +1,48 @@
 ﻿{
+  "GAMEPLAY_UniversalTweaks": {
+    "English": "Universal Tweaks",
+    "German": "",
+    "Russian": "",
+    "French (France)": "",
+    "Japanese": "",
+    "Korean": "",
+    "Simplified Chinese": "",
+    "Swedish": "",
+    "Traditional Chinese": "",
+    "Turkish": "",
+    "Norwegian": "",
+    "Spanish (Spain)": "",
+    "Portuguese (Portugal)": "",
+    "Portuguese (Brazil)": "",
+    "Dutch": "",
+    "Finnish": "",
+    "Italian": "",
+    "Polish": "",
+    "Ukrainian": ""
+  },
+
+  "GAMEPLAY_UniversalTweaksDescription": {
+    "English": "A modification which tweaks gameplay elements within The Long Dark.",
+    "German": "",
+    "Russian": "",
+    "French (France)": "",
+    "Japanese": "",
+    "Korean": "",
+    "Simplified Chinese": "",
+    "Swedish": "",
+    "Traditional Chinese": "",
+    "Turkish": "",
+    "Norwegian": "",
+    "Spanish (Spain)": "",
+    "Portuguese (Portugal)": "",
+    "Portuguese (Brazil)": "",
+    "Dutch": "",
+    "Finnish": "",
+    "Italian": "",
+    "Polish": "",
+    "Ukrainian": ""
+  },
+
   "GAMEPLAY_SetSnare": {
     "English": "Set Snare",
     "German": "",

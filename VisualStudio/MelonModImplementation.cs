@@ -5,26 +5,17 @@ namespace UniversalTweaks;
 
 internal sealed class MelonModImplementation : MelonMod
 {
-    internal static AssetBundle? UniversalTweaksAssetBundle { get; } = AssetBundleLoader.LoadBundle("UniversalTweaks.Resources.UniversalTweaksAssetBundle");
-
-    // public static Texture2D? IconTexture { get; private set; }
-    internal static Texture2D? MRETexture { get; private set; }
-
     public override void OnInitializeMelon()
     {
-        // IconTexture = BrownMREAssetBundle.LoadAsset<Texture2D>("Assets/BrownMRE/ico_GearItem__MRE.png");
-        MRETexture = UniversalTweaksAssetBundle.LoadAsset<Texture2D>("Assets/UniversalTweaks/BrownMRE/GEAR_FoodBrownMRE_Dif.png");
-
         Settings.OnLoad();
         LoadLocalizations();
+
+        TextureSwapper.SwapMREMainTexture("GEAR_FoodMRE_Dif", "GEAR_FoodBrownMRE_Dif");
     }
 
-    public override void OnSceneWasInitialized(int buildIndex, string sceneName)
+    public override void OnSceneWasLoaded(int buildIndex, string sceneName)
     {
-        if (!TweaksFood.debuffDestroyed)
-        {
-            TweaksFood.PieItems();
-        }
+        TweaksFood.RemoveHeadacheDebuff("GEAR_CookedPiePeach", "GEAR_CookedPieRoseHip");
     }
 
     private static void LoadLocalizations()
