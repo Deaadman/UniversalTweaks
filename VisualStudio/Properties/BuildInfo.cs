@@ -8,7 +8,7 @@ internal static class BuildInfo
     /// <summary>Who made the mod</summary>
     public const string Author                          = "Deadman";
     /// <summary>Current version (e.g. 1.0.0, 1.0.0-alpha, 1.0.0-beta, 1.0.0-rc, etc.)</summary>
-    public const string Version                         = "1.2.0-DeveloperBuild";
+    public const string Version                         = "1.2.0-PreRelease";
     /// <summary>Version shown in DnSpy</summary>
     public const string AssemblyVersion                 = "1.2.0.0";
     /// <summary>Name used on GUI's, like ModSettings</summary>
@@ -19,7 +19,7 @@ internal static class BuildInfo
 
     #region Optional
     /// <summary>What the mod does</summary>
-    public const string Description                     = "A modification which tweaks gameplay elements within The Long Dark.";
+    public const string Description                     = "A modification which enhances gameplay mechanics by tweaking specific elements within The Long Dark.";
     /// <summary>Company that made it</summary>
     public const string Company                         = null;
     /// <summary>A valid download link</summary>

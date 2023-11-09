@@ -1,10 +1,25 @@
 ﻿using Il2CppTLD.OptionalContent;
+using UniversalTweaks.Properties;
 using static Il2Cpp.Panel_MainMenu.MainMenuItem;
 
 namespace UniversalTweaks;
 
 internal class TweaksUserInterface
 {
+    [HarmonyPatch(typeof(HUDManager), nameof(HUDManager.UpdateCrosshair))]
+    internal static class AlwaysShowCrosshair
+    {
+        private static bool Prefix(HUDManager __instance)
+        {
+            if (Settings.Instance.AlwaysShowCrosshair)
+            {
+                __instance.m_CrosshairAlpha = 1f;
+            }
+
+            return true;
+        }
+    }
+
     [HarmonyPatch(typeof(Panel_FeedFire), nameof(Panel_FeedFire.Initialize))]
     private static class FireSpriteFix
     {
@@ -46,18 +61,6 @@ internal class TweaksUserInterface
 
             __instance.ConfigureMenu();
             __instance.m_BasicMenu.Refresh();
-        }
-    }
-
-    // Below is Initialising DisplayMetrics
-
-    [HarmonyPatch(typeof(Panel_HUD), nameof(Panel_HUD.Initialize))]
-    private static class Testing
-    {
-        private static void Postfix(Panel_HUD __instance)
-        {
-            var displayMetrics = __instance.gameObject.AddComponent<DisplayMetrics>();
-            displayMetrics.Initialize();
         }
     }
 }

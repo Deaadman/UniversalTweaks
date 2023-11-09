@@ -1,4 +1,6 @@
-﻿namespace UniversalTweaks;
+﻿using UniversalTweaks.Properties;
+
+namespace UniversalTweaks;
 
 internal class TweaksGuns
 {
@@ -7,10 +9,13 @@ internal class TweaksGuns
     {
         private static void Postfix(vp_FPSPlayer __instance)
         {
-            PlayerControlMode controlMode = GameManager.GetPlayerManagerComponent().GetControlMode();
-            if (controlMode == PlayerControlMode.AimRevolver && GameManager.IsMoveInputUnblocked())
+            if (Settings.Instance.EnableRevolverTweaks)
             {
-                __instance.InputWalk();
+                PlayerControlMode controlMode = GameManager.GetPlayerManagerComponent().GetControlMode();
+                if (controlMode == PlayerControlMode.AimRevolver && GameManager.IsMoveInputUnblocked())
+                {
+                    __instance.InputWalk();
+                }
             }
         }
     }
@@ -20,7 +25,7 @@ internal class TweaksGuns
     {
         private static void Postfix(Panel_HUD __instance)
         {
-            if (GameManager.GetPlayerManagerComponent().GetControlMode() == PlayerControlMode.AimRevolver)
+            if (Settings.Instance.EnableRevolverTweaks && GameManager.GetPlayerManagerComponent().GetControlMode() == PlayerControlMode.AimRevolver)
             {
                 __instance.m_AimingLimitedMobility.gameObject.SetActive(false);
             }

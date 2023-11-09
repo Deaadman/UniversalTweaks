@@ -1,4 +1,7 @@
-﻿namespace UniversalTweaks.Utilities;
+﻿using UniversalTweaks.Properties;
+using UniversalTweaks.Utilities;
+
+namespace UniversalTweaks;
 
 internal static class TextureSwapper
 {
@@ -27,11 +30,15 @@ internal static class TextureSwapper
 
         foreach (var renderer in gearItem.GetComponentsInChildren<Renderer>(true))
         {
-            foreach (var material in renderer.materials)
+            if (renderer.gameObject.name == "Obj_FoodMRE_LOD0" || renderer.gameObject.name == "Obj_FoodMRE_LOD1")
             {
-                if (material.mainTexture.name == originalTextureName)
+                foreach (var material in renderer.materials)
                 {
-                    material.mainTexture = newTexture;
+                    if (material.mainTexture.name == originalTextureName)
+                    {
+                        material.mainTexture = newTexture;
+                        break;
+                    }
                 }
             }
         }
@@ -42,7 +49,12 @@ internal static class TextureSwapper
     {
         private static bool Prefix(GearItem gi, ref Texture2D __result)
         {
-            if (gi.name == "GEAR_MRE")
+            if (gi == null)
+            {
+                return true;
+            }
+
+            if (Settings.Instance.SwapMRETexture && gi.name == "GEAR_MRE")
             {
                 var textures = LoadTexturesFromAssetBundle();
                 if (textures.Count == 0)

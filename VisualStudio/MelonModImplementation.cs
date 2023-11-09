@@ -1,5 +1,5 @@
-using UniversalTweaks.Utilities;
 using UniversalTweaks.Properties;
+using UniversalTweaks.Utilities;
 
 namespace UniversalTweaks;
 
@@ -7,15 +7,8 @@ internal sealed class MelonModImplementation : MelonMod
 {
     public override void OnInitializeMelon()
     {
-        Settings.OnLoad();
         LoadLocalizations();
-
-        TextureSwapper.SwapMREMainTexture("GEAR_FoodMRE_Dif", "GEAR_FoodBrownMRE_Dif");
-    }
-
-    public override void OnSceneWasLoaded(int buildIndex, string sceneName)
-    {
-        TweaksFood.RemoveHeadacheDebuff("GEAR_CookedPiePeach", "GEAR_CookedPieRoseHip");
+        Settings.OnLoad();
     }
 
     private static void LoadLocalizations()
@@ -34,6 +27,24 @@ internal sealed class MelonModImplementation : MelonMod
         catch (Exception ex)
         {
             Logging.LogError(ex.Message);
+        }
+    }
+
+    //
+
+    [HarmonyPatch(typeof(GearItem), nameof(GearItem.Deserialize))]
+    private static class GearItemSettings
+    {
+        private static void Postfix()
+        {
+            if (Settings.Instance.RemoveHeadacheDebuffFromPies)
+            {
+                TweaksFood.RemoveHeadacheDebuff("GEAR_CookedPiePeach", "GEAR_CookedPieRoseHip");
+            }
+            if (Settings.Instance.SwapMRETexture)
+            {
+                TextureSwapper.SwapMREMainTexture("GEAR_FoodMRE_Dif", "GEAR_FoodBrownMRE_Dif");
+            }
         }
     }
 }

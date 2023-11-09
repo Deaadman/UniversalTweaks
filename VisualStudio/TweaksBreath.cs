@@ -22,7 +22,7 @@ internal class TweaksBreath
                 hasStoredOriginalValues = true;
             }
 
-            if (Settings.Instance.DisableBreathEffect)
+            if (!Settings.Instance.DisableBreathEffect)
             {
                 __instance.m_ColdBreathTempThreshold = -float.MaxValue;
                 __instance.m_VeryColdBreathTempThreshold = -float.MaxValue;

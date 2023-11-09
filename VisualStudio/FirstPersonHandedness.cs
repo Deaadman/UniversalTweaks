@@ -1,6 +1,7 @@
 ﻿using UniversalTweaks.Properties;
 
 namespace UniversalTweaks;
+
 [RegisterTypeInIl2Cpp(false)]
 internal class FirstPersonHandedness : MonoBehaviour
 {
@@ -8,24 +9,17 @@ internal class FirstPersonHandedness : MonoBehaviour
 
     private GameObject? MirrorThis;
 
-    internal enum FirstPersonHandednessView
-    {
-        LeftHanded,
-        RightHanded
-    }
-
     private void LateUpdate()
     {
-        if (MirrorThis)
+        if (MirrorThis != null)
         {
-            switch (Settings.Instance.FirstPersonHandednessView)
+            if (Settings.Instance.FirstPersonHandednessView == 0)
             {
-                case FirstPersonHandednessView.LeftHanded:
-                    MirrorThis.transform.localScale = new Vector3(-1, 1, 1);
-                    break;
-                case FirstPersonHandednessView.RightHanded:
-                    MirrorThis.transform.localScale = new Vector3(1, 1, 1);
-                    break;
+                MirrorThis.transform.localScale = new Vector3(1, 1, 1);
+            }
+            else if (Settings.Instance.FirstPersonHandednessView == 1)
+            {
+                MirrorThis.transform.localScale = new Vector3(-1, 1, 1);
             }
         }
     }

@@ -1,4 +1,4 @@
-bbbbbb<p align="center">
+<p align="center">
     <a href="#"><img src="https://raw.githubusercontent.com/Deaadman/UniversalTweaks/release/Images/PatchNotesHeading.png"></a>
 
 ---
@@ -10,7 +10,7 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 | Versions: |
 | - |
 | [vX.X.X](#vxxx) |
-| [v1.2.0 - ???](#v120---) |
+| [v1.2.0 - Tailored Tweaks Update](#v120---tailored-tweaks-update) |
 | [v1.1.1](#v111) |
 | [v1.1.0 - Ton of Tweaks Update](#v110---ton-of-tweaks-update) |
 | [v1.0.0 - Initial Launch](#v100---initial-launch) |
@@ -29,9 +29,6 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 - First Person Handedness - Suggested by [**Romain**](https://github.com/RomainDeschampsFR).
 	- Fix animation tracking points that break when switched to the left hand.
 <br></br>
-- ModSettings
-	- Add options for players to customise every tweak.
-<br></br>
 - Temperature Rising Debuff?
 	- Add new thresholds if the temperature is too hot.
 	- Then decline the player's health if they are overheating for too long.
@@ -44,12 +41,6 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 		- GPU Usage and Temp
 	- Add labels for equippable items in `Panel_HUD` which displays the current item in hand. (Like Fortnite).
 	- Remove the spray paint option from the radial menu if there is no spray paint can in your inventory.
-	- Make the white reticle always visible - Suggested by **wheelchaircutie**.
-<br></br>
-- Programming
-	- Add more `null` checks.
-		- Will help prevent errors.
-		- Allow the mod to run more smoothly if an error is encountered.
 <br></br>
 - Multicoloured items?
 	- Flares
@@ -57,7 +48,7 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 
 ---
 
-## v1.2.0 - ???:
+## v1.2.0 - Tailored Tweaks Update:
 
 > **Upcoming Release...**
 
@@ -65,15 +56,13 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 - Integrated the mods:
 	- [**Disable Breath Effects**](https://github.com/Thekillergreece/DisableBreathEffect) - by [**Thekillergreece**](https://github.com/Thekillergreece) and [**zeobviouslyfakeacc**](https://github.com/zeobviouslyfakeacc) 
 	- [**TLD_NonPotableToiletWater**](https://github.com/Ezinw/TLD_NonPotableToiletWater) - by [**Ezinw**](https://github.com/Ezinw).
-- Now requires [**ModSettings**](https://github.com/DigitalzombieTLD/ModSettings) as a dependent mod.
-	- Players can enabled or disable breath effects
-	- Players can change the snow shelther daily decay rate
-- Added a left-handed option for animations (experimental) - Suggested by [**Romain**](https://github.com/RomainDeschampsFR).
-- Added localization support for [**ModMenu**](https://github.com/Deaadman/ModMenu).
+- Now requires [**ModSettings**](https://github.com/DigitalzombieTLD/ModSettings) as a dependent mod with massive amounts of customization.
+- Added a left-handed option for animations - Suggested by [**Romain**](https://github.com/RomainDeschampsFR). `EXPERIMENTAL!`
+- Swapped the original MRE texture with a new Brown MRE - Suggested by **Bisexual Bastard** and textures done by [**Jods**](https://github.com/Jods-Its) and **Kaiusername**.
 - Removed both `Wintermute` and `Expansion` menu items from the Main Menu if they aren't installed.
-- Swapped the original MRE texture with a new Brown MRE - Suggested by **Bisexual Bastard**.
 - Flashlights no longer flicker if no aurora is active.
 - Flashlights no longer spawn with 100% charge, it's now completely random.
+- Crosshair can now always show - Suggested by **wheelchaircutie**.
 
 ### Added:
 - Added the following harmony patches to the `TweaksFlashlight.cs` script.
@@ -82,13 +71,15 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 	- `FlashlightItem.Awake`
 		- This patch utilises `UnityEngine.Random.Range(0f, 1f);` to set a random float to `m_CurrentBatteryCharge`.
 <br></br>
-- Added the following harmony patches to the `UITweaks.cs` script.
+- Added the following harmony patches to the `TweaksUserInterface.cs` script.
 	- `Panel_MainMenu.Initialize`
 		- This patch checks to see whether the user has `Wintermute` or `TFTFT` installed, if not it calls a custom `RemoveMainMenuItem()` method.
 		- This method iterates through all menu items, and finds the types specified. Once found, it removes them and refreshes the menu.
 	- `Panel_HUD.Initialize`
 		- This calls adds the `DisplayMetrics` class as a component to the `Panel_HUD` gameobject.
 		- Then calls the `Initialize` method from the `DisplayMetrics` class to setup all the gameobjects and labels.
+	- `HUDManager.UpdateCrosshair`
+		- This patch sets the alpha of the `Crosshair` sprite to `1f` depending on the option chosen in [**ModSettings**](https://github.com/DigitalzombieTLD/ModSettings).
 <br></br>
 - Added a `TweaksWater.cs` script.
 	- This contains a `WaterSource.Deserialize` harmony patch which sets the `m_CurrentLiquidQuality` to `NonPotable` on any WaterSource component.
@@ -107,18 +98,11 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 	- Something similar happens with the `ico` expect it's through a harmony patch.
 <br></br>
 - Added a `FirstPersonHandedness.cs` script.
-	- Currently it switches the scale of `x` to either `1` or `-1` based on which setting is chosen.
+	- Currently it switches the scale of `x` of the rig to either `1` or `-1` based on which setting is chosen.
 	- While it sort of works, some animations doesn't work properly so it's marked as `experimental`.
 <br></br>
 - Added a `Settings.cs` script.
-	- Setting to enable / disable the breath effect.
-	- Setting to switch between left and right handed (experimental).
-<br></br>
-- Added a `DisplayMetrics.cs` script.
-	- Contains two methods `Initialize` and `Update`, both are just currently dummy methods as they don't do anything right now.
-<br></br>
-- Added a `UserInterfaceUtilities.cs` script.
-	- Contains a bunch of methods to easily setup `GameObjects`, `UILabels` and `UISprites`.
+	- Lots of settings were added in here for certain tweaks.
 
 ### Changed / Updated:
 - Changed the entire solution structure of this mod to this:
@@ -132,11 +116,9 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 	- 📁 **Utilities**
 		- 📄 `AssetBundleLoader.cs`
 		- 📄 `Logging.cs`
-		- 📄 `TextureSwapper.cs`
-		- 📄 `UserInterfaceUtilities.cs`
-	- 📄 `DisplayMetrics.cs`
 	- 📄 `FirstPersonHandedness.cs`
 	- 📄 `MelonModImplementation.cs`
+	- 📄 `TextureSwapper.cs`
 	- 📄 `TweaksBreath.cs`
 	- 📄 `TweaksDecals.cs`
 	- 📄 `TweaksFlashlight.cs`
@@ -178,9 +160,6 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 		- `ShowShelterDecayRate` class.
 	- In the `TweaksUserInterface` script.
 		- `FireSpriteFix` class.
-<br></br>
-- Update the `Localization.json` file to include new strings.
-	- `GAMEPLAY_UniversalTweaks` and `GAMEPLAY_UniversalTweaksDescription` - this is to support the upcoming [**ModMenu**](https://github.com/Deaadman/ModMenu) mod.
 <br></br>
 - Updated the `TweaksFood.cs` script.
 	- Instead of two methods which get the `GEAR_` item then pass it to the `RemoveHeadacheDebuffFromItem`, it has now been restructured to just `RemoveHeadacheDebuff` which takes a list of `strings`.

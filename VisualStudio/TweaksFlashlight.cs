@@ -1,4 +1,6 @@
-﻿namespace UniversalTweaks;
+﻿using UniversalTweaks.Properties;
+
+namespace UniversalTweaks;
 
 internal class TweaksFlashlight
 {
@@ -7,7 +9,10 @@ internal class TweaksFlashlight
     {
         private static void Prefix(FlashlightItem __instance)
         {
-            __instance.m_CurrentBatteryCharge = UnityEngine.Random.Range(0f, 1f);
+            if (Settings.Instance.RandomizeFlashlightCharge)
+            {
+                __instance.m_CurrentBatteryCharge = UnityEngine.Random.Range(0f, 1f);
+            }
         }
     }
 
@@ -16,6 +21,11 @@ internal class TweaksFlashlight
     {
         private static bool Prefix(FlashlightItem __instance, ref float __result)
         {
+            if (!Settings.Instance.EnableFlashlightWithoutAurora)
+            {
+                return true;
+            }
+
             __result = __instance.m_CurrentBatteryCharge;
             return false;
         }
@@ -59,7 +69,7 @@ internal class TweaksFlashlight
     {
         private static bool Prefix()
         {
-            if (!GameManager.GetAuroraManager().AuroraIsActive())
+            if (!GameManager.GetAuroraManager().AuroraIsActive() && Settings.Instance.EnableFlashlightWithoutAurora)
             {
                 return false;
             }

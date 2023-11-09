@@ -1,4 +1,6 @@
-﻿namespace UniversalTweaks;
+﻿using UniversalTweaks.Properties;
+
+namespace UniversalTweaks;
 
 internal class TweaksSnowShelter
 {
@@ -7,10 +9,7 @@ internal class TweaksSnowShelter
     {
         private static void Postfix(ref SnowShelter __result)
         {
-            if (__result != null)
-            {
-                __result.m_DailyDecayHP = 50f;
-            }
+            __result.m_DailyDecayHP = Settings.Instance.SnowShelterDailyDecayRate;
         }
     }
 }
