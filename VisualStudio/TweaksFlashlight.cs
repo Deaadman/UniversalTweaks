@@ -67,13 +67,15 @@ internal class TweaksFlashlight
     [HarmonyPatch(typeof(LightRandomIntensity), nameof(LightRandomIntensity.Update))]
     private static class FlashlightFlicker
     {
-        private static bool Prefix()
+        private static bool Prefix(LightRandomIntensity __instance)
         {
-            if (!GameManager.GetAuroraManager().AuroraIsActive() && Settings.Instance.EnableFlashlightWithoutAurora)
+            if (__instance.gameObject.name == "LightIndoors" || __instance.gameObject.name == "LightOutdoors" || __instance.gameObject.name == "LightExtend")
             {
-                return false;
+                if (!GameManager.GetAuroraManager().AuroraIsActive() && Settings.Instance.EnableFlashlightWithoutAurora)
+                {
+                    return false;
+                }
             }
-
             return true;
         }
     }

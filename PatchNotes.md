@@ -22,35 +22,28 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 >**Note:** A bundle of ideas, with no guarantee of implementation.
 
 - Flashlight Tweaks
-	- Prevent `High` state if there isn't an aurora (may balance things)
-	- Figure out why the `Intense` audio won't play without an aurora.
-	- Allow a small chance of wolves to be scared by the `High` state flashlight without an aurora (only at night).
+	- Fix the `Intense` audio not playing when using the high beam if there is no aurora.
 <br></br>
 - First Person Handedness - Suggested by [**Romain**](https://github.com/RomainDeschampsFR).
 	- Fix animation tracking points that break when switched to the left hand.
 <br></br>
 - Temperature Rising Debuff?
 	- Add new thresholds if the temperature is too hot.
-	- Then decline the player's health if they are overheating for too long.
+	- Then decline the player's condition if they are overheating for too long.
 	- Display this by overlapping the temperature circle with a red circle.
 <br></br>
 - UI Tweaks
-	- Possibly add a menu to display metrics, which may include:
-		- FPS
-		- CPU Usage and Temp
-		- GPU Usage and Temp
-	- Add labels for equippable items in `Panel_HUD` which displays the current item in hand. (Like Fortnite).
-	- Remove the spray paint option from the radial menu if there is no spray paint can in your inventory.
+	- Add a label which shows the name of the currently equipped item at the bottom right of the screen. (Like Fortnite).
 <br></br>
-- Multicoloured items?
-	- Flares
-	- Spray Paint Cans
+- Multicoloured items? (Just for a bit of diversity).
+	- Orange, White, Black Flares?
+	- Red, White, Black Spray Paint Cans?
 
 ---
 
 ## v1.2.0 - Tailored Tweaks Update:
 
-> **Upcoming Release...**
+> Released on the **11th of November 2023**.
 
 ### Highlights / Key Changes:
 - Integrated the mods:
@@ -63,6 +56,7 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 - Flashlights no longer flicker if no aurora is active.
 - Flashlights no longer spawn with 100% charge, it's now completely random.
 - Crosshair can now always show - Suggested by **wheelchaircutie**.
+- The Spray Paint can in the radial menu is now greyed out if no spray paint can is found in your inventory.
 
 ### Added:
 - Added the following harmony patches to the `TweaksFlashlight.cs` script.
@@ -80,6 +74,8 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 		- Then calls the `Initialize` method from the `DisplayMetrics` class to setup all the gameobjects and labels.
 	- `HUDManager.UpdateCrosshair`
 		- This patch sets the alpha of the `Crosshair` sprite to `1f` depending on the option chosen in [**ModSettings**](https://github.com/DigitalzombieTLD/ModSettings).
+	- `Panel_ActionsRadial.GetShouldGreyOut`
+		- This patch checks whether the `GEAR_SprayPaintCan` is in the players inventory. If not it returns the `greyedout` bool as true.
 <br></br>
 - Added a `TweaksWater.cs` script.
 	- This contains a `WaterSource.Deserialize` harmony patch which sets the `m_CurrentLiquidQuality` to `NonPotable` on any WaterSource component.
@@ -100,6 +96,7 @@ So please note that the upcoming ideas provided within these patch notes aren't 
 - Added a `FirstPersonHandedness.cs` script.
 	- Currently it switches the scale of `x` of the rig to either `1` or `-1` based on which setting is chosen.
 	- While it sort of works, some animations doesn't work properly so it's marked as `experimental`.
+	- Simplified the `LateUpdate` method and `PlayerCameraAnim.Start` patch.
 <br></br>
 - Added a `Settings.cs` script.
 	- Lots of settings were added in here for certain tweaks.

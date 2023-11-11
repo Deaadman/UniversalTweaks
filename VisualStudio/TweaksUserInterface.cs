@@ -20,6 +20,27 @@ internal class TweaksUserInterface
         }
     }
 
+    [HarmonyPatch(typeof(Panel_ActionsRadial), nameof(Panel_ActionsRadial.GetShouldGreyOut))]
+    private static class GreyOutSprayPaintRadial
+    {
+        private static bool Prefix(Panel_ActionsRadial.RadialType radialType, ref bool __result)
+        {
+            if (radialType == Panel_ActionsRadial.RadialType.SprayPaint)
+            {
+                if (GameManager.GetInventoryComponent().GetBestGearItemWithName("GEAR_SprayPaintCan") != null)
+                {
+                    __result = false;
+                }
+                else
+                {
+                    __result = true;
+                }
+                return false;
+            }
+            return true;
+        }
+    }
+
     [HarmonyPatch(typeof(Panel_FeedFire), nameof(Panel_FeedFire.Initialize))]
     private static class FireSpriteFix
     {
