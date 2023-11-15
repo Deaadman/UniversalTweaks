@@ -36,7 +36,6 @@ internal class TweaksSnare
                 if (InputManager.GetEquipPressed(__instance))
                 {
                     __instance.ExitInspectGearMode(false);
-
                     snareItem.SetState(SnareState.Set);
                 }
             }

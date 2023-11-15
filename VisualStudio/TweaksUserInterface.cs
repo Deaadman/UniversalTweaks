@@ -15,7 +15,6 @@ internal class TweaksUserInterface
             {
                 __instance.m_CrosshairAlpha = 1f;
             }
-
             return true;
         }
     }
@@ -79,7 +78,6 @@ internal class TweaksUserInterface
                     __instance.m_MenuItems.RemoveAt(i);
                 }
             }
-
             __instance.ConfigureMenu();
             __instance.m_BasicMenu.Refresh();
         }
