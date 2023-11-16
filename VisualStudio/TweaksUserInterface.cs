@@ -1,6 +1,6 @@
 ﻿using Il2CppTLD.OptionalContent;
 using UniversalTweaks.Properties;
-using static Il2Cpp.Panel_MainMenu.MainMenuItem;
+using UniversalTweaks.Utilities;
 
 namespace UniversalTweaks;
 
@@ -61,25 +61,35 @@ internal class TweaksUserInterface
             OptionalContentManager contentManager = OptionalContentManager.Instance;
             bool hasWintermute = contentManager.IsContentOwned(__instance.m_WintermuteConfig);
 
-            RemoveMainMenuItem(MainMenuItemType.TFTFTUpsell, __instance);
+            RemoveMainMenuItem("Expansion", __instance);
 
             if (!hasWintermute)
             {
-                RemoveMainMenuItem(MainMenuItemType.Story, __instance);
+                RemoveMainMenuItem("WINTERMUTE", __instance);
             }
         }
 
-        private static void RemoveMainMenuItem(MainMenuItemType removeType, Panel_MainMenu __instance)
+        private static void RemoveMainMenuItem(string removeLabel, Panel_MainMenu __instance)
         {
-            for (int i = __instance.m_MenuItems.Count - 1; i >= 0; i--)
+            var itemModelList = __instance.m_BasicMenu.m_ItemModelList;
+
+            bool itemRemoved = false;
+            for (int i = itemModelList.Count - 1; i >= 0; i--)
             {
-                if (__instance.m_MenuItems[i].m_Type == removeType)
+                var menuItemModel = itemModelList[i];
+                Logging.Log($"Menu Item Found: {menuItemModel.m_LabelText}.");
+
+                if (menuItemModel.m_LabelText.Equals(removeLabel))
                 {
-                    __instance.m_MenuItems.RemoveAt(i);
+                    Logging.Log($"Removing Menu Item: {menuItemModel.m_LabelText}.");
+                    itemModelList.RemoveAt(i);
+                    itemRemoved = true;
                 }
             }
-            __instance.ConfigureMenu();
-            __instance.m_BasicMenu.Refresh();
+            if (itemRemoved)
+            {
+                __instance.m_BasicMenu.Refresh();
+            }
         }
     }
 }

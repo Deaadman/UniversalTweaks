@@ -4,12 +4,13 @@ namespace UniversalTweaks;
 
 internal class TweaksDecals
 {
-    [HarmonyPatch(typeof(DynamicDecalsManager), nameof(DynamicDecalsManager.Start))]
+    [HarmonyPatch(typeof(Panel_SprayPaint), nameof(Panel_SprayPaint.Enable), new Type[] { typeof(bool) })]
     private static class DecalRestrictions
     {
-        private static void Postfix(DynamicDecalsManager __instance)
+        private static void Postfix()
         {
-            __instance.m_DecalOverlapLeniencyPercent = Settings.Instance.DecalOverlapLeniencyPerfect;
+            DynamicDecalsManager dynamicDecalsManager = GameManager.GetDynamicDecalsManager();
+            dynamicDecalsManager.m_DecalOverlapLeniencyPercent = Settings.Instance.DecalOverlapLeniencyPerfect;
         }
     }
 }
