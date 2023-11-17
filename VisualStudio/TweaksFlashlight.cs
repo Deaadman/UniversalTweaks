@@ -35,6 +35,13 @@ internal class TweaksFlashlight
     {
         private static bool Prefix(FlashlightItem __instance, ref bool __result)
         {
+            if (!Settings.Instance.HighBeamOnlyDuringAurora && __instance.m_State == FlashlightItem.State.High && !GameManager.GetAuroraManager().AuroraIsActive())
+            {
+                GameAudioManager.PlayGUIError();
+                HUDMessage.AddMessage(Localization.Get("GAMEPLAY_StateHighFail"), false, false);
+                __result = __instance.IsOn();
+                return true;
+            }
             __result = __instance.IsOn();
             return false;
         }
@@ -53,7 +60,7 @@ internal class TweaksFlashlight
                 {
                     __instance.m_CurrentBatteryCharge -= tODHours / __instance.m_LowBeamDuration;
                 }
-                else if (__instance.m_State == FlashlightItem.State.High)
+                else if (Settings.Instance.HighBeamOnlyDuringAurora && __instance.m_State == FlashlightItem.State.High)
                 {
                     __instance.m_CurrentBatteryCharge -= tODHours / __instance.m_HighBeamDuration;
                 }

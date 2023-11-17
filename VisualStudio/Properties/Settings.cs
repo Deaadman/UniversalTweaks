@@ -53,6 +53,10 @@ internal class Settings : JsonModSettings
     [Name("Randomize Flashlight Charge")]
     [Description("Determines if the flashlight starts with a random battery charge.")]
     public bool RandomizeFlashlightCharge = false;
+
+    [Name("High Beam Functionality")]
+    [Description("Choose whether the high beam is only useable during an aurora, or not.")]
+    public bool HighBeamOnlyDuringAurora = false;
     #endregion
 
     #region Experimental Tweaks
