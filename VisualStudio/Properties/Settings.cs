@@ -37,6 +37,10 @@ internal class Settings : JsonModSettings
     [Name("Always Show Crosshair")]
     [Description("When enabled, the crosshair will always be visible.")]
     public bool AlwaysShowCrosshair = false;
+
+    [Name("Main Menu Items")]
+    [Description("When enabled, the WINTERMUTE and Expansion menu items will be removed if those DLCs aren't installed.")]
+    public bool RemoveMenuItems = false;
     #endregion
 
     #region Flashlight Tweaks

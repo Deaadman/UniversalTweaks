@@ -1,6 +1,7 @@
 ﻿using Il2CppTLD.OptionalContent;
 using UniversalTweaks.Properties;
 using UniversalTweaks.Utilities;
+using static Il2Cpp.Panel_MainMenu.MainMenuItem;
 
 namespace UniversalTweaks;
 
@@ -61,34 +62,24 @@ internal class TweaksUserInterface
             OptionalContentManager contentManager = OptionalContentManager.Instance;
             bool hasWintermute = contentManager.IsContentOwned(__instance.m_WintermuteConfig);
 
-            RemoveMainMenuItem("Expansion", __instance);
-
-            if (!hasWintermute)
+            if (Settings.Instance.RemoveMenuItems == true)
             {
-                RemoveMainMenuItem("WINTERMUTE", __instance);
+                RemoveMainMenuItem(MainMenuItemType.TFTFTUpsell, __instance);
+                if (!hasWintermute)
+                {
+                    RemoveMainMenuItem(MainMenuItemType.Story, __instance);
+                }
             }
         }
 
-        private static void RemoveMainMenuItem(string removeLabel, Panel_MainMenu __instance)
+        private static void RemoveMainMenuItem(MainMenuItemType removeType, Panel_MainMenu __instance)
         {
-            var itemModelList = __instance.m_BasicMenu.m_ItemModelList;
-
-            bool itemRemoved = false;
-            for (int i = itemModelList.Count - 1; i >= 0; i--)
+            for (int i = __instance.m_MenuItems.Count - 1; i >= 0; i--)
             {
-                var menuItemModel = itemModelList[i];
-                Logging.Log($"Menu Item Found: {menuItemModel.m_LabelText}.");
-
-                if (menuItemModel.m_LabelText.Equals(removeLabel))
+                if (__instance.m_MenuItems[i].m_Type == removeType)
                 {
-                    Logging.Log($"Removing Menu Item: {menuItemModel.m_LabelText}.");
-                    itemModelList.RemoveAt(i);
-                    itemRemoved = true;
+                    __instance.m_MenuItems.RemoveAt(i);
                 }
-            }
-            if (itemRemoved)
-            {
-                __instance.m_BasicMenu.Refresh();
             }
         }
     }

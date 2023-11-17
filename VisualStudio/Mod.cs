@@ -3,7 +3,7 @@ using UniversalTweaks.Utilities;
 
 namespace UniversalTweaks;
 
-internal sealed class MelonModImplementation : MelonMod
+internal sealed class Mod : MelonMod
 {
     public override void OnInitializeMelon()
     {
