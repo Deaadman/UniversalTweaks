@@ -11,7 +11,7 @@ internal class Settings : JsonModSettings
     [Description("Toggle the visual breath effect on or off.")]
     public bool DisableBreathEffect = true;
 
-    [Name("Decal Placement Flexibility")]
+    [Name("Decal Placement Leniency")]
     [Description("Set the leniency for placing decals. Range: 0 (strict) to 1 (lenient).")]
     [Slider(0f, 1f, 11)]
     public float DecalOverlapLeniencyPerfect = 0.2f;
@@ -33,7 +33,7 @@ internal class Settings : JsonModSettings
     public bool EnableRevolverTweaks = false;
 
     [Name("Snow Shelter Durability")]
-    [Description("Adjust the decay rate of snow shelters. Range: 50 (slower) to 100 (normal).")]
+    [Description("Adjust the daily decay rate of snow shelters. Range: 50 (twice as slow) to 100 (normal).")]
     [Slider(50, 100)]
     public int SnowShelterDailyDecayRate = 100;
 
@@ -49,10 +49,6 @@ internal class Settings : JsonModSettings
     [Name("Aurora-Independent Flashlight Use")]
     [Description("Allows the flashlight to function anytime, not just during auroras.")]
     public bool EnableFlashlightWithoutAurora = false;
-
-    [Name("Aurora-Only High Beam")]
-    [Description("Restricts high beam functionality to aurora events only.")]
-    public bool HighBeamOnlyDuringAurora = false;
 
     [Name("Flashlight Battery Randomization")]
     [Description("Sets the flashlight to start with a random battery charge level.")]

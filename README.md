@@ -6,13 +6,12 @@
 <div align="center">
 
 [![Latest Release](https://img.shields.io/github/v/release/Deaadman/UniversalTweaks?label=Latest%20Release&style=for-the-badge)](https://github.com/Deaadman/UniversalTweaks/releases/latest)
-[![Patch Notes](https://img.shields.io/badge/Patch%20Notes-Click%20Here-blue?style=for-the-badge)](https://github.com/Deaadman/UniversalTweaks/blob/release/PatchNotes.md)
 
 [![Total Downloads](https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/total.svg?style=for-the-badge)](https://github.com/Deaadman/UniversalTweaks/releases)
 [![Latest Downloads](https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/latest/total.svg?style=for-the-badge)](https://github.com/Deaadman/UniversalTweaks/releases)
 
 [![Open Issues](https://img.shields.io/github/issues/Deaadman/UniversalTweaks?style=for-the-badge)](https://github.com/Deaadman/UniversalTweaks/issues)
-[![Translation Progress](https://img.shields.io/badge/Translated-5.26%25-red?style=for-the-badge)](https://github.com/Deaadman/UniversalTweaks)
+[![Translation Progress](https://img.shields.io/badge/Translated-10.53%25-red?style=for-the-badge)](https://github.com/Deaadman/UniversalTweaks)
 
 </div>
 
@@ -23,18 +22,18 @@
 Universal Tweaks is a modification that enhances existing gameplay elements by modifying things within [**The Long Dark**](https://www.hinterlandgames.com/the-long-dark/) that just make sense.
 
 ### Features:
-- **Mod Settings Support:** Most of these features listed below are now customisable with [**Mod Settings**](https://github.com/DigitalzombieTLD/ModSettings).
-- **Flashlights:** Now continue to function after an aurora is over, but are only charged and flicker during an aurora. Now also start with a random charge!
-- **Snares:** Can now be reset from the inspect menu after a rabbit is captured.
-- **Revolvers:** Can no longer lock the player's movement; feel free to walk while aiming.
-- **Spray Paint:** Restrictions can be changed to how close they can be placed to one another. 
-- **Pies:** Can no longer give the player the `Headache` debuff.
-- **Snow Shelters:** Can now decay slower based on the players requirements.
 - **Breath Effects:** Can either be enabled or disabled, merged from [**Disable Breath Effects**](https://github.com/Thekillergreece/DisableBreathEffect) by [**Thekillergreece**](https://github.com/Thekillergreece) and [**zeobviouslyfakeacc**](https://github.com/zeobviouslyfakeacc).
-- **Toilet Water:** Now either start as Potable or Non-Potable, merged from [**TLD_NonPotableToiletWater**](https://github.com/Ezinw/TLD_NonPotableToiletWater) - by [**Ezinw**](https://github.com/Ezinw).
+- **Flashlights:** Now continue to function after an aurora is over, but are only charged and flicker during an aurora. Now also start with a random charge!
 - **Left-Handed Animations:** Players can now swap animations to the left hand! `WARNING: IS EXPERIMENTAL - WILL NOT FUNCTION AS EXPECTED.`
+- **Mod Settings Support:** Most of these features listed below are now customisable with [**Mod Settings**](https://github.com/DigitalzombieTLD/ModSettings).
 - **New MRE Variant:** Implemented a new brown MRE textures from the traditional blue.
-- **UI Fixes:** Spray paint option is now greyed out in radial, unless there is one in your inventory. `Wintermute` label will only show if it's installed. Sprite realignments.
+- **Pies:** Can no longer give the player the `Headache` debuff.
+- **Revolvers:** Can no longer lock the player's movement; feel free to walk while aiming.
+- **Snares:** Can now be reset from the inspect menu after a rabbit is captured.
+- **Snow Shelters:** Can now decay slower based on the player's requirements.
+- **Spray Paint:** Restrictions can be changed to how close they can be placed to one another. 
+- **Toilet Water:** Now either start as Potable or Non-Potable, merged from [**TLD_NonPotableToiletWater**](https://github.com/Ezinw/TLD_NonPotableToiletWater) - by [**Ezinw**](https://github.com/Ezinw).
+- **UI Fixes:** Spray paint option is now greyed out in radial, unless there
 
 >**Note**: Many of these features were suggested by people in [**The Long Dark Modding Discord**](https://discord.gg/2mnXAZfGXQ). If you have a request, either create an [**issue**](https://github.com/Deaadman/UniversalTweaks/issues) or ask me in the discord!
 
@@ -81,6 +80,9 @@ Avoid using the following mods with this modification as combining this mod with
 
 ### **3D Assets**:
 - [**Jods**](https://github.com/Jods-Its) and **Kaiusername** for the creation of the brown MRE icon and texture.
+
+### Translations:
+- [**Elderly-Emre**](https://github.com/Elderly-Emre) - For providing Turkish translations.
 
 ### **Feature Requests**:
 - [**Romain**](https://github.com/RomainDeschampsFR) 

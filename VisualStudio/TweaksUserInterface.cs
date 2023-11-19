@@ -16,6 +16,7 @@ internal class TweaksUserInterface
             {
                 __instance.m_CrosshairAlpha = 1f;
             }
+
             return true;
         }
     }
@@ -35,8 +36,10 @@ internal class TweaksUserInterface
                 {
                     __result = true;
                 }
+
                 return false;
             }
+
             return true;
         }
     }

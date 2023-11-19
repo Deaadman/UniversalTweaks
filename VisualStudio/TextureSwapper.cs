@@ -67,6 +67,7 @@ internal static class TextureSwapper
                     return false;
                 }
             }
+
             return true;
         }
     }
