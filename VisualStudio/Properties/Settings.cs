@@ -7,69 +7,69 @@ internal class Settings : JsonModSettings
     #region General Tweaks
     [Section("General Tweaks")]
 
-    [Name("Revolver Handling")]
-    [Description("Enhances revolver usability by allowing movement while aiming.")]
-    public bool EnableRevolverTweaks = false;
-
-    [Name("Headache Debuff")]
-    [Description("Removes the headache debuff on Peach and Rosehip Pies.")]
-    public bool RemoveHeadacheDebuffFromPies = false;
-
-    [Name("Breath Effect")]
-    [Description("Enable or disable the visual breath effect.")]
+    [Name("Breath Visibility")]
+    [Description("Toggle the visual breath effect on or off.")]
     public bool DisableBreathEffect = true;
 
-    [Name("Decal Overlap Leniency")]
-    [Description("Adjust the leniency for decal overlap between 0 (strict) and 1 (lenient).")]
+    [Name("Decal Placement Flexibility")]
+    [Description("Set the leniency for placing decals. Range: 0 (strict) to 1 (lenient).")]
     [Slider(0f, 1f, 11)]
     public float DecalOverlapLeniencyPerfect = 0.2f;
 
-    [Name("Snow Shelter Decay Rate")]
-    [Description("Adjust the snow shelter's decay rate between 50 (slower decay) and 100 (normal decay).")]
+    [Name("Main Menu Customization")]
+    [Description("Removes WINTERMUTE and Expansion menu items if not installed.")]
+    public bool RemoveMenuItems = false;
+
+    [Name("Permanent Crosshair")]
+    [Description("Keep the crosshair visible at all times.")]
+    public bool AlwaysShowCrosshair = false;
+
+    [Name("Remove Headache from Pies")]
+    [Description("Eliminates the headache debuff from Peach and Rosehip Pies.")]
+    public bool RemoveHeadacheDebuffFromPies = false;
+
+    [Name("Revolver Handling Improvements")]
+    [Description("Allows movement while aiming the revolver for enhanced usability.")]
+    public bool EnableRevolverTweaks = false;
+
+    [Name("Snow Shelter Durability")]
+    [Description("Adjust the decay rate of snow shelters. Range: 50 (slower) to 100 (normal).")]
     [Slider(50, 100)]
     public int SnowShelterDailyDecayRate = 100;
 
-    [Name("Toilet Water Quality")]
-    [Description("Determines whether water from toilets is potable or non-potable.")]
+    [Name("Toilet Water Potability")]
+    [Description("Sets whether water obtained from toilets is potable or non-potable.")]
     [Choice("Potable", "Non-Potable")]
     public int ToiletWaterQuality = 0;
-
-    [Name("Always Show Crosshair")]
-    [Description("When enabled, the crosshair will always be visible.")]
-    public bool AlwaysShowCrosshair = false;
-
-    [Name("Main Menu Items")]
-    [Description("When enabled, the WINTERMUTE and Expansion menu items will be removed if those DLCs aren't installed.")]
-    public bool RemoveMenuItems = false;
     #endregion
 
     #region Flashlight Tweaks
     [Section("Flashlight Tweaks")]
 
-    [Name("Extended Flashlight Functionality")]
-    [Description("Allows the flashlight to be used outside of an aurora and anytime.")]
+    [Name("Aurora-Independent Flashlight Use")]
+    [Description("Allows the flashlight to function anytime, not just during auroras.")]
     public bool EnableFlashlightWithoutAurora = false;
 
-    [Name("Randomize Flashlight Charge")]
-    [Description("Determines if the flashlight starts with a random battery charge.")]
-    public bool RandomizeFlashlightCharge = false;
-
-    [Name("High Beam Functionality")]
-    [Description("Choose whether the high beam is only useable during an aurora, or not.")]
+    [Name("Aurora-Only High Beam")]
+    [Description("Restricts high beam functionality to aurora events only.")]
     public bool HighBeamOnlyDuringAurora = false;
+
+    [Name("Flashlight Battery Randomization")]
+    [Description("Sets the flashlight to start with a random battery charge level.")]
+    public bool RandomizeFlashlightCharge = false;
     #endregion
 
     #region Experimental Tweaks
-    [Section("Experimental - Use At Your Own Risk")]
+    [Section("Experimental Tweaks")]
 
-    [Name("MRE Texture Swap")]
-    [Description("Changes the MRE texture to a brown variant. DISCLAIMER: Requires a game restart.")]
-    public bool SwapMRETexture = false;
-
-    [Name("First Person Handedness")]
-    [Description("Switches the handedness of first-person animations. DISCLAIMER: Tracking points break if used.")]
+    [Name("First-Person Handedness")]
+    [Description("Alters the handedness of first-person animations. May cause tracking issues.")]
     [Choice("Right-Handed", "Left-Handed")]
     public int FirstPersonHandednessView = 0;
+
+    [Name("MRE Texture Variation")]
+    [Description("Switches the MRE texture to a brown variant. Requires game restart.")]
+    public bool SwapMRETexture = false;
     #endregion
 
     internal static void OnLoad()
