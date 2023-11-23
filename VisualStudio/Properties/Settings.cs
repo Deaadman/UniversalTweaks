@@ -11,11 +11,6 @@ internal class Settings : JsonModSettings
     [Description("Toggle the visual breath effect on or off.")]
     public bool DisableBreathEffect = true;
 
-    [Name("Decal Placement Leniency")]
-    [Description("Set the leniency for placing decals. Range: 0 (strict) to 1 (lenient).")]
-    [Slider(0f, 1f, 11)]
-    public float DecalOverlapLeniencyPerfect = 0.2f;
-
     [Name("Main Menu Customization")]
     [Description("Removes WINTERMUTE and Expansion menu items if not installed.")]
     public bool RemoveMenuItems = false;
@@ -50,9 +45,31 @@ internal class Settings : JsonModSettings
     [Description("Allows the flashlight to function anytime, not just during auroras.")]
     public bool EnableFlashlightWithoutAurora = false;
 
+    [Name("Aurora-Only High Beam")]
+    [Description("Restricts high beam functionality to aurora events only.")]
+    public bool HighBeamOnlyDuringAurora = false;
+
     [Name("Flashlight Battery Randomization")]
     [Description("Sets the flashlight to start with a random battery charge level.")]
     public bool RandomizeFlashlightCharge = false;
+    #endregion
+
+    #region Spray Paint Tweaks
+    [Section("Spray Paint Tweaks")]
+
+    [Name("Decal Placement Leniency")]
+    [Description("Set the leniency for placing decals. Range: 0 (strict) to 1 (lenient).")]
+    [Slider(0f, 1f, 11)]
+    public float DecalOverlapLeniencyPerfect = 0.2f;
+
+    [Name("Glowing Decals")]
+    [Description("Toggle the glow effect for spray paint decals.")]
+    public bool EnableGlowDecal = false;
+
+    [Name("Glow Brightness Multiplier")]
+    [Description("Adjust the brightness of the glow effect. Range: 0.5 (low) to 1.5 (high).")]
+    [Slider(0.5f, 1.5f, 11)]
+    public float GlowDecalMultiplier = 1f;
     #endregion
 
     #region Experimental Tweaks
