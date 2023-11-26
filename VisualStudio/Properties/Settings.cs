@@ -52,6 +52,10 @@ internal class Settings : JsonModSettings
     [Name("Flashlight Battery Randomization")]
     [Description("Sets the flashlight to start with a random battery charge level.")]
     public bool RandomizeFlashlightCharge = false;
+
+    [Name("Infinite Battery")]
+    [Description("Ensures the flashlight's battery never depletes, allowing unlimited use without recharging.")]
+    public bool InfiniteBattery = false;
     #endregion
 
     #region Spray Paint Tweaks
