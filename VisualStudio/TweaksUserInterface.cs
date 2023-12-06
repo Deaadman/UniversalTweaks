@@ -8,11 +8,11 @@ namespace UniversalTweaks;
 internal class TweaksUserInterface
 {
     [HarmonyPatch(typeof(HUDManager), nameof(HUDManager.UpdateCrosshair))]
-    internal static class AlwaysShowCrosshair
+    internal static class PermanentCrosshair
     {
         private static bool Prefix(HUDManager __instance)
         {
-            if (Settings.Instance.AlwaysShowCrosshair)
+            if (Settings.Instance.PermanentCrosshair)
             {
                 __instance.m_CrosshairAlpha = 1f;
             }
@@ -65,7 +65,7 @@ internal class TweaksUserInterface
             OptionalContentManager contentManager = OptionalContentManager.Instance;
             bool hasWintermute = contentManager.IsContentOwned(__instance.m_WintermuteConfig);
 
-            if (Settings.Instance.RemoveMenuItems == true)
+            if (Settings.Instance.RemoveMainMenuItems == true)
             {
                 RemoveMainMenuItem(MainMenuItemType.TFTFTUpsell, __instance);
                 if (!hasWintermute)

@@ -10,21 +10,19 @@ internal class TweaksFlashlight
     {
         private static void Prefix(FlashlightItem __instance)
         {
-            if (Settings.Instance.RandomizeFlashlightCharge)
+            if (Settings.Instance.BatteryRandomization)
             {
                 __instance.m_CurrentBatteryCharge = UnityEngine.Random.Range(0f, 1f);
-                Logging.Log($"Randomized battery charge: {__instance.m_CurrentBatteryCharge}");
             }
         }
     }
-
 
     [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.GetNormalizedCharge))]
     private static class FlashlightKeepBatteryCharge
     {
         private static bool Prefix(FlashlightItem __instance, ref float __result)
         {
-            if (!Settings.Instance.EnableFlashlightWithoutAurora)
+            if (!Settings.Instance.ExtendedFunctionality)
             {
                 return true;
             }
@@ -39,7 +37,7 @@ internal class TweaksFlashlight
     {
         private static bool Prefix(FlashlightItem __instance, ref bool __result)
         {
-            if (Settings.Instance.HighBeamOnlyDuringAurora && __instance.m_State == FlashlightItem.State.High && !GameManager.GetAuroraManager().AuroraIsActive())
+            if (Settings.Instance.HighBeamRestrictions && __instance.m_State == FlashlightItem.State.High && !GameManager.GetAuroraManager().AuroraIsActive())
             {
                 GameAudioManager.PlayGUIError();
                 HUDMessage.AddMessage(Localization.Get("GAMEPLAY_StateHighFail"), false, false);
@@ -65,7 +63,7 @@ internal class TweaksFlashlight
                 {
                     __instance.m_CurrentBatteryCharge -= tODHours / __instance.m_LowBeamDuration;
                 }
-                else if (!Settings.Instance.HighBeamOnlyDuringAurora && __instance.m_State == FlashlightItem.State.High)
+                else if (!Settings.Instance.HighBeamRestrictions && __instance.m_State == FlashlightItem.State.High)
                 {
                     __instance.m_CurrentBatteryCharge -= tODHours / __instance.m_HighBeamDuration;
                 }
@@ -81,7 +79,7 @@ internal class TweaksFlashlight
                 __instance.m_CurrentBatteryCharge = 1f;
             }
 
-            if (Settings.Instance.ExperimentalFeatures)
+            if (Settings.Instance.ExperimentalAndCheatTweaks)
             {
                 if (__instance.m_GearItem != null && __instance.m_GearItem.name == "GEAR_Flashlight_LongLasting")
                 {
@@ -119,15 +117,18 @@ internal class TweaksFlashlight
     {
         private static bool Prefix(LightRandomIntensity __instance)
         {
-            if ((__instance.gameObject.name == "LightIndoors" || __instance.gameObject.name == "LightOutdoors" || __instance.gameObject.name == "LightExtend") && !GameManager.GetAuroraManager().AuroraIsActive() && Settings.Instance.EnableFlashlightWithoutAurora)
+            if (Settings.Instance.AuroraFlickering == true)
             {
-                return false;
+                if ((__instance.gameObject.name == "LightIndoors" || __instance.gameObject.name == "LightOutdoors" || __instance.gameObject.name == "LightExtend") && !GameManager.GetAuroraManager().AuroraIsActive() && Settings.Instance.ExtendedFunctionality)
+                {
+                    return false;
+                }
             }
 
             return true;
         }
 
-        private static void Postfix(LightRandomIntensity __instance)
+        private static void Postfix(LightRandomIntensity __instance)                    // Need to revamp this method, change the color from the flashlight - not LightRandomIntensity.
         {
             if (__instance.gameObject.name == "LightIndoors" || __instance.gameObject.name == "LightOutdoors" || __instance.gameObject.name == "LightExtend")
             {
@@ -135,12 +136,12 @@ internal class TweaksFlashlight
 
                 if (lightComponent != null)
                 {
-                    switch (Settings.Instance.DefaultFlashlightColor)
+                    switch (Settings.Instance.LightColor)
                     {
                         case FlashlightColor.Custom:
-                            lightComponent.color = new Color(Settings.Instance.FlashlightLightRed / 255,
-                                                             Settings.Instance.FlashlightLightGreen / 255,
-                                                             Settings.Instance.FlashlightLightBlue / 255);
+                            lightComponent.color = new Color(Settings.Instance.RedValue / 255,
+                                                             Settings.Instance.GreenValue / 255,
+                                                             Settings.Instance.BlueValue / 255);
                             break;
                         case FlashlightColor.Default:
                             lightComponent.color = new Color(0.7215686f, 0.8117647f, 0.9176471f);
@@ -171,44 +172,4 @@ internal class TweaksFlashlight
             }
         }
     }
-
-    // Below is currently experimental, trying to figure out how to retain the lights when dropped if the state is still low.
-
-    //[HarmonyPatch(typeof(GearItem), nameof(GearItem.Drop))]
-    //private static class Testintg1
-    //{
-    //    private static void Postfix(GearItem __instance)
-    //    {
-    //        Logging.Log("GearItem.Drop Postfix called.");
-
-    //        if (__instance.m_FlashlightItem == null)
-    //        {
-    //            Logging.LogWarning("Dropped item is not a flashlight.");
-    //            return;
-    //        }
-
-    //        if (__instance.m_FlashlightItem.IsOn())
-    //        {
-    //            Logging.Log("Flashlight is on. Attempting to maintain state upon drop.");
-
-    //            // Attempt to maintain the flashlight's current state when dropped
-    //            try
-    //            {
-    //                __instance.m_FlashlightItem.TurnOn(); // Assuming this turns it to a default on state
-    //                                                      // OR
-    //                                                      // __instance.m_FlashlightItem.SetState(__instance.m_FlashlightItem.m_State); // if there's a method like SetState
-
-    //                Logging.Log("Flashlight state maintained after dropping.");
-    //            }
-    //            catch (Exception ex)
-    //            {
-    //                Logging.LogError($"Error while maintaining flashlight state: {ex.Message}");
-    //            }
-    //        }
-    //        else
-    //        {
-    //            Logging.Log("Dropped flashlight item is not currently on. No action taken.");
-    //        }
-    //    }
-    //}
 }

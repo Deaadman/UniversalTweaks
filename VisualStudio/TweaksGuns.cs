@@ -9,7 +9,7 @@ internal class TweaksGuns
     {
         private static void Postfix(vp_FPSPlayer __instance)
         {
-            if (Settings.Instance.EnableRevolverTweaks)
+            if (Settings.Instance.RevolverImprovements)
             {
                 PlayerControlMode controlMode = GameManager.GetPlayerManagerComponent().GetControlMode();
                 if (controlMode == PlayerControlMode.AimRevolver && GameManager.IsMoveInputUnblocked())
@@ -25,7 +25,7 @@ internal class TweaksGuns
     {
         private static void Postfix(Panel_HUD __instance)
         {
-            if (Settings.Instance.EnableRevolverTweaks && GameManager.GetPlayerManagerComponent().GetControlMode() == PlayerControlMode.AimRevolver)
+            if (Settings.Instance.RevolverImprovements && GameManager.GetPlayerManagerComponent().GetControlMode() == PlayerControlMode.AimRevolver)
             {
                 __instance.m_AimingLimitedMobility.gameObject.SetActive(false);
             }

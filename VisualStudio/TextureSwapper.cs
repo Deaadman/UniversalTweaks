@@ -53,7 +53,7 @@ internal static class TextureSwapper
             {
                 return true;
             }
-            if (Settings.Instance.SwapMRETexture && gi.name == "GEAR_MRE")
+            if (Settings.Instance.MRETextureVariant && gi.name == "GEAR_MRE")
             {
                 var textures = LoadTexturesFromAssetBundle();
                 if (textures.Count == 0)

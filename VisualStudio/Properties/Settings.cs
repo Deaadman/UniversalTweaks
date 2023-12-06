@@ -11,15 +11,15 @@ internal class Settings : JsonModSettings
 
     [Name("Breath Visibility")]
     [Description("Toggle the visual breath effect on or off.")]
-    public bool DisableBreathEffect = true;
+    public bool BreathVisibility = true;
 
     [Name("Promotional Main Menu Items")]
     [Description("Removes the promotional WINTERMUTE and Expansion menu items.")]
-    public bool RemoveMenuItems = false;
+    public bool RemoveMainMenuItems = false;
 
     [Name("Permanent Crosshair")]
     [Description("Keeps the crosshair visible at all times.")]
-    public bool AlwaysShowCrosshair = false;
+    public bool PermanentCrosshair = false;
 
     [Name("Remove Headache from Pies")]
     [Description("Removes the headache debuff from Peach and Rosehip Pies.")]
@@ -27,9 +27,9 @@ internal class Settings : JsonModSettings
 
     [Name("Revolver Handling Improvements")]
     [Description("Allows movement while aiming with the revolver.")]
-    public bool EnableRevolverTweaks = false;
+    public bool RevolverImprovements = false;
 
-    [Name("Snow Shelter Durability")]
+    [Name("Snow Shelter Decay Rate")]
     [Description("Adjust the daily decay rate of snow shelters. Range: 50 (twice as slow) to 100 (normal).")]
     [Slider(50, 100)]
     public int SnowShelterDailyDecayRate = 100;
@@ -43,33 +43,37 @@ internal class Settings : JsonModSettings
     #region Flashlight Tweaks
     [Section("Flashlight Tweaks")]
 
+    [Name("Aurora Flickering")]
+    [Description("Alters the flashlight's flickering behavior by only flickering during an aurora if enabled.")]
+    public bool AuroraFlickering = false;
+
     [Name("Battery Randomization")]
     [Description("Sets the flashlight to start with a random battery charge level.")]
-    public bool RandomizeFlashlightCharge = false;
+    public bool BatteryRandomization = false;
 
     [Name("Extended Functionality")]
     [Description("Allows the flashlight to function anytime, not just during auroras.")]
-    public bool EnableFlashlightWithoutAurora = false;
+    public bool ExtendedFunctionality = false;
 
     [Name("High-Beam Restrictions")]
     [Description("Restricts high beam functionality to aurora events only.")]
-    public bool HighBeamOnlyDuringAurora = false;
+    public bool HighBeamRestrictions = false;
 
-    [Name("Flashlight Color")]
+    [Name("Light Color")]
     [Description("Changes the color of the flashlight's beam.")]
-    public FlashlightColor DefaultFlashlightColor = FlashlightColor.Default;
+    public FlashlightColor LightColor = FlashlightColor.Default;
 
-    [Name("Red")]
+    [Name("Red Value")]
     [Slider(0, 255)]
-    public int FlashlightLightRed = 0;
+    public int RedValue = 0;
 
-    [Name("Green")]
+    [Name("Green Value")]
     [Slider(0, 255)]
-    public int FlashlightLightGreen = 0;
+    public int GreenValue = 0;
 
-    [Name("Blue")]
+    [Name("Blue Value")]
     [Slider(0, 255)]
-    public int FlashlightLightBlue = 0;
+    public int BlueValue = 0;
 
     [Name("Flashlight Low Beam Duration")]
     [Description("Adjusts the flashlight's low beam duration. Range: 0.1 (short) to 2 (long).")]
@@ -109,19 +113,19 @@ internal class Settings : JsonModSettings
     #region Spray Paint Tweaks
     [Section("Spray Paint Tweaks")]
 
-    [Name("Decal Placement Leniency")]
+    [Name("Decal Overlap Leniency")]
     [Description("Set the leniency for placing decals. Range: 0 (strict) to 1 (lenient).")]
     [Slider(0f, 1f, 11)]
-    public float DecalOverlapLeniencyPerfect = 0.2f;
+    public float DecalOverlapLeniency = 0.2f;
 
     [Name("Glowing Decals")]
     [Description("Toggle the glow effect for spray paint decals.")]
-    public bool EnableGlowDecal = false;
+    public bool GlowingDecals = false;
 
     [Name("Glow Brightness Multiplier")]
     [Description("Adjust the brightness of the glow effect. Range: 0.5 (low) to 1.5 (high).")]
     [Slider(0.5f, 1.5f, 11)]
-    public float GlowDecalMultiplier = 1f;
+    public float GlowingDecalMultiplier = 1f;
     #endregion
 
     #region Experimental Tweaks
@@ -129,7 +133,7 @@ internal class Settings : JsonModSettings
 
     [Name("Experimental / Cheat Tweaks")]
     [Description("USE AT YOUR OWN RISK! Enables cheats and tweaks that aren't quite polished.")]
-    public bool ExperimentalFeatures = false;
+    public bool ExperimentalAndCheatTweaks = false;
 
     [Name("First-Person Handedness")]
     [Description("Alters the handedness of first-person animations. Will cause tracking issues with animations!")]
@@ -138,7 +142,7 @@ internal class Settings : JsonModSettings
 
     [Name("MRE Texture Variation")]
     [Description("Switches the MRE texture to a brown variant. Requires a game restart!")]
-    public bool SwapMRETexture = false;
+    public bool MRETextureVariant = false;
     #endregion
 
     protected override void OnChange(FieldInfo field, object? oldValue, object? newValue)
@@ -148,23 +152,23 @@ internal class Settings : JsonModSettings
 
     internal void RefreshFields()
     {
-        if (DefaultFlashlightColor == FlashlightColor.Custom)
+        if (LightColor == FlashlightColor.Custom)
         {
-            SetFieldVisible(nameof(FlashlightLightRed), true);
-            SetFieldVisible(nameof(FlashlightLightGreen), true);
-            SetFieldVisible(nameof(FlashlightLightBlue), true);
+            SetFieldVisible(nameof(RedValue), true);
+            SetFieldVisible(nameof(GreenValue), true);
+            SetFieldVisible(nameof(BlueValue), true);
         }
         else
         {
-            SetFieldVisible(nameof(FlashlightLightRed), false);
-            SetFieldVisible(nameof(FlashlightLightGreen), false);
-            SetFieldVisible(nameof(FlashlightLightBlue), false);
+            SetFieldVisible(nameof(RedValue), false);
+            SetFieldVisible(nameof(GreenValue), false);
+            SetFieldVisible(nameof(BlueValue), false);
         }
 
-        if (ExperimentalFeatures == true)
+        if (ExperimentalAndCheatTweaks == true)
         {
             SetFieldVisible(nameof(FirstPersonHandednessView), true);
-            SetFieldVisible(nameof(SwapMRETexture), true);
+            SetFieldVisible(nameof(MRETextureVariant), true);
             SetFieldVisible(nameof(InfiniteBattery), true);
 
             SetFieldVisible(nameof(FlashlightLowBeamDuration), true);
@@ -177,7 +181,7 @@ internal class Settings : JsonModSettings
         else
         {
             SetFieldVisible(nameof(FirstPersonHandednessView), false);
-            SetFieldVisible(nameof(SwapMRETexture), false);
+            SetFieldVisible(nameof(MRETextureVariant), false);
             SetFieldVisible(nameof(InfiniteBattery), false);
 
             SetFieldVisible(nameof(FlashlightLowBeamDuration), false);
@@ -186,15 +190,6 @@ internal class Settings : JsonModSettings
             SetFieldVisible(nameof(MinersFlashlightLowBeamDuration), false);
             SetFieldVisible(nameof(MinersFlashlightHighBeamDuration), false);
             SetFieldVisible(nameof(MinersFlashlightRechargeTime), false);
-        }
-
-        if (EnableFlashlightWithoutAurora == true)
-        {
-            SetFieldVisible(nameof(HighBeamOnlyDuringAurora), true);
-        }
-        else
-        {
-            SetFieldVisible(nameof(HighBeamOnlyDuringAurora), false);
         }
     }
 

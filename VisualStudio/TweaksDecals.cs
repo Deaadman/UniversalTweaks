@@ -11,13 +11,13 @@ internal class TweaksDecals
         {
             __state = __instance.m_StandardMaterial;
 
-            if (Settings.Instance.EnableGlowDecal && __instance.m_GlowMaterial != null)
+            if (Settings.Instance.GlowingDecals && __instance.m_GlowMaterial != null)
             {
                 __instance.m_StandardMaterial = __instance.m_GlowMaterial;
                 __instance.m_AnimatedRevealMaterial = __instance.m_GlowMaterial;
 
                 __instance.m_GlowMaterial.SetColor("_GlowColor", new Color(1f, 0.4489248f, 0f, 0f));
-                __instance.m_GlowMaterial.SetFloat("_GlowMult", Settings.Instance.GlowDecalMultiplier);
+                __instance.m_GlowMaterial.SetFloat("_GlowMult", Settings.Instance.GlowingDecalMultiplier);
             }
 
             return true;
@@ -36,7 +36,7 @@ internal class TweaksDecals
         private static void Postfix()
         {
             DynamicDecalsManager dynamicDecalsManager = GameManager.GetDynamicDecalsManager();
-            dynamicDecalsManager.m_DecalOverlapLeniencyPercent = Settings.Instance.DecalOverlapLeniencyPerfect;
+            dynamicDecalsManager.m_DecalOverlapLeniencyPercent = Settings.Instance.DecalOverlapLeniency;
         }
     }
 }
