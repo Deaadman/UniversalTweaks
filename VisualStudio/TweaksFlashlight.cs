@@ -6,16 +6,18 @@ namespace UniversalTweaks;
 internal class TweaksFlashlight
 {
     [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.Awake))]
-    private static class FlashlightRandomCharge
+    private static class FlashlightCustomization
     {
         private static void Prefix(FlashlightItem __instance)
         {
             if (Settings.Instance.RandomizeFlashlightCharge)
             {
                 __instance.m_CurrentBatteryCharge = UnityEngine.Random.Range(0f, 1f);
+                Logging.Log($"Randomized battery charge: {__instance.m_CurrentBatteryCharge}");
             }
         }
     }
+
 
     [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.GetNormalizedCharge))]
     private static class FlashlightKeepBatteryCharge
@@ -77,6 +79,37 @@ internal class TweaksFlashlight
             if (Settings.Instance.InfiniteBattery)
             {
                 __instance.m_CurrentBatteryCharge = 1f;
+            }
+
+            if (Settings.Instance.ExperimentalFeatures)
+            {
+                if (__instance.m_GearItem != null && __instance.m_GearItem.name == "GEAR_Flashlight_LongLasting")
+                {
+                    __instance.m_LowBeamDuration = Settings.Instance.MinersFlashlightLowBeamDuration;
+                    __instance.m_HighBeamDuration = Settings.Instance.MinersFlashlightHighBeamDuration;
+                    __instance.m_RechargeTime = Settings.Instance.MinersFlashlightRechargeTime;
+                }
+                else
+                {
+                    __instance.m_LowBeamDuration = Settings.Instance.FlashlightLowBeamDuration;
+                    __instance.m_HighBeamDuration = Settings.Instance.FlashlightHighBeamDuration;
+                    __instance.m_RechargeTime = Settings.Instance.FlashlightRechargeTime;
+                }
+            }
+            else
+            {
+                if (__instance.m_GearItem != null && __instance.m_GearItem.name == "GEAR_Flashlight_LongLasting")
+                {
+                    __instance.m_LowBeamDuration = 1.5f;
+                    __instance.m_HighBeamDuration = 0.08333334f;
+                    __instance.m_RechargeTime = 1.75f;
+                }
+                else
+                {
+                    __instance.m_LowBeamDuration = 1f;
+                    __instance.m_HighBeamDuration = 0.08333334f;
+                    __instance.m_RechargeTime = 2f;
+                }
             }
         }
     }
@@ -141,41 +174,41 @@ internal class TweaksFlashlight
 
     // Below is currently experimental, trying to figure out how to retain the lights when dropped if the state is still low.
 
-    [HarmonyPatch(typeof(GearItem), nameof(GearItem.Drop))]
-    private static class Testintg1
-    {
-        private static void Postfix(GearItem __instance)
-        {
-            Logging.Log("GearItem.Drop Postfix called.");
+    //[HarmonyPatch(typeof(GearItem), nameof(GearItem.Drop))]
+    //private static class Testintg1
+    //{
+    //    private static void Postfix(GearItem __instance)
+    //    {
+    //        Logging.Log("GearItem.Drop Postfix called.");
 
-            if (__instance.m_FlashlightItem == null)
-            {
-                Logging.LogWarning("Dropped item is not a flashlight.");
-                return;
-            }
+    //        if (__instance.m_FlashlightItem == null)
+    //        {
+    //            Logging.LogWarning("Dropped item is not a flashlight.");
+    //            return;
+    //        }
 
-            if (__instance.m_FlashlightItem.IsOn())
-            {
-                Logging.Log("Flashlight is on. Attempting to maintain state upon drop.");
+    //        if (__instance.m_FlashlightItem.IsOn())
+    //        {
+    //            Logging.Log("Flashlight is on. Attempting to maintain state upon drop.");
 
-                // Attempt to maintain the flashlight's current state when dropped
-                try
-                {
-                    __instance.m_FlashlightItem.TurnOn(); // Assuming this turns it to a default on state
-                                                          // OR
-                                                          // __instance.m_FlashlightItem.SetState(__instance.m_FlashlightItem.m_State); // if there's a method like SetState
+    //            // Attempt to maintain the flashlight's current state when dropped
+    //            try
+    //            {
+    //                __instance.m_FlashlightItem.TurnOn(); // Assuming this turns it to a default on state
+    //                                                      // OR
+    //                                                      // __instance.m_FlashlightItem.SetState(__instance.m_FlashlightItem.m_State); // if there's a method like SetState
 
-                    Logging.Log("Flashlight state maintained after dropping.");
-                }
-                catch (Exception ex)
-                {
-                    Logging.LogError($"Error while maintaining flashlight state: {ex.Message}");
-                }
-            }
-            else
-            {
-                Logging.Log("Dropped flashlight item is not currently on. No action taken.");
-            }
-        }
-    }
+    //                Logging.Log("Flashlight state maintained after dropping.");
+    //            }
+    //            catch (Exception ex)
+    //            {
+    //                Logging.LogError($"Error while maintaining flashlight state: {ex.Message}");
+    //            }
+    //        }
+    //        else
+    //        {
+    //            Logging.Log("Dropped flashlight item is not currently on. No action taken.");
+    //        }
+    //    }
+    //}
 }

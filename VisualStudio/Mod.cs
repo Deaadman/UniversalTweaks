@@ -48,28 +48,28 @@ internal sealed class Mod : MelonMod
         }
     }
 
-    [HarmonyPatch(typeof(Panel_ActionsRadial), nameof(Panel_ActionsRadial.GetShouldGreyOut))]
-    private static class Testing10
-    {
-        private static bool Prefix(Panel_ActionsRadial.RadialType radialType, ref bool __result)
-        {
-            if (radialType == Panel_ActionsRadial.RadialType.RockCache)
-            {
-                if (GameManager.GetWeatherComponent().IsIndoorEnvironment())
-                {
-                    __result = false;
-                }
-                else
-                {
-                    __result = true;
-                }
+    //[HarmonyPatch(typeof(Panel_ActionsRadial), nameof(Panel_ActionsRadial.GetShouldGreyOut))]
+    //private static class Testing10
+    //{
+    //    private static bool Prefix(Panel_ActionsRadial.RadialType radialType, ref bool __result)
+    //    {
+    //        if (radialType == Panel_ActionsRadial.RadialType.RockCache)
+    //        {
+    //            if (GameManager.GetWeatherComponent().IsIndoorEnvironment())
+    //            {
+    //                __result = false;
+    //            }
+    //            else
+    //            {
+    //                __result = true;
+    //            }
 
-                return false;
-            }
+    //            return false;
+    //        }
 
-            return true;
-        }
-    }
+    //        return true;
+    //    }
+    //}
 
     //[HarmonyPatch(typeof(Panel_Actions), nameof(Panel_Actions.OnPlaceRockCache))]
     //private static class Testing
