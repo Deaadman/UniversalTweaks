@@ -9,7 +9,7 @@ internal class TweaksSnowShelter
     {
         private static void Postfix(ref SnowShelter __result)
         {
-            __result.m_DailyDecayHP = Settings.Instance.SnowShelterDailyDecayRate;
+            __result.m_DailyDecayHP = Settings.Instance.CheatingTweaks ? Settings.Instance.SnowShelterDailyDecayRate : 100;
         }
     }
 }

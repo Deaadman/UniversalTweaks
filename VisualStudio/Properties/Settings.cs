@@ -128,12 +128,41 @@ internal class Settings : JsonModSettings
     public float GlowingDecalMultiplier = 1f;
     #endregion
 
+    #region Travois Tweaks
+    [Section("Travois Tweaks")]
+
+    [Name("Decay Blizzard Per Hour")]
+    [Description("Determines how quickly the travois deteriorates during a blizzard. Range: 1 (slowest decay) to 10 (fastest decay).")]
+    [Slider(1, 10)]
+    public int DecayBlizzardTravois = 3;
+
+    [Name("Decay HP Per Hour")]
+    [Description("Sets the rate at which the travois loses hit points per hour. Range: 1 (slowest decay) to 10 (fastest decay).")]
+    [Slider(1, 10, 10)]
+    public int DecayHPPerHourTravois = 10;
+
+    [Name("Decay Movement Per Unit")]
+    [Description("Configures how much the travois's movement capability degrades per unit carried. Range: 1 (slowest decay) to 5 (fastest decay).")]
+    [Slider(1, 5, 5)]
+    public int DecayMovementPerUnitTravois = 5;
+
+    [Name("Turn Speed")]
+    [Description("Adjusts the turning speed of the travois. Range: 0.5 (slow) to 5 (fast).")]
+    [Slider(0.5f, 5f, 45)]
+    public float TurnSpeed = 0.5f;
+
+    [Name("Max Slope Angle")]
+    [Description("Sets the maximum slope angle the travois can handle. Range: 35 (steep) to 75 (very steep).")]
+    [Slider(35, 75)]
+    public int MaxSlopeAngle = 35;
+    #endregion
+
     #region Experimental Tweaks
     [Section("Experimental Tweaks")]
 
-    [Name("Experimental / Cheat Tweaks")]
-    [Description("USE AT YOUR OWN RISK! Enables cheats and tweaks that aren't quite polished.")]
-    public bool ExperimentalAndCheatTweaks = false;
+    [Name("'Cheat' Tweaks")]
+    [Description("Enables tweaks which alters items in a way that can be seen as 'cheating'.")]
+    public bool CheatingTweaks = false;
 
     [Name("First-Person Handedness")]
     [Description("Alters the handedness of first-person animations. Will cause tracking issues with animations!")]
@@ -165,12 +194,15 @@ internal class Settings : JsonModSettings
             SetFieldVisible(nameof(BlueValue), false);
         }
 
-        if (ExperimentalAndCheatTweaks == true)
+        if (CheatingTweaks == true)
         {
-            SetFieldVisible(nameof(FirstPersonHandednessView), true);
-            SetFieldVisible(nameof(MRETextureVariant), true);
-            SetFieldVisible(nameof(InfiniteBattery), true);
+            SetFieldVisible(nameof(SnowShelterDailyDecayRate), true);
 
+            SetFieldVisible(nameof(DecayBlizzardTravois), true);
+            SetFieldVisible(nameof(DecayHPPerHourTravois), true);
+            SetFieldVisible(nameof(DecayMovementPerUnitTravois), true);
+
+            SetFieldVisible(nameof(InfiniteBattery), true);
             SetFieldVisible(nameof(FlashlightLowBeamDuration), true);
             SetFieldVisible(nameof(FlashlightHighBeamDuration), true);
             SetFieldVisible(nameof(FlashlightRechargeTime), true);
@@ -180,10 +212,13 @@ internal class Settings : JsonModSettings
         }
         else
         {
-            SetFieldVisible(nameof(FirstPersonHandednessView), false);
-            SetFieldVisible(nameof(MRETextureVariant), false);
-            SetFieldVisible(nameof(InfiniteBattery), false);
+            SetFieldVisible(nameof(SnowShelterDailyDecayRate), false);
 
+            SetFieldVisible(nameof(DecayBlizzardTravois), false);
+            SetFieldVisible(nameof(DecayHPPerHourTravois), false);
+            SetFieldVisible(nameof(DecayMovementPerUnitTravois), false);
+
+            SetFieldVisible(nameof(InfiniteBattery), false);
             SetFieldVisible(nameof(FlashlightLowBeamDuration), false);
             SetFieldVisible(nameof(FlashlightHighBeamDuration), false);
             SetFieldVisible(nameof(FlashlightRechargeTime), false);

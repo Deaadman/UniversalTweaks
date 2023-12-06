@@ -79,36 +79,11 @@ internal class TweaksFlashlight
                 __instance.m_CurrentBatteryCharge = 1f;
             }
 
-            if (Settings.Instance.ExperimentalAndCheatTweaks)
-            {
-                if (__instance.m_GearItem != null && __instance.m_GearItem.name == "GEAR_Flashlight_LongLasting")
-                {
-                    __instance.m_LowBeamDuration = Settings.Instance.MinersFlashlightLowBeamDuration;
-                    __instance.m_HighBeamDuration = Settings.Instance.MinersFlashlightHighBeamDuration;
-                    __instance.m_RechargeTime = Settings.Instance.MinersFlashlightRechargeTime;
-                }
-                else
-                {
-                    __instance.m_LowBeamDuration = Settings.Instance.FlashlightLowBeamDuration;
-                    __instance.m_HighBeamDuration = Settings.Instance.FlashlightHighBeamDuration;
-                    __instance.m_RechargeTime = Settings.Instance.FlashlightRechargeTime;
-                }
-            }
-            else
-            {
-                if (__instance.m_GearItem != null && __instance.m_GearItem.name == "GEAR_Flashlight_LongLasting")
-                {
-                    __instance.m_LowBeamDuration = 1.5f;
-                    __instance.m_HighBeamDuration = 0.08333334f;
-                    __instance.m_RechargeTime = 1.75f;
-                }
-                else
-                {
-                    __instance.m_LowBeamDuration = 1f;
-                    __instance.m_HighBeamDuration = 0.08333334f;
-                    __instance.m_RechargeTime = 2f;
-                }
-            }
+            bool isMinersFlashlight = __instance.m_GearItem != null && __instance.m_GearItem.name == "GEAR_Flashlight_LongLasting";
+
+            __instance.m_LowBeamDuration = Settings.Instance.CheatingTweaks ? (isMinersFlashlight ? Settings.Instance.MinersFlashlightLowBeamDuration : Settings.Instance.FlashlightLowBeamDuration) : (isMinersFlashlight ? 1.5f : 1f);
+            __instance.m_HighBeamDuration = Settings.Instance.CheatingTweaks ? (isMinersFlashlight ? Settings.Instance.MinersFlashlightHighBeamDuration : Settings.Instance.FlashlightHighBeamDuration) : (isMinersFlashlight ? 0.08333334f : 0.08333334f);
+            __instance.m_RechargeTime = Settings.Instance.CheatingTweaks ? (isMinersFlashlight ? Settings.Instance.MinersFlashlightRechargeTime : Settings.Instance.FlashlightRechargeTime) : (isMinersFlashlight ? 1.75f : 2f);
         }
     }
 
