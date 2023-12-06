@@ -12,7 +12,7 @@
 
 	<PropertyGroup>
 		<!-- This should point to wherever your games primary EXE is -->
-		<TheLongDarkPath>F:\SteamLibrary\steamapps\common\TheLongDark</TheLongDarkPath>
+		<TheLongDarkPath>C:\Program Files (x86)\Steam\steamapps\common\TheLongDark</TheLongDarkPath>
 		<ReleaseFolderPath>D:\The Long Dark\Mods\Maintained\UniversalTweaks\Release</ReleaseFolderPath>
 	</PropertyGroup>
 
@@ -23,11 +23,11 @@
 
 	<!-- List of used references -->
 	<ItemGroup>
-		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="2.23.0" />
 		
 		<!-- Uncomment whatever is required for your needs. -->
 		<!-- <PackageReference Include="STBlade.Modding.TLD.CraftingRevisions" Version="2.2.1" /> -->
 		<!-- <PackageReference Include="STBlade.Modding.TLD.GearSpawner" Version="2.3.1" /> -->
+		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="2.25.0" />
 		<PackageReference Include="STBlade.Modding.TLD.LocalizationUtilities" Version="2.0.0" />
 		<!-- <PackageReference Include="STBlade.Modding.TLD.ModComponent" Version="6.2.1" /> -->
 		<!-- <PackageReference Include="STBlade.Modding.TLD.ModData" Version="1.5.1" /> -->

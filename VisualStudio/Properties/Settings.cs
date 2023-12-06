@@ -1,4 +1,6 @@
-﻿namespace UniversalTweaks.Properties;
+﻿using UniversalTweaks.Utilities;
+
+namespace UniversalTweaks.Properties;
 
 internal class Settings : JsonModSettings
 {
@@ -53,9 +55,26 @@ internal class Settings : JsonModSettings
     [Description("Sets the flashlight to start with a random battery charge level.")]
     public bool RandomizeFlashlightCharge = false;
 
+    [Name("Flashlight Color")]
+    [Description("Selects the color of the flashlight's beam.")]
+    public FlashlightColor DefaultFlashlightColor = FlashlightColor.Default;
+
+    [Name("Red")]
+    [Slider(0, 255)]
+    public int FlashlightLightRed = 0;
+
+    [Name("Green")]
+    [Slider(0, 255)]
+    public int FlashlightLightGreen = 0;
+
+    [Name("Blue")]
+    [Slider(0, 255)]
+    public int FlashlightLightBlue = 0;
+
     [Name("Infinite Battery")]
     [Description("Ensures the flashlight's battery never depletes, allowing unlimited use without recharging.")]
     public bool InfiniteBattery = false;
+
     #endregion
 
     #region Spray Paint Tweaks
@@ -89,9 +108,28 @@ internal class Settings : JsonModSettings
     public bool SwapMRETexture = false;
     #endregion
 
+    protected override void OnChange(FieldInfo field, object? oldValue, object? newValue) => RefreshFields();
+
+    internal void RefreshFields()
+    {
+        if (DefaultFlashlightColor == FlashlightColor.Custom)
+        {
+            SetFieldVisible(nameof(FlashlightLightRed), true);
+            SetFieldVisible(nameof(FlashlightLightGreen), true);
+            SetFieldVisible(nameof(FlashlightLightBlue), true);
+        }
+        else
+        {
+            SetFieldVisible(nameof(FlashlightLightRed), false);
+            SetFieldVisible(nameof(FlashlightLightGreen), false);
+            SetFieldVisible(nameof(FlashlightLightBlue), false);
+        }
+    }
+
     internal static void OnLoad()
     {
         Instance.AddToModSettings(BuildInfo.GUIName);
+        Instance.RefreshFields();
         Instance.RefreshGUI();
     }
 }

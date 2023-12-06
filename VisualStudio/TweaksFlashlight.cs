@@ -86,15 +86,56 @@ internal class TweaksFlashlight
     {
         private static bool Prefix(LightRandomIntensity __instance)
         {
-            if (__instance.gameObject.name == "LightIndoors" || __instance.gameObject.name == "LightOutdoors" || __instance.gameObject.name == "LightExtend")
+            if ((__instance.gameObject.name == "LightIndoors" || __instance.gameObject.name == "LightOutdoors" || __instance.gameObject.name == "LightExtend") && !GameManager.GetAuroraManager().AuroraIsActive() && Settings.Instance.EnableFlashlightWithoutAurora)
             {
-                if (!GameManager.GetAuroraManager().AuroraIsActive() && Settings.Instance.EnableFlashlightWithoutAurora)
-                {
-                    return false;
-                }
+                return false;
             }
 
             return true;
+        }
+
+        private static void Postfix(LightRandomIntensity __instance)
+        {
+            if (__instance.gameObject.name == "LightIndoors" || __instance.gameObject.name == "LightOutdoors" || __instance.gameObject.name == "LightExtend")
+            {
+                Light lightComponent = __instance.gameObject.GetComponent<Light>();
+
+                if (lightComponent != null)
+                {
+                    switch (Settings.Instance.DefaultFlashlightColor)
+                    {
+                        case FlashlightColor.Custom:
+                            lightComponent.color = new Color(Settings.Instance.FlashlightLightRed / 255,
+                                                             Settings.Instance.FlashlightLightGreen / 255,
+                                                             Settings.Instance.FlashlightLightBlue / 255);
+                            break;
+                        case FlashlightColor.Default:
+                            lightComponent.color = new Color(0.7215686f, 0.8117647f, 0.9176471f);
+                            break;
+                        case FlashlightColor.Red:
+                            lightComponent.color = Color.red;
+                            break;
+                        case FlashlightColor.Green:
+                            lightComponent.color = Color.green;
+                            break;
+                        case FlashlightColor.Blue:
+                            lightComponent.color = Color.blue;
+                            break;
+                        case FlashlightColor.Yellow:
+                            lightComponent.color = Color.yellow;
+                            break;
+                        case FlashlightColor.Purple:
+                            lightComponent.color = new Color(0.5f, 0f, 0.5f);
+                            break;
+                        case FlashlightColor.Orange:
+                            lightComponent.color = new Color(1f, 0.6470588f, 0f);
+                            break;
+                        case FlashlightColor.White:
+                            lightComponent.color = Color.white;
+                            break;
+                    }
+                }
+            }
         }
     }
 
