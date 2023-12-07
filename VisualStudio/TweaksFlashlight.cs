@@ -17,6 +17,31 @@ internal class TweaksFlashlight
         }
     }
 
+    [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.EnableLights))]
+    private static class FlashlightBeamDropped
+    {
+        private static bool Prefix(FlashlightItem __instance, FlashlightItem.State state)
+        {
+            if (__instance.m_GearItem == GameManager.GetPlayerManagerComponent().m_ItemInHands)
+            {
+                state = FlashlightItem.State.Off;
+            }
+
+            __instance.m_FxObjectLow.SetActive(state == FlashlightItem.State.Low);
+            __instance.m_FxObjectHigh.SetActive(state == FlashlightItem.State.High);
+
+            bool useOutdoorLighting = GameManager.GetWeatherComponent().UseOutdoorLightingForLightSources();
+
+            __instance.m_LightIndoor.enabled = !useOutdoorLighting && (state == FlashlightItem.State.Low || state == FlashlightItem.State.High);
+            __instance.m_LightIndoorHigh.enabled = !useOutdoorLighting && (state == FlashlightItem.State.High);
+
+            __instance.m_LightOutdoor.enabled = useOutdoorLighting && (state == FlashlightItem.State.Low || state == FlashlightItem.State.High);
+            __instance.m_LightOutdoorHigh.enabled = useOutdoorLighting && (state == FlashlightItem.State.High);
+
+            return false;
+        }
+    }
+
     [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.GetNormalizedCharge))]
     private static class FlashlightKeepBatteryCharge
     {
@@ -31,19 +56,6 @@ internal class TweaksFlashlight
             return false;
         }
     }
-
-    //
-
-    //[HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.EnableLights))]
-    //private static class Testing10000000000000
-    //{
-    //    private static bool Prefix()
-    //    {
-    //        return false;
-    //    }
-    //}
-
-    //
 
     [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.IsLit))]
     private static class FlashlightFunctionality
