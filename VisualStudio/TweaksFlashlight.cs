@@ -22,23 +22,28 @@ internal class TweaksFlashlight
     {
         private static bool Prefix(FlashlightItem __instance, FlashlightItem.State state)
         {
-            if (__instance.m_GearItem == GameManager.GetPlayerManagerComponent().m_ItemInHands)
+            if (Settings.Instance.ExtendedFunctionality)
             {
-                state = FlashlightItem.State.Off;
+                if (__instance.m_GearItem == GameManager.GetPlayerManagerComponent().m_ItemInHands)
+                {
+                    state = FlashlightItem.State.Off;
+                }
+
+                __instance.m_FxObjectLow.SetActive(state == FlashlightItem.State.Low);
+                __instance.m_FxObjectHigh.SetActive(state == FlashlightItem.State.High);
+
+                bool useOutdoorLighting = GameManager.GetWeatherComponent().UseOutdoorLightingForLightSources();
+
+                __instance.m_LightIndoor.enabled = !useOutdoorLighting && (state == FlashlightItem.State.Low || state == FlashlightItem.State.High);
+                __instance.m_LightIndoorHigh.enabled = !useOutdoorLighting && (state == FlashlightItem.State.High);
+
+                __instance.m_LightOutdoor.enabled = useOutdoorLighting && (state == FlashlightItem.State.Low || state == FlashlightItem.State.High);
+                __instance.m_LightOutdoorHigh.enabled = useOutdoorLighting && (state == FlashlightItem.State.High);
+
+                return false;
             }
 
-            __instance.m_FxObjectLow.SetActive(state == FlashlightItem.State.Low);
-            __instance.m_FxObjectHigh.SetActive(state == FlashlightItem.State.High);
-
-            bool useOutdoorLighting = GameManager.GetWeatherComponent().UseOutdoorLightingForLightSources();
-
-            __instance.m_LightIndoor.enabled = !useOutdoorLighting && (state == FlashlightItem.State.Low || state == FlashlightItem.State.High);
-            __instance.m_LightIndoorHigh.enabled = !useOutdoorLighting && (state == FlashlightItem.State.High);
-
-            __instance.m_LightOutdoor.enabled = useOutdoorLighting && (state == FlashlightItem.State.Low || state == FlashlightItem.State.High);
-            __instance.m_LightOutdoorHigh.enabled = useOutdoorLighting && (state == FlashlightItem.State.High);
-
-            return false;
+            return true;
         }
     }
 
@@ -109,7 +114,7 @@ internal class TweaksFlashlight
             __instance.m_HighBeamDuration = Settings.Instance.CheatingTweaks ? (isMinersFlashlight ? Settings.Instance.MinersFlashlightHighBeamDuration : Settings.Instance.FlashlightHighBeamDuration) : (isMinersFlashlight ? 0.08333334f : 0.08333334f);
             __instance.m_RechargeTime = Settings.Instance.CheatingTweaks ? (isMinersFlashlight ? Settings.Instance.MinersFlashlightRechargeTime : Settings.Instance.FlashlightRechargeTime) : (isMinersFlashlight ? 1.75f : 2f);
 
-            UpdateFlashlightBeamColor(__instance, null, __instance.m_FxObjectHigh);
+            UpdateFlashlightBeamColor(__instance, __instance.m_FxObjectLow, __instance.m_FxObjectHigh);
         }
     }
 
@@ -121,7 +126,7 @@ internal class TweaksFlashlight
             GearItem itemInHands = GameManager.GetPlayerManagerComponent().m_ItemInHands;
             FlashlightItem flashlightItem = itemInHands.m_FlashlightItem;
 
-            UpdateFlashlightBeamColor(flashlightItem, __instance, __instance.m_HighFxGameObject);
+            UpdateFlashlightBeamColor(flashlightItem, __instance.m_LowFxGameObject, __instance.m_HighFxGameObject);
         }
     }
 
@@ -170,7 +175,7 @@ internal class TweaksFlashlight
         };
     }
 
-    private static void UpdateFlashlightBeamColor(FlashlightItem flashlightItem, FirstPersonFlashlight? firstPersonFlashlight, GameObject highFxGameObject)
+    private static void UpdateFlashlightBeamColor(FlashlightItem flashlightItem, GameObject lowFxGameObject, GameObject highFxGameObject)
     {
         if (flashlightItem == null)
         {
@@ -179,38 +184,28 @@ internal class TweaksFlashlight
 
         Color newColor = GetColorFromFlashlight(flashlightItem);
 
-        if (flashlightItem.m_LightIndoor != null)
+        if (lowFxGameObject != null)
         {
-            flashlightItem.m_LightIndoor.color = newColor;
-        }
-        if (flashlightItem.m_LightOutdoor != null)
-        {
-            flashlightItem.m_LightOutdoor.color = newColor;
-        }
-
-        if (firstPersonFlashlight != null)
-        {
-            if (firstPersonFlashlight.m_LightIndoorsLow != null)
-            {
-                firstPersonFlashlight.m_LightIndoorsLow.color = newColor;
-            }
-            if (firstPersonFlashlight.m_LightOutdoorsLow != null)
-            {
-                firstPersonFlashlight.m_LightOutdoorsLow.color = newColor;
-            }
+            UpdateLightColorRecursive(lowFxGameObject.transform, newColor);
         }
 
         if (highFxGameObject != null)
         {
-            Transform lightExtendTransform = highFxGameObject.transform.Find("LightExtend");
-            if (lightExtendTransform != null)
-            {
-                Light lightExtend = lightExtendTransform.GetComponent<Light>();
-                if (lightExtend != null)
-                {
-                    lightExtend.color = newColor;
-                }
-            }
+            UpdateLightColorRecursive(highFxGameObject.transform, newColor);
+        }
+    }
+
+    private static void UpdateLightColorRecursive(Transform transform, Color color)
+    {
+        Light childLight = transform.GetComponent<Light>();
+        if (childLight != null)
+        {
+            childLight.color = color;
+        }
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            UpdateLightColorRecursive(transform.GetChild(i), color);
         }
     }
 }
