@@ -13,6 +13,10 @@ internal class Settings : JsonModSettings
     [Description("Toggle the visual breath effect on or off.")]
     public bool BreathVisibility = true;
 
+    [Name("MRE Texture Variation")]
+    [Description("Switches the MRE texture to a brown variant.")]
+    public bool MRETextureVariant = false;
+
     [Name("Promotional Main Menu Items")]
     [Description("Removes the promotional WINTERMUTE and Expansion menu items.")]
     public bool RemoveMainMenuItems = false;
@@ -173,21 +177,12 @@ internal class Settings : JsonModSettings
     public float TurnSpeed = 0.5f;
     #endregion
 
-    #region Experimental Tweaks
-    [Section("Experimental Tweaks")]
+    #region Miscellaneous
+    [Section("Miscellaneous")]
 
     [Name("'Cheat' Tweaks")]
     [Description("Enables tweaks which alters items in a way that can be seen as 'cheating'.")]
     public bool CheatingTweaks = false;
-
-    [Name("First-Person Handedness")]
-    [Description("Alters the handedness of first-person animations. Will cause tracking issues with animations!")]
-    [Choice("Right-Handed", "Left-Handed")]
-    public int FirstPersonHandednessView = 0;
-
-    [Name("MRE Texture Variation")]
-    [Description("Switches the MRE texture to a brown variant. Requires a game restart!")]
-    public bool MRETextureVariant = false;
     #endregion
 
     protected override void OnChange(FieldInfo field, object? oldValue, object? newValue)
