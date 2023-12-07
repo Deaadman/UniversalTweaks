@@ -135,7 +135,7 @@ internal class Settings : JsonModSettings
     public float DecalOverlapLeniency = 0.2f;
 
     [Name("Glowing Decals")]
-    [Description("Toggle the glow effect for spray paint decals.")]
+    [Description("Toggle the glow effect for spray paint decals. Requires scene reload to turn back off.")]
     public bool GlowingDecals = false;
 
     [Name("Glow Brightness Multiplier")]
