@@ -32,6 +32,19 @@ internal class TweaksFlashlight
         }
     }
 
+    //
+
+    //[HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.EnableLights))]
+    //private static class Testing10000000000000
+    //{
+    //    private static bool Prefix()
+    //    {
+    //        return false;
+    //    }
+    //}
+
+    //
+
     [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.IsLit))]
     private static class FlashlightFunctionality
     {
@@ -80,10 +93,23 @@ internal class TweaksFlashlight
             }
 
             bool isMinersFlashlight = __instance.m_GearItem != null && __instance.m_GearItem.name == "GEAR_Flashlight_LongLasting";
-
             __instance.m_LowBeamDuration = Settings.Instance.CheatingTweaks ? (isMinersFlashlight ? Settings.Instance.MinersFlashlightLowBeamDuration : Settings.Instance.FlashlightLowBeamDuration) : (isMinersFlashlight ? 1.5f : 1f);
             __instance.m_HighBeamDuration = Settings.Instance.CheatingTweaks ? (isMinersFlashlight ? Settings.Instance.MinersFlashlightHighBeamDuration : Settings.Instance.FlashlightHighBeamDuration) : (isMinersFlashlight ? 0.08333334f : 0.08333334f);
             __instance.m_RechargeTime = Settings.Instance.CheatingTweaks ? (isMinersFlashlight ? Settings.Instance.MinersFlashlightRechargeTime : Settings.Instance.FlashlightRechargeTime) : (isMinersFlashlight ? 1.75f : 2f);
+
+            UpdateFlashlightBeamColor(__instance, null, __instance.m_FxObjectHigh);
+        }
+    }
+
+    [HarmonyPatch(typeof(FirstPersonFlashlight), nameof(FirstPersonFlashlight.Update))]
+    private static class ModifyFlashFlashlightBeamColor
+    {
+        private static void Postfix(FirstPersonFlashlight __instance)
+        {
+            GearItem itemInHands = GameManager.GetPlayerManagerComponent().m_ItemInHands;
+            FlashlightItem flashlightItem = itemInHands.m_FlashlightItem;
+
+            UpdateFlashlightBeamColor(flashlightItem, __instance, __instance.m_HighFxGameObject);
         }
     }
 
@@ -102,47 +128,75 @@ internal class TweaksFlashlight
 
             return true;
         }
+    }
 
-        private static void Postfix(LightRandomIntensity __instance)                    // Need to revamp this method, change the color from the flashlight - not LightRandomIntensity.
+    //
+
+    private static Color GetColorFromFlashlight(FlashlightItem flashlightItem)
+    {
+        bool isMinersFlashlight = flashlightItem.m_GearItem != null && flashlightItem.m_GearItem.name == "GEAR_Flashlight_LongLasting";
+        return GetColorFromSettings(isMinersFlashlight ? Settings.Instance.MinersFlashlightBeamColor : Settings.Instance.FlashlightBeamColor, isMinersFlashlight);
+    }
+
+    private static Color GetColorFromSettings(FlashlightBeamColor beamColor, bool isMinersFlashlight)
+    {
+        return beamColor switch
         {
-            if (__instance.gameObject.name == "LightIndoors" || __instance.gameObject.name == "LightOutdoors" || __instance.gameObject.name == "LightExtend")
-            {
-                Light lightComponent = __instance.gameObject.GetComponent<Light>();
+            FlashlightBeamColor.Custom => new Color(
+                (isMinersFlashlight ? Settings.Instance.MinersFlashlightRedValue : Settings.Instance.FlashlightRedValue) / 255f,
+                (isMinersFlashlight ? Settings.Instance.MinersFlashlightGreenValue : Settings.Instance.FlashlightGreenValue) / 255f,
+                (isMinersFlashlight ? Settings.Instance.MinersFlashlightBlueValue : Settings.Instance.FlashlightBlueValue) / 255f),
+            FlashlightBeamColor.Default => new Color(0.7215686f, 0.8117647f, 0.9176471f),
+            FlashlightBeamColor.Red => Color.red,
+            FlashlightBeamColor.Green => Color.green,
+            FlashlightBeamColor.Blue => Color.blue,
+            FlashlightBeamColor.Yellow => Color.yellow,
+            FlashlightBeamColor.Purple => new Color(0.5f, 0f, 0.5f),
+            FlashlightBeamColor.Orange => new Color(1f, 0.6470588f, 0f),
+            FlashlightBeamColor.White => Color.white,
+            _ => new Color(0.7215686f, 0.8117647f, 0.9176471f),
+        };
+    }
 
-                if (lightComponent != null)
+    private static void UpdateFlashlightBeamColor(FlashlightItem flashlightItem, FirstPersonFlashlight? firstPersonFlashlight, GameObject highFxGameObject)
+    {
+        if (flashlightItem == null)
+        {
+            return;
+        }
+
+        Color newColor = GetColorFromFlashlight(flashlightItem);
+
+        if (flashlightItem.m_LightIndoor != null)
+        {
+            flashlightItem.m_LightIndoor.color = newColor;
+        }
+        if (flashlightItem.m_LightOutdoor != null)
+        {
+            flashlightItem.m_LightOutdoor.color = newColor;
+        }
+
+        if (firstPersonFlashlight != null)
+        {
+            if (firstPersonFlashlight.m_LightIndoorsLow != null)
+            {
+                firstPersonFlashlight.m_LightIndoorsLow.color = newColor;
+            }
+            if (firstPersonFlashlight.m_LightOutdoorsLow != null)
+            {
+                firstPersonFlashlight.m_LightOutdoorsLow.color = newColor;
+            }
+        }
+
+        if (highFxGameObject != null)
+        {
+            Transform lightExtendTransform = highFxGameObject.transform.Find("LightExtend");
+            if (lightExtendTransform != null)
+            {
+                Light lightExtend = lightExtendTransform.GetComponent<Light>();
+                if (lightExtend != null)
                 {
-                    switch (Settings.Instance.LightColor)
-                    {
-                        case FlashlightColor.Custom:
-                            lightComponent.color = new Color(Settings.Instance.RedValue / 255,
-                                                             Settings.Instance.GreenValue / 255,
-                                                             Settings.Instance.BlueValue / 255);
-                            break;
-                        case FlashlightColor.Default:
-                            lightComponent.color = new Color(0.7215686f, 0.8117647f, 0.9176471f);
-                            break;
-                        case FlashlightColor.Red:
-                            lightComponent.color = Color.red;
-                            break;
-                        case FlashlightColor.Green:
-                            lightComponent.color = Color.green;
-                            break;
-                        case FlashlightColor.Blue:
-                            lightComponent.color = Color.blue;
-                            break;
-                        case FlashlightColor.Yellow:
-                            lightComponent.color = Color.yellow;
-                            break;
-                        case FlashlightColor.Purple:
-                            lightComponent.color = new Color(0.5f, 0f, 0.5f);
-                            break;
-                        case FlashlightColor.Orange:
-                            lightComponent.color = new Color(1f, 0.6470588f, 0f);
-                            break;
-                        case FlashlightColor.White:
-                            lightComponent.color = Color.white;
-                            break;
-                    }
+                    lightExtend.color = newColor;
                 }
             }
         }

@@ -5,7 +5,7 @@ namespace UniversalTweaks;
 
 internal class TweaksTravois
 {
-    [HarmonyPatch(typeof(TravoisBigCarryItem), nameof(TravoisBigCarryItem.Initialize))]
+    [HarmonyPatch(typeof(TravoisBigCarryItem), nameof(TravoisBigCarryItem.OnCarried))]
     private static class AllTravoisTweaks
     {
         private static void Postfix(TravoisBigCarryItem __instance)

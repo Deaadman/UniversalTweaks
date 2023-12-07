@@ -59,21 +59,21 @@ internal class Settings : JsonModSettings
     [Description("Restricts high beam functionality to aurora events only.")]
     public bool HighBeamRestrictions = false;
 
-    [Name("Light Color")]
+    [Name("Flashlight Beam Color")]
     [Description("Changes the color of the flashlight's beam.")]
-    public FlashlightColor LightColor = FlashlightColor.Default;
+    public FlashlightBeamColor FlashlightBeamColor = FlashlightBeamColor.Default;
 
     [Name("Red Value")]
     [Slider(0, 255)]
-    public int RedValue = 0;
+    public int FlashlightRedValue = 0;
 
     [Name("Green Value")]
     [Slider(0, 255)]
-    public int GreenValue = 0;
+    public int FlashlightGreenValue = 0;
 
     [Name("Blue Value")]
     [Slider(0, 255)]
-    public int BlueValue = 0;
+    public int FlashlightBlueValue = 0;
 
     [Name("Flashlight Low Beam Duration")]
     [Description("Adjusts the flashlight's low beam duration. Range: 0.1 (short) to 2 (long).")]
@@ -93,6 +93,22 @@ internal class Settings : JsonModSettings
     [Name("Infinite Battery")]
     [Description("Ensures the flashlight's battery never depletes, allowing unlimited use without recharging.")]
     public bool InfiniteBattery = false;
+
+    [Name("Miner's Flashlight Beam Color")]
+    [Description("Changes the color of the miner's flashlight's beam.")]
+    public FlashlightBeamColor MinersFlashlightBeamColor = FlashlightBeamColor.Default;
+
+    [Name("Red Value")]
+    [Slider(0, 255)]
+    public int MinersFlashlightRedValue = 0;
+
+    [Name("Green Value")]
+    [Slider(0, 255)]
+    public int MinersFlashlightGreenValue = 0;
+
+    [Name("Blue Value")]
+    [Slider(0, 255)]
+    public int MinersFlashlightBlueValue = 0;
 
     [Name("Miner's Flashlight Low Beam Duration")]
     [Description("Adjusts the miner's flashlight's low beam duration. Range: 0.1 (short) to 2 (long).")]
@@ -146,15 +162,15 @@ internal class Settings : JsonModSettings
     [Slider(1, 5, 5)]
     public int DecayMovementPerUnitTravois = 5;
 
-    [Name("Turn Speed")]
-    [Description("Adjusts the turning speed of the travois. Range: 0.5 (slow) to 5 (fast).")]
-    [Slider(0.5f, 5f, 45)]
-    public float TurnSpeed = 0.5f;
-
     [Name("Max Slope Angle")]
     [Description("Sets the maximum slope angle the travois can handle. Range: 35 (steep) to 75 (very steep).")]
     [Slider(35, 75)]
     public int MaxSlopeAngle = 35;
+
+    [Name("Turn Speed")]
+    [Description("Adjusts the turning speed of the travois. Range: 0.5 (slow) to 5 (fast).")]
+    [Slider(0.5f, 5f, 45)]
+    public float TurnSpeed = 0.5f;
     #endregion
 
     #region Experimental Tweaks
@@ -181,17 +197,30 @@ internal class Settings : JsonModSettings
 
     internal void RefreshFields()
     {
-        if (LightColor == FlashlightColor.Custom)
+        if (FlashlightBeamColor == FlashlightBeamColor.Custom)
         {
-            SetFieldVisible(nameof(RedValue), true);
-            SetFieldVisible(nameof(GreenValue), true);
-            SetFieldVisible(nameof(BlueValue), true);
+            SetFieldVisible(nameof(FlashlightRedValue), true);
+            SetFieldVisible(nameof(FlashlightGreenValue), true);
+            SetFieldVisible(nameof(FlashlightBlueValue), true);
         }
         else
         {
-            SetFieldVisible(nameof(RedValue), false);
-            SetFieldVisible(nameof(GreenValue), false);
-            SetFieldVisible(nameof(BlueValue), false);
+            SetFieldVisible(nameof(FlashlightRedValue), false);
+            SetFieldVisible(nameof(FlashlightGreenValue), false);
+            SetFieldVisible(nameof(FlashlightBlueValue), false);
+        }
+
+        if (MinersFlashlightBeamColor == FlashlightBeamColor.Custom)
+        {
+            SetFieldVisible(nameof(MinersFlashlightRedValue), true);
+            SetFieldVisible(nameof(MinersFlashlightGreenValue), true);
+            SetFieldVisible(nameof(MinersFlashlightBlueValue), true);
+        }
+        else
+        {
+            SetFieldVisible(nameof(MinersFlashlightRedValue), false);
+            SetFieldVisible(nameof(MinersFlashlightGreenValue), false);
+            SetFieldVisible(nameof(MinersFlashlightBlueValue), false);
         }
 
         if (CheatingTweaks == true)

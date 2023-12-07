@@ -1,6 +1,6 @@
 ﻿namespace UniversalTweaks.Utilities;
 
-internal enum FlashlightColor
+internal enum FlashlightBeamColor
 {
     Default,
     Blue,
