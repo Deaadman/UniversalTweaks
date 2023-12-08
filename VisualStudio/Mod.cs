@@ -41,10 +41,13 @@ internal sealed class Mod : MelonMod
             {
                 TweaksFood.RemoveHeadacheDebuff("GEAR_CookedPiePeach", "GEAR_CookedPieRoseHip");
             }
-            if (Settings.Instance.MRETextureVariant)
+            else
             {
-                TextureSwapper.SwapGearItemMainTexture("GEAR_MRE", "Obj_FoodMRE_LOD0", "GEAR_FoodBrownMRE_Dif");
+                TweaksFood.AddHeadacheDebuff("GEAR_CookedPiePeach", "GEAR_CookedPieRoseHip");
             }
+
+            string textureToSwap = Settings.Instance.MRETextureVariant ? "GEAR_FoodBrownMRE_Dif" : "GEAR_FoodMRE_Dif";
+            TextureSwapper.SwapGearItemMainTexture("GEAR_MRE", "Obj_FoodMRE_LOD0", textureToSwap);
         }
     }
 

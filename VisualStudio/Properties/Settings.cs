@@ -26,7 +26,7 @@ internal class Settings : JsonModSettings
     public bool PermanentCrosshair = false;
 
     [Name("Remove Headache from Pies")]
-    [Description("Removes the headache debuff from Peach and Rosehip Pies.")]
+    [Description("Removes the headache debuff from Peach and Rosehip Pies. Requires scene reload to change.")]
     public bool RemoveHeadacheDebuffFromPies = false;
 
     [Name("Revolver Handling Improvements")]
