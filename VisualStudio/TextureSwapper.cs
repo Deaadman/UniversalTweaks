@@ -21,23 +21,20 @@ internal static class TextureSwapper
         return loadedTextures;
     }
 
-    internal static void SwapMREMainTexture(string originalTextureName, string newTextureName)
+    internal static void SwapGearItemMainTexture(string gearItemName, string gameObjectName, string newTextureName)
     {
         if (!textures.TryGetValue(newTextureName, out var newTexture)) return;
 
-        var gearItem = GearItem.LoadGearItemPrefab("GEAR_MRE");
-        if (gearItem == null) return;
-
-        foreach (var renderer in gearItem.GetComponentsInChildren<Renderer>(true))
+        var gearItemInstances = UnityEngine.Object.FindObjectsOfType<GearItem>().Where(gi => gi.name == gearItemName);
+        foreach (var gearItem in gearItemInstances)
         {
-            if (renderer.gameObject.name == "Obj_FoodMRE_LOD0" || renderer.gameObject.name == "Obj_FoodMRE_LOD1")
+            foreach (var renderer in gearItem.GetComponentsInChildren<Renderer>(true))
             {
-                foreach (var material in renderer.materials)
+                if (renderer.gameObject.name == gameObjectName)
                 {
-                    if (material.mainTexture.name == originalTextureName)
+                    foreach (var material in renderer.materials)
                     {
                         material.mainTexture = newTexture;
-                        break;
                     }
                 }
             }

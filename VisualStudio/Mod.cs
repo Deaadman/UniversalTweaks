@@ -43,7 +43,7 @@ internal sealed class Mod : MelonMod
             }
             if (Settings.Instance.MRETextureVariant)
             {
-                TextureSwapper.SwapMREMainTexture("GEAR_FoodMRE_Dif", "GEAR_FoodBrownMRE_Dif");
+                TextureSwapper.SwapGearItemMainTexture("GEAR_MRE", "Obj_FoodMRE_LOD0", "GEAR_FoodBrownMRE_Dif");
             }
         }
     }

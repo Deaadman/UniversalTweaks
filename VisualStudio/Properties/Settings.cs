@@ -14,7 +14,7 @@ internal class Settings : JsonModSettings
     public bool BreathVisibility = true;
 
     [Name("MRE Texture Variation")]
-    [Description("Switches the MRE texture to a brown variant.")]
+    [Description("Switches the MRE texture to a brown variant. Requires scene reload to change.")]
     public bool MRETextureVariant = false;
 
     [Name("Promotional Main Menu Items")]
@@ -185,10 +185,7 @@ internal class Settings : JsonModSettings
     public bool CheatingTweaks = false;
     #endregion
 
-    protected override void OnChange(FieldInfo field, object? oldValue, object? newValue)
-    {
-        RefreshFields();
-    }
+    protected override void OnChange(FieldInfo field, object? oldValue, object? newValue) => RefreshFields();
 
     internal void RefreshFields()
     {
