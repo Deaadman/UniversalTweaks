@@ -1,6 +1,5 @@
 ﻿using Il2CppTLD.OptionalContent;
 using UniversalTweaks.Properties;
-using UniversalTweaks.Utilities;
 using static Il2Cpp.Panel_MainMenu.MainMenuItem;
 
 namespace UniversalTweaks;

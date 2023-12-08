@@ -46,74 +46,10 @@ internal sealed class Mod : MelonMod
                 TweaksFood.AddHeadacheDebuff("GEAR_CookedPiePeach", "GEAR_CookedPieRoseHip");
             }
 
-            string textureToSwap = Settings.Instance.MRETextureVariant ? "GEAR_FoodBrownMRE_Dif" : "GEAR_FoodMRE_Dif";
-            TextureSwapper.SwapGearItemMainTexture("GEAR_MRE", "Obj_FoodMRE_LOD0", textureToSwap);
+            if (Settings.Instance.MRETextureVariant)
+            {
+                TextureSwapper.SwapGearItemTexture("GEAR_MRE", "Obj_FoodMRE_LOD0", "GEAR_FoodBrownMRE_Dif");
+            }
         }
     }
-
-    //[HarmonyPatch(typeof(Panel_ActionsRadial), nameof(Panel_ActionsRadial.GetShouldGreyOut))]
-    //private static class Testing10
-    //{
-    //    private static bool Prefix(Panel_ActionsRadial.RadialType radialType, ref bool __result)
-    //    {
-    //        if (radialType == Panel_ActionsRadial.RadialType.RockCache)
-    //        {
-    //            if (GameManager.GetWeatherComponent().IsIndoorEnvironment())
-    //            {
-    //                __result = false;
-    //            }
-    //            else
-    //            {
-    //                __result = true;
-    //            }
-
-    //            return false;
-    //        }
-
-    //        return true;
-    //    }
-    //}
-
-    //[HarmonyPatch(typeof(Panel_Actions), nameof(Panel_Actions.OnPlaceRockCache))]
-    //private static class Testing
-    //{
-    //    private static bool Prefix()
-    //    {
-    //        //if (GameManager.GetWeatherComponent().IsIndoorEnvironment())
-    //        //{
-    //        //    HUDMessage.AddMessage(Localization.Get("GAMEPLAY_CannotBuildRockCacheIndoors"), false, false);
-    //        //    return false;
-    //        //}
-    //        return false;
-    //    }
-    //}
-
-    //[HarmonyPatch(typeof(Panel_ActionsRadial), nameof(Panel_ActionsRadial.ShowNoRockCacheMessage))]
-    //private static class Testing
-    //{
-    //    private static bool Prefix()
-    //    {
-    //        if (GameManager.GetWeatherComponent().IsIndoorEnvironment())
-    //        {
-    //            return false;
-    //        }
-    //        return true;
-    //    }
-    //}
-
-    //[HarmonyPatch(typeof(RockCacheManager), nameof(RockCacheManager.CanAttemptToPlaceRockCache))]
-    //public static class Testing2
-    //{
-    //    private static bool Prefix()
-    //    {
-    //        if (GameManager.GetWeatherComponent().IsIndoorEnvironment())
-    //        {
-    //            return false;
-    //        }
-    //        else
-    //        {
-    //            return true;
-    //        }
-    //    }
-    //}
 }
