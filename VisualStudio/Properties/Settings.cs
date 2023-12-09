@@ -14,11 +14,11 @@ internal class Settings : JsonModSettings
     public bool BreathVisibility = true;
 
     [Name("MRE Texture Variation")]
-    [Description("Switches the MRE texture to a brown variant. Requires scene reload to change.")]
+    [Description("Switches the MRE texture to a brown variant. Requires scene reload to change to the variant, and a game restart back to the original.")]
     public bool MRETextureVariant = false;
 
     [Name("Promotional Main Menu Items")]
-    [Description("Removes the promotional WINTERMUTE and Expansion menu items.")]
+    [Description("Removes the promotional WINTERMUTE and Expansion menu items. Requires main menu reload.")]
     public bool RemoveMainMenuItems = false;
 
     [Name("Permanent Crosshair")]
@@ -130,6 +130,24 @@ internal class Settings : JsonModSettings
     public float MinersFlashlightRechargeTime = 1.75f;
     #endregion
 
+    #region Rock Cache Tweaks
+    [Section("Rock Cache Tweaks")]
+
+    [Name("Allowed Indoors")]
+    [Description("Enables the placement of rock caches indoors.")]
+    public bool AllowedIndoorsRockCaches = false;
+
+    [Name("Maximum Per Region")]
+    [Description("Sets the maximum number of rock caches allowed per region. Range: 1 (minimum) to 100 (maximum).")]
+    [Slider(1, 100)]
+    public int MaximumPerRegionRockCaches = 5;
+
+    [Name("Minimum Distance Between Caches")]
+    [Description("Determines the minimum distance required between rock caches. Range: 0.3 (very close) to 10 (far apart).")]
+    [Slider(0.3f, 10, 97)]
+    public float MinimumDistanceBetweenRockCaches = 10;
+    #endregion
+
     #region Spray Paint Tweaks
     [Section("Spray Paint Tweaks")]
 
@@ -166,15 +184,15 @@ internal class Settings : JsonModSettings
     [Slider(1, 5, 5)]
     public int DecayMovementPerUnitTravois = 5;
 
-    [Name("Max Slope Angle")]
+    [Name("Maximum Slope Angle")]
     [Description("Sets the maximum slope angle the travois can handle. Range: 35 (steep) to 75 (very steep).")]
     [Slider(35, 75)]
-    public int MaxSlopeAngle = 35;
+    public int MaximumSlopeAngleTravois = 35;
 
-    [Name("Turn Speed")]
+    [Name("Turning Speed")]
     [Description("Adjusts the turning speed of the travois. Range: 0.5 (slow) to 5 (fast).")]
     [Slider(0.5f, 5f, 45)]
-    public float TurnSpeed = 0.5f;
+    public float TurnSpeedTravois = 0.5f;
     #endregion
 
     #region Miscellaneous
