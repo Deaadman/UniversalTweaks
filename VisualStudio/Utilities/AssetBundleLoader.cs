@@ -1,4 +1,5 @@
 ﻿namespace UniversalTweaks.Utilities;
+
 internal class AssetBundleLoader
 {
     internal static AssetBundle? LoadBundle(string path)

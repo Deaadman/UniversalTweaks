@@ -147,8 +147,7 @@ internal class TweaksFlashlight
         }
     }
 
-    //
-
+    #region Methods
     private static Color GetColorFromFlashlight(FlashlightItem flashlightItem)
     {
         bool isMinersFlashlight = flashlightItem.m_GearItem != null && flashlightItem.m_GearItem.name == "GEAR_Flashlight_LongLasting";
@@ -208,4 +207,5 @@ internal class TweaksFlashlight
             UpdateLightColorRecursive(transform.GetChild(i), color);
         }
     }
+    #endregion
 }

@@ -11,29 +11,53 @@
 [![Latest Downloads](https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/latest/total.svg?style=for-the-badge)](https://github.com/Deaadman/UniversalTweaks/releases)
 
 [![Open Issues](https://img.shields.io/github/issues/Deaadman/UniversalTweaks?style=for-the-badge)](https://github.com/Deaadman/UniversalTweaks/issues)
-[![Translation Progress](https://img.shields.io/badge/Translated-10.53%25-red?style=for-the-badge)](https://github.com/Deaadman/UniversalTweaks)
 
 </div>
 
 ---
 
-## GENERAL INFORMATION:
+## GENERAL INFORMATION / FEATURES:
 
 Universal Tweaks is a modification that enhances existing gameplay elements by modifying things within [**The Long Dark**](https://www.hinterlandgames.com/the-long-dark/) that just make sense.
 
-### Features:
-- **Breath Effects:** Can either be enabled or disabled, merged from [**Disable Breath Effects**](https://github.com/Thekillergreece/DisableBreathEffect) by [**Thekillergreece**](https://github.com/Thekillergreece) and [**zeobviouslyfakeacc**](https://github.com/zeobviouslyfakeacc).
-- **Flashlights:** Now continue to function after an aurora is over, but are only charged and flicker during an aurora. Now also start with a random charge!
-- **Left-Handed Animations:** Players can now swap animations to the left hand! `WARNING: IS EXPERIMENTAL - WILL NOT FUNCTION AS EXPECTED.`
-- **Mod Settings Support:** Most of these features listed below are now customisable with [**Mod Settings**](https://github.com/DigitalzombieTLD/ModSettings).
-- **New MRE Variant:** Implemented a new brown MRE textures from the traditional blue.
-- **Pies:** Can no longer give the player the `Headache` debuff.
-- **Revolvers:** Can no longer lock the player's movement; feel free to walk while aiming.
-- **Snares:** Can now be reset from the inspect menu after a rabbit is captured.
-- **Snow Shelters:** Can now decay slower based on the player's requirements.
-- **Spray Paint:** Restrictions can be changed to how close they can be placed to one another. 
-- **Toilet Water:** Now either start as Potable or Non-Potable, merged from [**TLD_NonPotableToiletWater**](https://github.com/Ezinw/TLD_NonPotableToiletWater) - by [**Ezinw**](https://github.com/Ezinw).
-- **UI Fixes:** Spray paint option is now greyed out in radial, unless there
+#### General Tweaks
+- **Breath Effects Control:** Choose whether to display the character's visible breath effect.
+- **MRE Texture Variant:** Switch between the traditional blue and a new brown texture for MREs.
+- **Promotional Items Removal:** Opt to remove promotional menu items for WINTERMUTE and expansions from the main menu.
+- **Constant Crosshair Visibility:** Keep the crosshair permanently visible, regardless of the player's actions.
+- **Headache-Free Pies:** Remove the headache debuff caused by consuming Peach and Rosehip Pies.
+- **Improved Revolver Handling:** Allow movement while aiming with the revolver.
+- **Slower Snow Shelter Decay:** Adjust the rate at which snow shelters degrade over time.
+- **Toilet Water Quality Setting:** Decide whether water from toilets starts as potable or non-potable.
+
+#### Flashlight Tweaks
+- **Aurora-Dependent Flickering:** Make flashlights only flicker during aurora events.
+- **Random Battery Charge:** Start with a random battery charge level for added unpredictability.
+- **All-Time Functionality:** Enable flashlight usage anytime, not limited to auroras.
+- **High-Beam Limitation:** Restrict the flashlight's high beam mode to auroras only.
+- **Customizable Beam Colors:** Alter the color of flashlight beams for standard and miner's flashlights.
+- **Beam Duration & Recharge Options:** Adjust the duration of low and high beams and set recharge times.
+- **Infinite Battery Life:** Ensure the flashlight never runs out of battery, for uninterrupted use.
+
+#### Rock Cache Tweaks
+- **Indoor Placement Option:** Allow building rock caches indoors, expanding placement possibilities.
+- **Adjustable Region Limits:** Set a custom maximum number of rock caches per region.
+- **Minimum Cache Distance Setting:** Determine the necessary spacing between each rock cache.
+
+#### Spray Paint Tweaks
+- **Decal Placement Flexibility:** Modify how closely decals can be placed to one another.
+- **Glowing Decals Feature:** Enable a glow effect for spray paint decals, visible in dark environments.
+- **Brightness Control for Glowing Decals:** Adjust the intensity of the glow effect on decals.
+
+#### Travois Tweaks
+- **Decay Rate Customization:** Choose from various settings to control how quickly the travois deteriorates.
+- **Turn Speed Adjustment:** Fine-tune the speed at which the travois can rotate.
+- **Slope Navigation Capability:** Set the maximum steepness the travois can handle.
+
+#### Miscellaneous Tweaks
+- **Resetting Snares:** Easier to reset snares just from the inspect menu after a rabbit is captured.
+- **Fire Sprite Fix:** Realigned the currently misaligned fire sprite within the feed fire ui panel.
+- **Improved Radial Menu:** Spray paint cans are now greyed out if no can is found within the inventory.
 
 >**Note**: Many of these features were suggested by people in [**The Long Dark Modding Discord**](https://discord.gg/2mnXAZfGXQ). If you have a request, either create an [**issue**](https://github.com/Deaadman/UniversalTweaks/issues) or ask me in the discord!
 
@@ -42,23 +66,20 @@ Universal Tweaks is a modification that enhances existing gameplay elements by m
 ## COMPATIBILITY:
 
 ### Required Dependencies:
-For optimal functionality of this modification, ensure you have the following versions or newer:
+For optimal functionality of this modification, ensure you have the following versions or newer for the latest version of **Universal Tweaks**:
 
 - [**The Long Dark**](https://store.steampowered.com/news/app/305620) - Version: **v2.25**  
 - [**MelonLoader**](https://github.com/LavaGang/MelonLoader/releases) - Version: **v0.6.1**   
 - [**Localization Utilities**](https://github.com/dommrogers/LocalizationUtilities/releases) - Version: **v2.0.0** 
 - [**Mod Settings**](https://github.com/DigitalzombieTLD/ModSettings) - Version: **v2.0.0** 
 
-### Compatible Mods:
-
-This mod is intended to be compatible with most mods unless mentioned in the 'Incompatible Mods' section. Always check for updates and go through mod descriptions to ensure full compatibility.
-
 ### Incompatible Mods:
 
-Avoid using the following mods with this modification as combining this mod with incompatible ones might result in game crashes, data loss, or unforeseen issues. 
+Avoid using the following mods with "UniversalTweaks" as they might result in game crashes, data loss, or unforeseen issues:
 
-- **[Disable Breath Effects](https://github.com/Thekillergreece/DisableBreathEffect)**
-- **[TLD_NonPotableToiletWater](https://github.com/Ezinw/TLD_NonPotableToiletWater)**
+- [**Disable Breath Effects**](https://github.com/Thekillergreece/DisableBreathEffect)
+- [**TLD_NonPotableToiletWater**](https://github.com/Ezinw/TLD_NonPotableToiletWater)
+- [**Unlimited Rock Caches**](https://github.com/dommrogers/UnlimitedRockCaches) 
 
 ---
 
@@ -77,6 +98,7 @@ Avoid using the following mods with this modification as combining this mod with
 ### **Integrated Mods**:
 - **[Disable Breath Effects](https://github.com/Thekillergreece/DisableBreathEffect)** by [**Thekillergreece**](https://github.com/Thekillergreece) and [**zeobviouslyfakeacc**](https://github.com/zeobviouslyfakeacc).
 - **[TLD_NonPotableToiletWater](https://github.com/Ezinw/TLD_NonPotableToiletWater)** by [**Ezinw**](https://github.com/Ezinw).
+- **[Unlimited Rock Caches](https://github.com/dommrogers/UnlimitedRockCaches)** by [**STBlade**](https://github.com/dommrogers).
 
 ### **3D Assets**:
 - [**Jods**](https://github.com/Jods-Its) and **Kaiusername** for the creation of the brown MRE icon and texture.
@@ -85,26 +107,25 @@ Avoid using the following mods with this modification as combining this mod with
 - [**Elderly-Emre**](https://github.com/Elderly-Emre) - For providing Turkish translations.
 
 ### **Feature Requests**:
+- **Bisexual Bastard** 
+    - Requested for a brown MRE texture variant.
+- **Data-0**
+    - Requested for rock caches to be built indoors.
+- **FarcryBliss** 
+    - Requested to lift spray paint restrictions.
+    - Requested an infinite battery option.
+- **Mentat** 
+    - Requested the snares reset option from the inspect menu.
 - [**Romain**](https://github.com/RomainDeschampsFR) 
     - Requested to be able to move while aiming with a revolver.
     - Requested left-handed animations.
-- **FarcryBliss** Requested to lift spray paint restrictions.
-- **Mentat** Requested the snares reset option from the inspect menu.
-- **StrayCat** Requested a slower decay for Snow Shelters.
-- **Valerie** Requested for the removal of the headache debuff from pies.
-- **WheelChairCutie** Requested for the crosshair to always be visible.
-- **Bisexual Bastard** Requested for a brown MRE texture variant.
-
----
-
-## LICENSING:
-This modification is licensed under the **MIT License.**
-
-Under the MIT License, you have the right to:
-
-- Use this mod for any purpose, whether it's personal or commercial.
-- Modify the mod to suit your needs, and those modifications can be kept private or shared with others.
-- Distribute this mod in its original or modified form, either for free or as part of a paid product, without imposing any additional restrictions.
-- The only requirement is that the original copyright and license information must be included when you distribute the mod.
+- **StrayCat** 
+    - Requested a slower decay for Snow Shelters.
+- **Valerie** 
+    - Requested for the removal of the headache debuff from pies.
+- **V3n0m**
+    - Requested options to change the recharge and beam durations of flashlights.
+- **WheelChairCutie** 
+    - Requested for the crosshair to always be visible.
 
 >**Disclaimer:** This modification is not officially a part of The Long Dark and is not affiliated with Hinterland Studio Inc or its affiliates.
