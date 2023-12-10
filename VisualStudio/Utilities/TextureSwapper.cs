@@ -1,7 +1,4 @@
-﻿using UniversalTweaks.Properties;
-using UniversalTweaks.Utilities;
-
-namespace UniversalTweaks;
+﻿namespace UniversalTweaks.Utilities;
 
 internal static class TextureSwapper
 {
@@ -41,7 +38,7 @@ internal static class TextureSwapper
     }
 
     [HarmonyPatch(typeof(Utils), nameof(Utils.GetInventoryIconTexture), new Type[] { typeof(GearItem) })]
-    private static class SwapMREIconTexture
+    private static class GenericIconTextureSwap
     {
         private static bool Prefix(GearItem gi, ref Texture2D __result)
         {
@@ -49,19 +46,23 @@ internal static class TextureSwapper
             {
                 return true;
             }
-            if (Settings.Instance.MRETextureVariant && gi.name == "GEAR_MRE")
-            {
-                var textures = LoadTexturesFromAssetBundle();
-                if (textures.Count == 0)
-                {
-                    return true;
-                }
 
-                if (textures.TryGetValue("ico_GearItem__BrownMRE", out Texture2D? newTexture))
-                {
-                    __result = newTexture;
-                    return false;
-                }
+            string textureName = TweaksTextureSwap.GetTextureNameForGearItem(gi);
+            if (string.IsNullOrEmpty(textureName))
+            {
+                return true;
+            }
+
+            var textures = LoadTexturesFromAssetBundle();
+            if (textures.Count == 0)
+            {
+                return true;
+            }
+
+            if (textures.TryGetValue(textureName, out Texture2D? newTexture))
+            {
+                __result = newTexture;
+                return false;
             }
 
             return true;

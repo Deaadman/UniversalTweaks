@@ -14,11 +14,11 @@ internal class Settings : JsonModSettings
     public bool BreathVisibility = true;
 
     [Name("MRE Texture Variation")]
-    [Description("Switches the MRE texture to a brown variant. Requires scene reload to change to the variant, and a game restart back to the original.")]
+    [Description("Switches the MRE texture to a brown variant. (Requires scene reload to change to the variant, and a game restart back to the original).")]
     public bool MRETextureVariant = false;
 
     [Name("Promotional Main Menu Items")]
-    [Description("Removes the promotional WINTERMUTE and Expansion menu items. Requires main menu reload.")]
+    [Description("Removes the promotional WINTERMUTE and Expansion menu items. (Requires main menu reload).")]
     public bool RemoveMainMenuItems = false;
 
     [Name("Permanent Crosshair")]
@@ -26,7 +26,7 @@ internal class Settings : JsonModSettings
     public bool PermanentCrosshair = false;
 
     [Name("Remove Headache from Pies")]
-    [Description("Removes the headache debuff from Peach and Rosehip Pies. Requires scene reload to change.")]
+    [Description("Removes the headache debuff from Peach and Rosehip Pies. (Requires scene reload).")]
     public bool RemoveHeadacheDebuffFromPies = false;
 
     [Name("Revolver Handling Improvements")]
@@ -157,7 +157,7 @@ internal class Settings : JsonModSettings
     public float DecalOverlapLeniency = 0.2f;
 
     [Name("Glowing Decals")]
-    [Description("Toggle the glow effect for spray paint decals. Requires scene reload to turn back off.")]
+    [Description("Toggle the glow effect for spray paint decals. (Requires scene reload to turn back off).")]
     public bool GlowingDecals = false;
 
     [Name("Glow Brightness Multiplier")]
@@ -207,6 +207,15 @@ internal class Settings : JsonModSettings
 
     internal void RefreshFields()
     {
+        if (ExtendedFunctionality == true)
+        {
+            SetFieldVisible(nameof(HighBeamRestrictions), true);
+        }
+        else
+        {
+            SetFieldVisible(nameof(HighBeamRestrictions), false);
+        }
+
         if (FlashlightBeamColor == FlashlightBeamColor.Custom)
         {
             SetFieldVisible(nameof(FlashlightRedValue), true);

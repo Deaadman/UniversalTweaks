@@ -7,7 +7,7 @@ namespace UniversalTweaks;
 internal class TweaksUserInterface
 {
     [HarmonyPatch(typeof(HUDManager), nameof(HUDManager.UpdateCrosshair))]
-    internal static class PermanentCrosshair
+    private static class PermanentCrosshair
     {
         private static bool Prefix(HUDManager __instance)
         {

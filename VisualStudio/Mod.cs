@@ -29,27 +29,4 @@ internal sealed class Mod : MelonMod
             Logging.LogError(ex.Message);
         }
     }
-
-    //
-
-    [HarmonyPatch(typeof(GearItem), nameof(GearItem.Deserialize))]
-    private static class GearItemSettings
-    {
-        private static void Postfix()
-        {
-            if (Settings.Instance.RemoveHeadacheDebuffFromPies)
-            {
-                TweaksFood.RemoveHeadacheDebuff("GEAR_CookedPiePeach", "GEAR_CookedPieRoseHip");
-            }
-            else
-            {
-                TweaksFood.AddHeadacheDebuff("GEAR_CookedPiePeach", "GEAR_CookedPieRoseHip");
-            }
-
-            if (Settings.Instance.MRETextureVariant)
-            {
-                TextureSwapper.SwapGearItemTexture("GEAR_MRE", "Obj_FoodMRE_LOD0", "GEAR_FoodBrownMRE_Dif");
-            }
-        }
-    }
 }
