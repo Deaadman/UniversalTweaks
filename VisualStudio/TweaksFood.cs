@@ -1,52 +1,23 @@
 ﻿using Il2CppTLD.Gear;
+using UniversalTweaks.Properties;
+using UniversalTweaks.Utilities;
 
 namespace UniversalTweaks;
 
 internal class TweaksFood
 {
-    private struct HeadacheDebuffInfo
+    [HarmonyPatch(typeof(GearItem), nameof(GearItem.Deserialize))]
+    private static class RemoveHeadacheComponents
     {
-        public HeadacheData HeadacheSettings;
-        public float CausesHeadacheThreshold;
-    }
-
-    private static readonly Dictionary<string, HeadacheDebuffInfo> storedDebuffs = [];
-
-    internal static void RemoveHeadacheDebuff(params string[] itemNames)
-    {
-        foreach (var itemName in itemNames)
+        private static void Postfix()
         {
-            GearItem item = GearItem.LoadGearItemPrefab(itemName);
-            if (item != null)
+            if (Settings.Instance.RemoveHeadacheDebuffFromPies)
             {
-                CausesHeadacheDebuff debuffScript = item.gameObject.GetComponent<CausesHeadacheDebuff>();
-                if (debuffScript != null)
-                {
-                    storedDebuffs[itemName] = new HeadacheDebuffInfo
-                    {
-                        HeadacheSettings = debuffScript.m_HeadacheSettings,
-                        CausesHeadacheThreshold = debuffScript.m_CausesHeadacheThreshold
-                    };
-
-                    UnityEngine.Object.Destroy(debuffScript);
-                }
+                ComponentUtilities.RemoveComponent<CausesHeadacheDebuff>("GEAR_CookedPiePeach", "GEAR_CookedPieRoseHip");
             }
-        }
-    }
-
-    internal static void AddHeadacheDebuff(params string[] itemNames)
-    {
-        foreach (var itemName in itemNames)
-        {
-            if (storedDebuffs.TryGetValue(itemName, out HeadacheDebuffInfo debuffInfo))
+            else
             {
-                GearItem item = GearItem.LoadGearItemPrefab(itemName);
-                if (item != null && item.gameObject.GetComponent<CausesHeadacheDebuff>() == null)
-                {
-                    CausesHeadacheDebuff debuffScript = item.gameObject.AddComponent<CausesHeadacheDebuff>();
-                    debuffScript.m_HeadacheSettings = debuffInfo.HeadacheSettings;
-                    debuffScript.m_CausesHeadacheThreshold = debuffInfo.CausesHeadacheThreshold;
-                }
+                ComponentUtilities.RestoreComponent<CausesHeadacheDebuff>("GEAR_CookedPiePeach", "GEAR_CookedPieRoseHip");
             }
         }
     }
