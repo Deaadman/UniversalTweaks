@@ -25,6 +25,11 @@ internal class Settings : JsonModSettings
     [Description("Keeps the crosshair visible at all times.")]
     public bool PermanentCrosshair = false;
 
+    [Name("Randomized Item Rotation Drops")]
+    [Description("Randomizes the rotation of items when they are dropped.")]
+    public bool RandomizedItemRotationDrops = false;
+
+
     [Name("Remove Headache from Pies")]
     [Description("Removes the headache debuff from Peach and Rosehip Pies. (Requires scene reload).")]
     public bool RemoveHeadacheDebuffFromPies = false;
