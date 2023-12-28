@@ -13,6 +13,10 @@ internal class Settings : JsonModSettings
     [Description("Toggle the visual breath effect on or off.")]
     public bool BreathVisibility = true;
 
+    [Name("Feat Progress in Custom Mode")]
+    [Description("Determine weather feat progress counts in custom difficulties.")]
+    public bool FeatProgressInCustomMode = false;
+
     [Name("MRE Texture Variation")]
     [Description("Switches the MRE texture to a brown variant. (Requires scene reload to change to the variant, and a game restart back to the original).")]
     public bool MRETextureVariant = false;
@@ -28,7 +32,6 @@ internal class Settings : JsonModSettings
     [Name("Randomized Item Rotation Drops")]
     [Description("Randomizes the rotation of items when they are dropped.")]
     public bool RandomizedItemRotationDrops = false;
-
 
     [Name("Remove Headache from Pies")]
     [Description("Removes the headache debuff from Peach and Rosehip Pies. (Requires scene reload).")]

@@ -59,7 +59,8 @@ Universal Tweaks is a modification that enhances existing gameplay elements by m
 - **Fire Sprite Fix:** Realigned the currently misaligned fire sprite within the feed fire ui panel.
 - **Improved Radial Menu:** Spray paint cans are now greyed out if no can is found within the inventory.
 
->**Note**: Many of these features were suggested by people in [**The Long Dark Modding Discord**](https://discord.gg/2mnXAZfGXQ). If you have a request, either create an [**issue**](https://github.com/Deaadman/UniversalTweaks/issues) or ask me in the discord!
+> [!NOTE]
+> Many of these features were suggested by people in [**The Long Dark Modding Discord**](https://discord.gg/2mnXAZfGXQ). If you have a request, either create an [**issue**](https://github.com/Deaadman/UniversalTweaks/issues) or ask me in the discord!
 
 ---
 
@@ -128,4 +129,5 @@ Avoid using the following mods with "UniversalTweaks" as they might result in ga
 - **WheelChairCutie** 
     - Requested for the crosshair to always be visible.
 
->**Disclaimer:** This modification is not officially a part of The Long Dark and is not affiliated with Hinterland Studio Inc or its affiliates.
+> [!WARNING]
+> This modification is not officially a part of The Long Dark and is not affiliated with Hinterland Studio Inc or its affiliates.

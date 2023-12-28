@@ -13,7 +13,7 @@
 	<PropertyGroup>
 		<!-- This should point to wherever your games primary EXE is -->
 		<TheLongDarkPath>C:\Program Files (x86)\Steam\steamapps\common\TheLongDark</TheLongDarkPath>
-		<ReleaseFolderPath>E:\The Long Dark\Mods\Maintained\UniversalTweaks\Release</ReleaseFolderPath>
+		<ReleaseFolderPath>D:\Personal Projects\The Long Dark\Mods\Maintained\UniversalTweaks\Release</ReleaseFolderPath>
 	</PropertyGroup>
 
 	<ItemGroup>
