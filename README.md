@@ -74,6 +74,9 @@ For optimal functionality of this modification, ensure you have the following ve
 - [**Localization Utilities**](https://github.com/dommrogers/LocalizationUtilities/releases) - Version: **v2.0.0** 
 - [**Mod Settings**](https://github.com/DigitalzombieTLD/ModSettings) - Version: **v2.0.0** 
 
+> [!WARNING]
+> Avoid using MelonLoader v0.6.2 as ModSettings isn't compatible yet!
+
 ### Incompatible Mods:
 
 Avoid using the following mods with "UniversalTweaks" as they might result in game crashes, data loss, or unforeseen issues:
