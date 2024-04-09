@@ -10,8 +10,6 @@
 [![Total Downloads](https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/total.svg?style=for-the-badge)](https://github.com/Deaadman/UniversalTweaks/releases)
 [![Latest Downloads](https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/latest/total.svg?style=for-the-badge)](https://github.com/Deaadman/UniversalTweaks/releases)
 
-[![Open Issues](https://img.shields.io/github/issues/Deaadman/UniversalTweaks?style=for-the-badge)](https://github.com/Deaadman/UniversalTweaks/issues)
-
 </div>
 
 ---
@@ -69,13 +67,10 @@ Universal Tweaks is a modification that enhances existing gameplay elements by m
 ### Required Dependencies:
 For optimal functionality of this modification, ensure you have the following versions or newer for the latest version of **Universal Tweaks**:
 
-- [**The Long Dark**](https://store.steampowered.com/news/app/305620) - Version: **v2.26**  
+- [**The Long Dark**](https://store.steampowered.com/news/app/305620) - Version: **v2.27**  
 - [**MelonLoader**](https://github.com/LavaGang/MelonLoader/releases) - Version: **v0.6.1**   
 - [**Localization Utilities**](https://github.com/dommrogers/LocalizationUtilities/releases) - Version: **v2.0.0** 
 - [**Mod Settings**](https://github.com/DigitalzombieTLD/ModSettings) - Version: **v2.0.0** 
-
-> [!WARNING]
-> Avoid using MelonLoader v0.6.2 as ModSettings isn't compatible yet!
 
 ### Incompatible Mods:
 
@@ -105,7 +100,7 @@ Avoid using the following mods with "UniversalTweaks" as they might result in ga
 - **[Unlimited Rock Caches](https://github.com/dommrogers/UnlimitedRockCaches)** by [**STBlade**](https://github.com/dommrogers).
 
 ### **3D Assets**:
-- [**Jods**](https://github.com/Jods-Its) and **Kaiusername** for the creation of the brown MRE icon and texture.
+- [**Jods**](https://github.com/Jods-Its) and [**Kaiusername**](https://github.com/Kaiusername) for the creation of the brown MRE icon and texture.
 
 ### Translations:
 - [**Elderly-Emre**](https://github.com/Elderly-Emre) - For providing Turkish translations.
@@ -132,5 +127,5 @@ Avoid using the following mods with "UniversalTweaks" as they might result in ga
 - **WheelChairCutie** 
     - Requested for the crosshair to always be visible.
 
-> [!WARNING]
+> [!NOTE]
 > This modification is not officially a part of The Long Dark and is not affiliated with Hinterland Studio Inc or its affiliates.
