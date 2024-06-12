@@ -55,6 +55,11 @@ internal class Settings : JsonModSettings
     [Description("Determines the time in real life seconds which the canister lasts. Range: 45 (default) to 90 (2x).")]
     [Slider(45, 90, 4)]
     public int RespiratorCanisterDuration = 45;
+
+    [Name("Reduce Stew Fatigue Loss")]
+    [Description("Reduces the amount of fatigue lost after consuming. Range: 0 (none) to 15 (default). (Requires scene reload).")]
+    [Slider(0, 15, 15)]
+    public int ReduceStewFatigueLossAmount = 15;
     #endregion
 
     #region Flashlight Tweaks
