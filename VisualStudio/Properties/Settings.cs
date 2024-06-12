@@ -33,9 +33,9 @@ internal class Settings : JsonModSettings
     [Description("Randomizes the rotation of items when they are dropped.")]
     public bool RandomizedItemRotationDrops = false;
 
-    [Name("Remove Headache from Pies")]
-    [Description("Removes the headache debuff from Peach and Rosehip Pies. (Requires scene reload).")]
-    public bool RemoveHeadacheDebuffFromPies = false;
+    [Name("Remove Headache from Foods")]
+    [Description("Removes the headache debuff from certain foods. (Requires scene reload).")]
+    public bool RemoveHeadacheDebuffFromFoods = false;
 
     [Name("Revolver Handling Improvements")]
     [Description("Allows movement while aiming with the revolver.")]

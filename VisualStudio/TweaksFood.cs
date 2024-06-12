@@ -11,13 +11,13 @@ internal class TweaksFood
     {
         private static void Postfix()
         {
-            if (Settings.Instance.RemoveHeadacheDebuffFromPies)
+            if (Settings.Instance.RemoveHeadacheDebuffFromFoods)
             {
-                ComponentUtilities.RemoveComponent<CausesHeadacheDebuff>("GEAR_CookedPiePeach", "GEAR_CookedPieRoseHip");
+                ComponentUtilities.RemoveComponent<CausesHeadacheDebuff>("GEAR_CookedPiePeach", "GEAR_CookedPieRoseHip", "GEAR_CookedPorridgeFruit");
             }
             else
             {
-                ComponentUtilities.RestoreComponent<CausesHeadacheDebuff>("GEAR_CookedPiePeach", "GEAR_CookedPieRoseHip");
+                ComponentUtilities.RestoreComponent<CausesHeadacheDebuff>("GEAR_CookedPiePeach", "GEAR_CookedPieRoseHip", "GEAR_CookedPorridgeFruit");
             }
         }
     }
