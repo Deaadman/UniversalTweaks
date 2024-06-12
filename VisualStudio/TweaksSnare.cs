@@ -33,7 +33,7 @@ internal class TweaksSnare
         {
             if (snareItem != null && snareItem.m_State == SnareState.WithRabbit)
             {
-                if (InputManager.GetEquipPressed(__instance))
+                if (Il2Cpp.InputManager.GetEquipPressed(__instance))
                 {
                     __instance.ExitInspectGearMode(false);
                     snareItem.SetState(SnareState.Set);
