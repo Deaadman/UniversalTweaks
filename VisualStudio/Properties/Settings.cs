@@ -243,6 +243,14 @@ internal class Settings : JsonModSettings
     [Description("Adjusts the turning speed of the travois. Range: 0.5 (slow) to 5 (fast).")]
     [Slider(0.5f, 5f, 45)]
     public float TurnSpeedTravois = 0.5f;
+
+    [Name("Override Movement Restrictions")]
+    [Description("Overrides the movement restrictions in place by Hinterland, allowing to easy travel indoors and between regions.")]
+    public bool OverrideTravoisMovementRestrictions = false;
+
+    [Name("Override Interaction Restrictions")]
+    [Description("Overrides not being able to interact with certain things such as door while holding the Travois.")]
+    public bool OverrideTravoisInteractionRestrictions = false;
     #endregion
 
     #region Miscellaneous
@@ -316,6 +324,9 @@ internal class Settings : JsonModSettings
             //SetFieldVisible(nameof(MinersFlashlightLowBeamRange), true);
             //SetFieldVisible(nameof(MinersFlashlightHighBeamIntensity), true);
             //SetFieldVisible(nameof(MinersFlashlightHighBeamRange), true);
+
+            SetFieldVisible(nameof(OverrideTravoisMovementRestrictions), true);
+            SetFieldVisible(nameof(OverrideTravoisInteractionRestrictions), true);
         }
         else
         {
@@ -341,6 +352,9 @@ internal class Settings : JsonModSettings
             //SetFieldVisible(nameof(MinersFlashlightLowBeamRange), false);
             //SetFieldVisible(nameof(MinersFlashlightHighBeamIntensity), false);
             //SetFieldVisible(nameof(MinersFlashlightHighBeamRange), false);
+
+            SetFieldVisible(nameof(OverrideTravoisMovementRestrictions), false);
+            SetFieldVisible(nameof(OverrideTravoisInteractionRestrictions), false);
         }
     }
 

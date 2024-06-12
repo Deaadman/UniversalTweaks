@@ -1,10 +1,35 @@
 ﻿using Il2CppTLD.BigCarry;
+using Il2CppTLD.Interactions;
 using UniversalTweaks.Properties;
 
 namespace UniversalTweaks;
 
 internal class TweaksTravois
 {
+    [HarmonyPatch(typeof(TravoisBigCarryItem), nameof(TravoisBigCarryItem.CanPerformInteractionWhileCarrying))]
+    private static class OverrideInteractionRestrictionsWhileCarrying
+    {
+        private static void Postfix(ref bool __result, IInteraction interaction)
+        {
+            if (Settings.Instance.OverrideTravoisInteractionRestrictions)
+            {
+                __result = true;
+            }            
+        }
+    }
+
+    [HarmonyPatch(typeof(TravoisMovement), nameof(TravoisMovement.CheckMovementRestriction))]
+    private static class OverrideMovementRestrictions
+    {
+        private static void Postfix(ref CarryDisplayError __result)
+        {
+            if (Settings.Instance.OverrideTravoisMovementRestrictions)
+            {
+                __result = CarryDisplayError.None;
+            }            
+        }
+    }
+
     [HarmonyPatch(typeof(TravoisBigCarryItem), nameof(TravoisBigCarryItem.OnCarried))]
     private static class AllTravoisTweaks
     {
