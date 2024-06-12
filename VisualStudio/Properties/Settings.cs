@@ -50,6 +50,11 @@ internal class Settings : JsonModSettings
     [Description("Sets whether water obtained from toilets is potable or non-potable.")]
     [Choice("Potable", "Non-Potable")]
     public int ToiletWaterQuality = 0;
+
+    [Name("Respirator Canister Duration")]
+    [Description("Determines the time in real life seconds which the canister lasts. Range: 45 (default) to 90 (2x).")]
+    [Slider(45, 90, 4)]
+    public int RespiratorCanisterDuration = 45;
     #endregion
 
     #region Flashlight Tweaks
