@@ -21,6 +21,16 @@ internal class Settings : JsonModSettings
     [Description("Switches the MRE texture to a brown variant. (Requires scene reload to change to the variant, and a game restart back to the original).")]
     public bool MRETextureVariant = false;
 
+    [Name("Noisemaker Burn Length")]
+    [Description("Adjust how quickly the fuse of the noisemaker burns in minutes. Range: 0.7 (default) to 2.7 (longest).")]
+    [Slider(0.7f, 2.7f)]
+    public float NoisemakerBurnLength = 0.7f;
+
+    [Name("Noisemaker Throw Force")]
+    [Description("Allow the player to have more force when throwing a noisemaker. Range: 1 (lowest) to 20 (longest).")]
+    [Slider(1, 20)]
+    public int NoisemakerThrowForce = 9;
+
     [Name("Promotional Main Menu Items")]
     [Description("Removes the promotional WINTERMUTE and Expansion menu items. (Requires main menu reload).")]
     public bool RemoveMainMenuItems = false;
@@ -32,6 +42,11 @@ internal class Settings : JsonModSettings
     [Name("Randomized Item Rotation Drops")]
     [Description("Randomizes the rotation of items when they are dropped.")]
     public bool RandomizedItemRotationDrops = false;
+
+    [Name("Respirator Canister Duration")]
+    [Description("Determines the time in real life seconds which the canister lasts. Range: 45 (default) to 90 (2x).")]
+    [Slider(45, 90, 4)]
+    public int RespiratorCanisterDuration = 45;
 
     [Name("Revolver Handling Improvements")]
     [Description("Allows movement while aiming with the revolver.")]
@@ -45,12 +60,7 @@ internal class Settings : JsonModSettings
     [Name("Toilet Water Potability")]
     [Description("Sets whether water obtained from toilets is potable or non-potable.")]
     [Choice("Potable", "Non-Potable")]
-    public int ToiletWaterQuality = 0;
-
-    [Name("Respirator Canister Duration")]
-    [Description("Determines the time in real life seconds which the canister lasts. Range: 45 (default) to 90 (2x).")]
-    [Slider(45, 90, 4)]
-    public int RespiratorCanisterDuration = 45;
+    public int ToiletWaterQuality = 0;    
     #endregion
 
     #region Flashlight Tweaks
@@ -174,15 +184,6 @@ internal class Settings : JsonModSettings
     #region Food Tweaks
     [Section("Food Tweaks")]
 
-    [Name("Remove Headache from Foods")]
-    [Description("Removes the headache debuff from certain foods. (Requires scene reload).")]
-    public bool RemoveHeadacheDebuffFromFoods = false;
-
-    [Name("Reduce Stew Fatigue Loss")]
-    [Description("Reduces the amount of fatigue lost after consuming. Range: 0 (none) to 15 (default). (Requires scene reload).")]
-    [Slider(0, 15, 15)]
-    public int ReduceStewFatigueLossAmount = 15;
-
     [Name("Insulated Flask Duration Indoors")]
     [Description("Customise the duration of how long heat is keep inside the flask indoors. Range: 0.1 (1000 in-game minutes) to 0.25 (400 in-game minutes / default). (Requires scene reload).")]
     [Slider(0.1f, 1, 18)]
@@ -192,6 +193,15 @@ internal class Settings : JsonModSettings
     [Description("Customise the duration of how long heat is keep inside the flask outdoors. Range: 0.1 (1000 in-game minutes) to 0.5 (200 in-game minutes / default). (Requires scene reload).")]
     [Slider(0.1f, 1, 18)]
     public float InsulatedFlaskHeatLossPerMinuteOutdoors = 0.5f;
+
+    [Name("Remove Headache from Foods")]
+    [Description("Removes the headache debuff from certain foods. (Requires scene reload).")]
+    public bool RemoveHeadacheDebuffFromFoods = false;
+
+    [Name("Reduce Stew Fatigue Loss")]
+    [Description("Reduces the amount of fatigue lost after consuming. Range: 0 (none) to 15 (default). (Requires scene reload).")]
+    [Slider(0, 15, 15)]
+    public int ReduceStewFatigueLossAmount = 15;    
     #endregion
 
     #region Rock Cache Tweaks
