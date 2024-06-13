@@ -5,7 +5,7 @@ namespace UniversalTweaks;
 internal class TweaksDecals 
 {
     [HarmonyPatch(typeof(DynamicDecalsManager), nameof(DynamicDecalsManager.RenderDynamicDecal))]
-    private static class DynamicDecalsManager_RenderDynamicDecal_Patch
+    private static class GlowingDecals
     {
         private static bool Prefix(DynamicDecalsManager __instance)
         {
@@ -21,7 +21,7 @@ internal class TweaksDecals
         }
     }
 
-    [HarmonyPatch(typeof(Panel_SprayPaint), nameof(Panel_SprayPaint.Enable), new Type[] { typeof(bool) })]
+    [HarmonyPatch(typeof(Panel_SprayPaint), nameof(Panel_SprayPaint.Enable), [typeof(bool)])]
     private static class DecalRestrictions
     {
         private static void Postfix()

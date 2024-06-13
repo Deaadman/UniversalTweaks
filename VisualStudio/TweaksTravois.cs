@@ -13,7 +13,14 @@ internal class TweaksTravois
         {
             if (Settings.Instance.OverrideTravoisInteractionRestrictions)
             {
-                __result = true;
+                if (GameManager.GetPlayerInVehicle().IsEntering() || GameManager.GetSnowShelterManager().PlayerEnteringShelter())
+                {
+                    __result = false;
+                }
+                else
+                {
+                    __result = true;
+                }
             }            
         }
     }

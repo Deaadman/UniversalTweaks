@@ -1,5 +1,13 @@
 ﻿namespace UniversalTweaks;
 
+// Need to fix this error, can replicate by having no research books in your inventory - then adding something to the fire.
+// When there is nothing left in the players inventory this error shows up, showing in the UI 'None' indicating no fuel items are left.
+// But before it wasn't displaying that without throwing the error. Something funky is going on with the fuel sources list.
+
+//System.NullReferenceException: Object reference not set to an instance of an object.
+//   at UniversalTweaks.TweaksFireStarting.RemoveUnresearchedBooksFromFeedingFires.Postfix(Panel_FeedFire __instance)
+//   at DMD<Il2Cpp.Panel_FeedFire::RefreshFuelSources>(Panel_FeedFire this)
+//   at(il2cpp -> managed) RefreshFuelSources(IntPtr , Il2CppMethodInfo* )
 internal class TweaksFireStarting
 {
     [HarmonyPatch(typeof(Panel_FeedFire), nameof(Panel_FeedFire.RefreshFuelSources))]
