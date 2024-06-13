@@ -33,10 +33,6 @@ internal class Settings : JsonModSettings
     [Description("Randomizes the rotation of items when they are dropped.")]
     public bool RandomizedItemRotationDrops = false;
 
-    [Name("Remove Headache from Foods")]
-    [Description("Removes the headache debuff from certain foods. (Requires scene reload).")]
-    public bool RemoveHeadacheDebuffFromFoods = false;
-
     [Name("Revolver Handling Improvements")]
     [Description("Allows movement while aiming with the revolver.")]
     public bool RevolverImprovements = false;
@@ -55,11 +51,6 @@ internal class Settings : JsonModSettings
     [Description("Determines the time in real life seconds which the canister lasts. Range: 45 (default) to 90 (2x).")]
     [Slider(45, 90, 4)]
     public int RespiratorCanisterDuration = 45;
-
-    [Name("Reduce Stew Fatigue Loss")]
-    [Description("Reduces the amount of fatigue lost after consuming. Range: 0 (none) to 15 (default). (Requires scene reload).")]
-    [Slider(0, 15, 15)]
-    public int ReduceStewFatigueLossAmount = 15;
     #endregion
 
     #region Flashlight Tweaks
@@ -178,6 +169,29 @@ internal class Settings : JsonModSettings
     [Description("Sets the recharge time for the miner's flashlight's battery. Range: 0 (fast) to 2 (slow).")]
     [Slider(0f, 2f, 20)]
     public float MinersFlashlightRechargeTime = 1.75f;
+    #endregion
+
+    #region Food Tweaks
+    [Section("Food Tweaks")]
+
+    [Name("Remove Headache from Foods")]
+    [Description("Removes the headache debuff from certain foods. (Requires scene reload).")]
+    public bool RemoveHeadacheDebuffFromFoods = false;
+
+    [Name("Reduce Stew Fatigue Loss")]
+    [Description("Reduces the amount of fatigue lost after consuming. Range: 0 (none) to 15 (default). (Requires scene reload).")]
+    [Slider(0, 15, 15)]
+    public int ReduceStewFatigueLossAmount = 15;
+
+    [Name("Insulated Flask Duration Indoors")]
+    [Description("Customise the duration of how long heat is keep inside the flask indoors. Range: 0.1 (1000 in-game minutes) to 0.25 (400 in-game minutes / default). (Requires scene reload).")]
+    [Slider(0.1f, 1, 18)]
+    public float InsulatedFlaskHeatLossPerMinuteIndoors = 0.25f;
+
+    [Name("Insulated Flask Duration Outdoors")]
+    [Description("Customise the duration of how long heat is keep inside the flask outdoors. Range: 0.1 (1000 in-game minutes) to 0.5 (200 in-game minutes / default). (Requires scene reload).")]
+    [Slider(0.1f, 1, 18)]
+    public float InsulatedFlaskHeatLossPerMinuteOutdoors = 0.5f;
     #endregion
 
     #region Rock Cache Tweaks

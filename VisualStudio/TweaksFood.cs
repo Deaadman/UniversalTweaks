@@ -24,6 +24,15 @@ internal class TweaksFood
             {
                 __instance.m_FoodItem.gameObject.GetComponentInParent<FoodStatEffect>().m_Effect = Settings.Instance.ReduceStewFatigueLossAmount;
             }
+
+            string[] InsulatedFlasks = ["GEAR_InsulatedFlask_A", "GEAR_InsulatedFlask_B", "GEAR_InsulatedFlask_C", "GEAR_InsulatedFlask_D", "GEAR_InsulatedFlask_E", "GEAR_InsulatedFlask_F"];
+
+            // When optimising this mod, consider using the GearItem.LoadPrefab blah blah blah - so we can make a separate 'RefreshGearItems' method that can be called when the settings are changed.
+            if (InsulatedFlasks.Contains(__instance.gameObject.name))
+            {
+                __instance.m_InsulatedFlask.m_PercentHeatLossPerMinuteIndoors = Settings.Instance.InsulatedFlaskHeatLossPerMinuteIndoors;
+                __instance.m_InsulatedFlask.m_PercentHeatLossPerMinuteOutdoors = Settings.Instance.InsulatedFlaskHeatLossPerMinuteOutdoors;
+            }
         }
     }
 }
