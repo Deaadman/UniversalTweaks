@@ -8,9 +8,9 @@ internal static class BuildInfo
     /// <summary>Who made the mod</summary>
     public const string Author                          = "Deadman";
     /// <summary>Current version (e.g. 1.0.0, 1.0.0-alpha, 1.0.0-beta, 1.0.0-rc, etc.)</summary>
-    public const string Version                         = "1.3.1-DeveloperBuild";
+    public const string Version                         = "1.4.0-DeveloperBuild";
     /// <summary>Version shown in DnSpy</summary>
-    public const string AssemblyVersion                 = "1.3.1.0";
+    public const string AssemblyVersion                 = "1.4.0.0";
     /// <summary>Name used on GUI's, like ModSettings</summary>
     public const string GUIName                         = "Universal Tweaks";
     /// <summary>The minimum Melon Loader version that your mod requires.</summary>
@@ -26,7 +26,7 @@ internal static class BuildInfo
     public const string DownloadLink                    = null;
     /// <summary>Copyright info</summary>
     /// <remarks>When updating the year, use the StartYear-CurrentYear format</remarks>
-    public const string Copyright                       = "Copyright © 2023";
+    public const string Copyright                       = "Copyright © 2023 - 2024";
     /// <summary>Trademark info</summary>
     public const string Trademark                       = null;
     /// <summary>Product Name (Generally use the Name)</summary>
