@@ -24,17 +24,6 @@ body:
     validations:
       required: true
   - type: textarea
-    id: other_mods_installed
-    attributes:
-      label: Other Mods Installed
-      description: Please list any other mods you had installed at the time of the issue. This can help identify potential mod conflicts.
-      placeholder: |
-        1. ModName v1.0.0
-        2. AnotherMod v2.3.4
-        ...
-    validations:
-      required: false
-  - type: textarea
     id: issue_description
     attributes:
       label: Describe the Issue
@@ -60,13 +49,6 @@ body:
         Please drag and drop your latest Latest.Log here from your MelonLoader folder in your game's directory.
     validations:
       required: true
-  - type: textarea
-    id: screenshots
-    attributes:
-      label: Screenshots
-      description: Upload your screenshots here, as it will help visualise the issue.
-    validations:
-      required: false
   - type: markdown
     attributes:
       value: |

@@ -5,7 +5,7 @@ namespace UniversalTweaks;
 internal class TweaksMiscellaneous
 {
     [HarmonyPatch(typeof(GearItem), nameof(GearItem.Drop))]
-    public class TestingPatch
+    public class RandomizedItemRotation
     {
         private static void Postfix(GearItem __instance)
         {

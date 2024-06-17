@@ -7,6 +7,9 @@
 
 [![Latest Release](https://img.shields.io/github/v/release/Deaadman/UniversalTweaks?label=Latest%20Release&style=for-the-badge)](https://github.com/Deaadman/UniversalTweaks/releases/latest)
 
+[![Feature Requests](https://img.shields.io/github/issues-search/Deaadman/UniversalTweaks?label=Feature%20Requests&style=for-the-badge&query=is%3Aissue+is%3Aopen+label%3A%22feature+request%22)](https://github.com/Deaadman/UniversalTweaks/issues?q=is%3Aissue+is%3Aopen+label%3A%22feature+request%22)
+[![Bug Reports](https://img.shields.io/github/issues-search/Deaadman/UniversalTweaks?label=Bug%20Reports&color=red&style=for-the-badge&query=is%3Aissue+is%3Aopen+label%3A%22bug+report%22)](https://github.com/Deaadman/UniversalTweaks/issues?q=is%3Aissue+is%3Aopen+label%3A%22bug+report%22)
+
 [![Total Downloads](https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/total.svg?style=for-the-badge)](https://github.com/Deaadman/UniversalTweaks/releases)
 [![Latest Downloads](https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/latest/total.svg?style=for-the-badge)](https://github.com/Deaadman/UniversalTweaks/releases)
 
@@ -20,45 +23,52 @@ Universal Tweaks is a modification that enhances existing gameplay elements by m
 
 #### General Tweaks
 - **Breath Effects Control:** Choose whether to display the character's visible breath effect.
-- **MRE Texture Variant:** Switch between the traditional blue and a new brown texture for MREs.
-- **Promotional Items Removal:** Opt to remove promotional menu items for WINTERMUTE and expansions from the main menu.
 - **Constant Crosshair Visibility:** Keep the crosshair permanently visible, regardless of the player's actions.
-- **Headache-Free Pies:** Remove the headache debuff caused by consuming Peach and Rosehip Pies.
+- **Don't Burn Research Books:** If a research book hasn't been fully researched, it won't show up as a viable fuel option.
+- **Headache-Free Foods:** Remove the headache debuff caused by consuming porridges and pies.
 - **Improved Revolver Handling:** Allow movement while aiming with the revolver.
+- **Insulated Flasks Duration:** Customise how long the heat lasts inside insulated flasks.
+- **MRE Texture Variant:** Switch between the traditional blue and a new brown texture for MREs.
+- **Noisemaker Adjustments:** Choose how long the fuse lasts or how far the player can throw noisemakers.
+- **Promotional Items Removal:** Opt to remove promotional menu items for WINTERMUTE and expansions from the main menu.
+- **Randomised Item Rotation:** When an item is dropped, make it drop in a random direction.
+- **Respirator Canister Duration:** Determine how long the canisters for respirators last.
 - **Slower Snow Shelter Decay:** Adjust the rate at which snow shelters degrade over time.
 - **Toilet Water Quality Setting:** Decide whether water from toilets starts as potable or non-potable.
 
 #### Flashlight Tweaks
-- **Aurora-Dependent Flickering:** Make flashlights only flicker during aurora events.
-- **Random Battery Charge:** Start with a random battery charge level for added unpredictability.
 - **All-Time Functionality:** Enable flashlight usage anytime, not limited to auroras.
-- **High-Beam Limitation:** Restrict the flashlight's high beam mode to auroras only.
-- **Customizable Beam Colors:** Alter the color of flashlight beams for standard and miner's flashlights.
+- **Aurora-Dependent Flickering:** Make flashlights only flicker during aurora events.
 - **Beam Duration & Recharge Options:** Adjust the duration of low and high beams and set recharge times.
+- **Customizable Beam Colors:** Alter the color of flashlight beams for standard and miner's flashlights.
+- **High-Beam Limitation:** Restrict the flashlight's high beam mode to auroras only.
 - **Infinite Battery Life:** Ensure the flashlight never runs out of battery, for uninterrupted use.
+- **Random Battery Charge:** Start with a random battery charge level for added unpredictability.
 
 #### Rock Cache Tweaks
-- **Indoor Placement Option:** Allow building rock caches indoors, expanding placement possibilities.
 - **Adjustable Region Limits:** Set a custom maximum number of rock caches per region.
+- **Indoor Placement Option:** Allow building rock caches indoors, expanding placement possibilities.
 - **Minimum Cache Distance Setting:** Determine the necessary spacing between each rock cache.
 
 #### Spray Paint Tweaks
+- **Brightness Control for Glowing Decals:** Adjust the intensity of the glow effect on decals.
 - **Decal Placement Flexibility:** Modify how closely decals can be placed to one another.
 - **Glowing Decals Feature:** Enable a glow effect for spray paint decals, visible in dark environments.
-- **Brightness Control for Glowing Decals:** Adjust the intensity of the glow effect on decals.
 
 #### Travois Tweaks
 - **Decay Rate Customization:** Choose from various settings to control how quickly the travois deteriorates.
-- **Turn Speed Adjustment:** Fine-tune the speed at which the travois can rotate.
+- **Movement Restrictions:** Change whether movement is restricted or not.
 - **Slope Navigation Capability:** Set the maximum steepness the travois can handle.
+- **Turn Speed Adjustment:** Fine-tune the speed at which the travois can rotate.
+- **Unlimited Interaction:** Easily travel indoors anywhere with this setting on.
 
 #### Miscellaneous Tweaks
-- **Resetting Snares:** Easier to reset snares just from the inspect menu after a rabbit is captured.
 - **Fire Sprite Fix:** Realigned the currently misaligned fire sprite within the feed fire ui panel.
 - **Improved Radial Menu:** Spray paint cans are now greyed out if no can is found within the inventory.
+- **Resetting Snares:** Easier to reset snares just from the inspect menu after a rabbit is captured.
 
 > [!NOTE]
-> Many of these features were suggested by people in [**The Long Dark Modding Discord**](https://discord.gg/2mnXAZfGXQ). If you have a request, either create an [**issue**](https://github.com/Deaadman/UniversalTweaks/issues) or ask me in the discord!
+> Many of these features were suggested by people in [**The Long Dark Modding Discord**](https://discord.gg/2mnXAZfGXQ). You can see which features they've requested on each [**release**](https://github.com/Deaadman/UniversalTweaks/releases). If you have a request, either create an [**issue**](https://github.com/Deaadman/UniversalTweaks/issues) or ask me in the discord!
 
 ---
 
@@ -74,9 +84,10 @@ For optimal functionality of this modification, ensure you have the following ve
 
 ### Incompatible Mods:
 
-Avoid using the following mods with "UniversalTweaks" as they might result in game crashes, data loss, or unforeseen issues:
+Avoid using the following mods below with this one as they may result in game crashes, data loss, or unforeseen issues:
 
 - [**Disable Breath Effects**](https://github.com/Thekillergreece/DisableBreathEffect)
+- [**Enable Feat Progress In Custom Mode**](https://github.com/RomainDeschampsFR/EnableFeatProgressInCustomModeLegacy)
 - [**TLD_NonPotableToiletWater**](https://github.com/Ezinw/TLD_NonPotableToiletWater)
 - [**Unlimited Rock Caches**](https://github.com/dommrogers/UnlimitedRockCaches) 
 
@@ -96,6 +107,7 @@ Avoid using the following mods with "UniversalTweaks" as they might result in ga
 
 ### **Integrated Mods**:
 - **[Disable Breath Effects](https://github.com/Thekillergreece/DisableBreathEffect)** by [**Thekillergreece**](https://github.com/Thekillergreece) and [**zeobviouslyfakeacc**](https://github.com/zeobviouslyfakeacc).
+- [**Enable Feat Progress In Custom Mode**](https://github.com/RomainDeschampsFR/EnableFeatProgressInCustomModeLegacy) by [**Romain**](https://github.com/RomainDeschampsFR).
 - **[TLD_NonPotableToiletWater](https://github.com/Ezinw/TLD_NonPotableToiletWater)** by [**Ezinw**](https://github.com/Ezinw).
 - **[Unlimited Rock Caches](https://github.com/dommrogers/UnlimitedRockCaches)** by [**STBlade**](https://github.com/dommrogers).
 
@@ -104,28 +116,6 @@ Avoid using the following mods with "UniversalTweaks" as they might result in ga
 
 ### Translations:
 - [**Elderly-Emre**](https://github.com/Elderly-Emre) - For providing Turkish translations.
-
-### **Feature Requests**:
-- **Bisexual Bastard** 
-    - Requested for a brown MRE texture variant.
-- **Data-0**
-    - Requested for rock caches to be built indoors.
-- **FarcryBliss** 
-    - Requested to lift spray paint restrictions.
-    - Requested an infinite battery option.
-- **Mentat** 
-    - Requested the snares reset option from the inspect menu.
-- [**Romain**](https://github.com/RomainDeschampsFR) 
-    - Requested to be able to move while aiming with a revolver.
-    - Requested left-handed animations.
-- **StrayCat** 
-    - Requested a slower decay for Snow Shelters.
-- **Valerie** 
-    - Requested for the removal of the headache debuff from pies.
-- **V3n0m**
-    - Requested options to change the recharge and beam durations of flashlights.
-- **WheelChairCutie** 
-    - Requested for the crosshair to always be visible.
 
 > [!NOTE]
 > This modification is not officially a part of The Long Dark and is not affiliated with Hinterland Studio Inc or its affiliates.
