@@ -13,6 +13,10 @@ internal class Settings : JsonModSettings
     [Description("Toggle the visual breath effect on or off.")]
     public bool BreathVisibility = true;
 
+    [Name("Consistant Old Man's Dressing Weight")]
+    [Description("Changes the old man's dressing weight to be the same as lichen.")]
+    public bool ConsistantDressingWeight = false;
+
     [Name("Feat Progress in Custom Mode")]
     [Description("Determine weather feat progress counts in custom difficulties.")]
     public bool FeatProgressInCustomMode = false;
@@ -60,7 +64,7 @@ internal class Settings : JsonModSettings
     [Name("Toilet Water Potability")]
     [Description("Sets whether water obtained from toilets is potable or non-potable.")]
     [Choice("Potable", "Non-Potable")]
-    public int ToiletWaterQuality = 0;    
+    public int ToiletWaterQuality = 0;
     #endregion
 
     #region Flashlight Tweaks

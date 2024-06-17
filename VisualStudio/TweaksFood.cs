@@ -37,6 +37,11 @@ internal class TweaksFood
                 __instance.m_InsulatedFlask.m_PercentHeatLossPerMinuteIndoors = Settings.Instance.InsulatedFlaskHeatLossPerMinuteIndoors;
                 __instance.m_InsulatedFlask.m_PercentHeatLossPerMinuteOutdoors = Settings.Instance.InsulatedFlaskHeatLossPerMinuteOutdoors;
             }
+
+            if (Settings.Instance.ConsistantDressingWeight && __instance.gameObject.name == "GEAR_OldMansBeardDressing")
+            {
+                __instance.m_GearItemData.m_BaseWeightKG = 0.01f;
+            }
         }
     }
 }
