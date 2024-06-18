@@ -24,7 +24,6 @@ Universal Tweaks is a modification that enhances existing gameplay elements by m
 #### General Tweaks
 - **Breath Effects Control:** Choose whether to display the character's visible breath effect.
 - **Constant Crosshair Visibility:** Keep the crosshair permanently visible, regardless of the player's actions.
-- **Don't Burn Research Books:** If a research book hasn't been fully researched, it won't show up as a viable fuel option.
 - **Headache-Free Foods:** Remove the headache debuff caused by consuming porridges and pies.
 - **Improved Revolver Handling:** Allow movement while aiming with the revolver.
 - **Insulated Flasks Duration:** Customise how long the heat lasts inside insulated flasks.
