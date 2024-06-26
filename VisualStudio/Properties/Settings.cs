@@ -35,14 +35,6 @@ internal class Settings : JsonModSettings
     [Slider(1, 20)]
     public int NoisemakerThrowForce = 9;
 
-    [Name("Promotional Main Menu Items")]
-    [Description("Removes the promotional WINTERMUTE and Expansion menu items. (Requires main menu reload).")]
-    public bool RemoveMainMenuItems = false;
-
-    [Name("Permanent Crosshair")]
-    [Description("Keeps the crosshair visible at all times.")]
-    public bool PermanentCrosshair = false;
-
     [Name("Randomized Item Rotation Drops")]
     [Description("Randomizes the rotation of items when they are dropped.")]
     public bool RandomizedItemRotationDrops = false;
@@ -281,6 +273,22 @@ internal class Settings : JsonModSettings
     public bool OverrideTravoisInteractionRestrictions = false;
     #endregion
 
+    #region UI Tweaks
+    [Section("UI Tweaks")]
+    
+    [Name("Campfire HUD Elements")] [Description("Disables all the elements on the UI that are related to the campfire lives remaining.")] public bool DisableCampfireHUDElements = false;
+    [Name("Cougar HUD Elements")] [Description("Disables all the elements on the UI that are related to the Cougar.")] public bool DisableCougarHUDElements = false;
+    
+    [Name("Promotional Main Menu Items")]
+    [Description("Removes the promotional WINTERMUTE and Expansion menu items. (Requires main menu reload).")]
+    public bool RemoveMainMenuItems = false;
+
+    [Name("Permanent Crosshair")]
+    [Description("Keeps the crosshair visible at all times.")]
+    public bool PermanentCrosshair = false;
+    
+    #endregion
+    
     #region Miscellaneous
     [Section("Miscellaneous")]
 

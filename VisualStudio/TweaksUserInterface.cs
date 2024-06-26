@@ -18,7 +18,33 @@ internal class TweaksUserInterface
 
             return true;
         }
+    }  
+
+    [HarmonyPatch(typeof(Panel_Actions), nameof(Panel_Actions.UpdateLifeAfterDeath))]
+    private static class DisableCampfireLifeElements
+    {
+        private static void Postfix(Panel_Actions __instance)
+        {
+            if (Settings.Instance.DisableCampfireHUDElements == false) return;
+            __instance.m_CampfireGrid.GetComponentInParent<UIWidget>().alpha = 0f;
+        }
     }
+    
+    // Semi-Working permanent HUD, it stays active when you enable it - but it doesn't show up when you load a save or when you open and close a new panel.
+    // Need to convert this to use a settings instance as well, instead of the HudDisplayMode enum.
+    //[HarmonyPatch(typeof(Panel_Actions), nameof(Panel_Actions.Update))]
+    //private static class PermanentHUDPatch2
+    //{
+    //    private static void Postfix(Panel_Actions __instance)
+    //    {
+    //        if (HUDManager.HudDisplayMode == HudDisplayMode.Normal)
+    //        {
+    //            __instance.m_Panel.alpha = 1f;
+    //            InterfaceManager.GetInstance().SetTimeWidgetActive(true);
+    //            __instance.m_DoFadeOut = false;
+    //        }
+    //    }
+    //}
 
     [HarmonyPatch(typeof(Panel_ActionsRadial), nameof(Panel_ActionsRadial.GetShouldGreyOut))]
     private static class GreyOutSprayPaintRadial
@@ -55,7 +81,17 @@ internal class TweaksUserInterface
             }
         }
     }
-
+    
+    [HarmonyPatch(typeof(Panel_HUD), nameof(Panel_HUD.MaybeUpdateCougarState))]
+    private static class DisableCougarHUDElements
+    {
+        private static void Postfix(Panel_HUD __instance)
+        {
+            if (Settings.Instance.DisableCougarHUDElements == false) return;
+            __instance.m_CougarWidget.alpha = 0f;
+        }
+    }
+    
     [HarmonyPatch(typeof(Panel_MainMenu), nameof(Panel_MainMenu.Initialize))]
     private class RemoveOptionalContentMenus
     {
