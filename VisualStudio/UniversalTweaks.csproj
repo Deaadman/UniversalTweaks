@@ -13,7 +13,7 @@
 	<PropertyGroup>
 		<!-- This should point to wherever your games primary EXE is -->
 		<TheLongDarkPath>C:\Program Files (x86)\Steam\steamapps\common\TheLongDark</TheLongDarkPath>
-		<ReleaseFolderPath>D:\Personal Projects\The Long Dark\Mods\Maintained\UniversalTweaks\Release</ReleaseFolderPath>
+		<ReleaseFolderPath>D:\The Long Dark\Projects\Maintained\UniversalTweaks\Release</ReleaseFolderPath>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -27,7 +27,8 @@
 		<!-- Uncomment whatever is required for your needs. -->
 		<!-- <PackageReference Include="STBlade.Modding.TLD.CraftingRevisions" Version="2.2.1" /> -->
 		<!-- <PackageReference Include="STBlade.Modding.TLD.GearSpawner" Version="2.3.1" /> -->
-		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="2.25.0" />
+		<!-- <PackageReference Include="ds5678.Modding.Unity.KeyboardUtilities" Version="2.0.0" /> -->
+		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="2.28.0" />
 		<PackageReference Include="STBlade.Modding.TLD.LocalizationUtilities" Version="2.0.0" />
 		<!-- <PackageReference Include="STBlade.Modding.TLD.ModComponent" Version="6.2.1" /> -->
 		<!-- <PackageReference Include="STBlade.Modding.TLD.ModData" Version="1.5.1" /> -->
@@ -46,6 +47,7 @@
 		<!-- Uncomment whatever is required for your needs. -->
 		<!-- <Using Include="CraftingRevisions" /> -->
 		<!-- <Using Include="GearSpawner" /> -->
+		<!-- <Using Include="KeyboardUtilities" /> -->
 		<Using Include="LocalizationUtilities" />
 		<!-- <Using Include="ModComponent" /> -->
 		<!-- <Using Include="ModData" /> -->
