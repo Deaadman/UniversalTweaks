@@ -1,4 +1,5 @@
 ﻿using Il2CppTLD.Gear;
+using Il2CppTLD.IntBackedUnit;
 using UniversalTweaks.Properties;
 using UniversalTweaks.Utilities;
 
@@ -40,7 +41,7 @@ internal class TweaksFood
 
             if (Settings.Instance.ConsistantDressingWeight && __instance.gameObject.name == "GEAR_OldMansBeardDressing")
             {
-                __instance.m_GearItemData.m_BaseWeightKG = 0.01f;
+                __instance.m_GearItemData.m_BaseWeight = ItemWeight.FromKilograms(0.03f);
             }
         }
     }
