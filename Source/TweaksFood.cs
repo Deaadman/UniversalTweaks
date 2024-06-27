@@ -10,7 +10,6 @@ internal class TweaksFood
     // Possibly move this to the Awake() method and attach a GearItemExtension.cs MonoBehaviour to each GearItem prefab.
     // From there we can call a method that will set the values of the GearItem based on the settings without relying on Harmony Patches.
     // This will allow us to change the settings and have them apply immediately without needing to reload the game.
-
     [HarmonyPatch(typeof(GearItem), nameof(GearItem.Deserialize))]
     private static class RemoveHeadacheComponents
     {
