@@ -9,6 +9,11 @@ internal class Settings : JsonModSettings
     #region General Tweaks
     [Section("General Tweaks")]
 
+    [Name("Additional Carry Weight")]
+    [Description("Placeholder Description.")]
+    [Slider(0, 30)]
+    public int AdditionalEncumbermentWeight = 0;
+    
     [Name("Breath Visibility")]
     [Description("Toggle the visual breath effect on or off.")]
     public bool BreathVisibility = true;
@@ -21,6 +26,10 @@ internal class Settings : JsonModSettings
     [Description("Determine weather feat progress counts in custom difficulties.")]
     public bool FeatProgressInCustomMode = false;
 
+    [Name("Infinite Carry Weight")]
+    [Description("Placeholder Description.")]
+    public bool InfiniteEncumberWeight = false;
+    
     [Name("MRE Texture Variation")]
     [Description("Switches the MRE texture to a brown variant. (Requires scene reload to change to the variant, and a game restart back to the original).")]
     public bool MRETextureVariant = false;
@@ -299,7 +308,17 @@ internal class Settings : JsonModSettings
 
     protected override void OnChange(FieldInfo field, object? oldValue, object? newValue) => RefreshFields();
 
-    internal void RefreshFields()
+    protected override void OnConfirm()
+    {
+        base.OnConfirm();
+        
+        // Will need to change this return back into a != check if anything else here is added.
+        var encumber = GameManager.GetEncumberComponent();
+        if (encumber == null) return;
+        TweaksEncumber.EncumberUpdate(encumber);
+    }
+
+    private void RefreshFields()
     {
         if (ExtendedFunctionality == true)
         {
@@ -363,6 +382,8 @@ internal class Settings : JsonModSettings
 
             SetFieldVisible(nameof(OverrideTravoisMovementRestrictions), true);
             SetFieldVisible(nameof(OverrideTravoisInteractionRestrictions), true);
+            
+            SetFieldVisible(nameof(InfiniteEncumberWeight), true);
         }
         else
         {
@@ -391,6 +412,8 @@ internal class Settings : JsonModSettings
 
             SetFieldVisible(nameof(OverrideTravoisMovementRestrictions), false);
             SetFieldVisible(nameof(OverrideTravoisInteractionRestrictions), false);
+            
+            SetFieldVisible(nameof(InfiniteEncumberWeight), false);
         }
     }
 
