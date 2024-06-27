@@ -3,18 +3,18 @@
 internal static class BuildInfo
 {
     #region Mandatory
-    /// <summary>The machine readable name of the mod (no special characters or spaces)</summary>
+    /// <summary>The machine-readable name of the mod (no special characters or spaces)</summary>
     public const string Name                            = "UniversalTweaks";
     /// <summary>Who made the mod</summary>
     public const string Author                          = "Deadman";
     /// <summary>Current version (e.g. 1.0.0, 1.0.0-alpha, 1.0.0-beta, 1.0.0-rc, etc.)</summary>
-    public const string Version                         = "1.4.2-Beta.1";
+    public const string Version                         = "1.4.2-Beta.2";
     /// <summary>Version shown in DnSpy</summary>
     public const string AssemblyVersion                 = "1.4.2.0";
     /// <summary>Name used on GUI's, like ModSettings</summary>
     public const string GUIName                         = "Universal Tweaks";
     /// <summary>The minimum Melon Loader version that your mod requires.</summary>
-    public const string MelonLoaderVersion              = "0.6.4";
+    public const string MelonLoaderVersion              = "0.6.1";
     #endregion
 
     #region Optional

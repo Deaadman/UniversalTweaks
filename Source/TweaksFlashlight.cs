@@ -124,6 +124,7 @@ internal class TweaksFlashlight
         private static void Postfix(FirstPersonFlashlight __instance)
         {
             GearItem itemInHands = GameManager.GetPlayerManagerComponent().m_ItemInHands;
+            if (itemInHands == null) return;
             FlashlightItem flashlightItem = itemInHands.m_FlashlightItem;
 
             UpdateFlashlightBeamColor(flashlightItem, __instance.m_LowFxGameObject, __instance.m_HighFxGameObject);
@@ -176,10 +177,7 @@ internal class TweaksFlashlight
 
     private static void UpdateFlashlightBeamColor(FlashlightItem flashlightItem, GameObject lowFxGameObject, GameObject highFxGameObject)
     {
-        if (flashlightItem == null)
-        {
-            return;
-        }
+        if (flashlightItem == null) return;
 
         Color newColor = GetColorFromFlashlight(flashlightItem);
 
