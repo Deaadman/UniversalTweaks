@@ -15,7 +15,7 @@ internal class TweaksEncumber
     }
     
     [HarmonyPatch(typeof(PlayerManager), nameof(PlayerManager.CalculateModifiedCalorieBurnRate), [typeof(float)])]
-    internal class PlayerManagerCalculateModifiedCalorieBurnRate
+    internal class CalorieBurnRateFix
     {
         private static void Postfix(PlayerManager __instance, float baseBurnRate, ref float __result)
         {

@@ -302,6 +302,10 @@ internal class Settings : JsonModSettings
     #region Weight Container Tweaks
     [Section("Container Weight Tweaks")]
     
+    [Name("Infinite Container Weight")]
+    [Description("Gives all the containers a semi-infinite weight value.")]
+    public bool InfiniteContainerWeight = false;
+    
     [Name("Backpack")]
     [Description("Adjust how much weight Backpack can hold. Default is 15 KG.")]
     [Slider(0f, 30f, 31, NumberFormat = "{0:0.##} KG")]
@@ -562,6 +566,9 @@ internal class Settings : JsonModSettings
         TweaksEncumber.EncumberUpdate(encumber);
     }
 
+    // Update the following code below, move it to another class underneath Utilities called SettingsOptionsVisibility or something
+    // Split these up into different bool methods to hide or enable all fields like CheatTweaks, ContainerTweaks etc.
+    // After doing that, when certain options are selected - hide certain ones. Example being infinite container weight, hide the rest of the options.
     private void RefreshFields()
     {
         if (ExtendedFunctionality == true)
@@ -659,8 +666,12 @@ internal class Settings : JsonModSettings
             
             SetFieldVisible(nameof(InfiniteEncumberWeight), false);
         }
-        
-        if (ContainerWeightTweaks == true)
+
+        if (ContainerWeightTweaks == true && CheatingTweaks == true)
+        {
+            SetFieldVisible(nameof(InfiniteContainerWeight), true);
+        }
+        else if (ContainerWeightTweaks == true)
         { 
             SetFieldVisible(nameof(ContainerBackpackCapacity), true);
             SetFieldVisible(nameof(ContainerBriefcaseCapacity), true);
@@ -759,6 +770,8 @@ internal class Settings : JsonModSettings
             SetFieldVisible(nameof(ContainerWasherCapacity), false);
             SetFieldVisible(nameof(ContainerWoodDeskDrawerCapacity), false);
             SetFieldVisible(nameof(ContainerWorkbenchDrawerCapacity), false);
+            
+            SetFieldVisible(nameof(InfiniteContainerWeight), false);
         }
     }
 
