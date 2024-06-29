@@ -82,15 +82,16 @@ internal class TweaksUserInterface
         }
     }
     
-    [HarmonyPatch(typeof(Panel_HUD), nameof(Panel_HUD.MaybeUpdateCougarState))]
-    private static class DisableCougarHUDElements
-    {
-        private static void Postfix(Panel_HUD __instance)
-        {
-            if (Settings.Instance.DisableCougarHUDElements == false) return;
-            __instance.m_CougarWidget.alpha = 0f;
-        }
-    }
+    // The Cougar was removed in v2.30 so this throws an error
+    // [HarmonyPatch(typeof(Panel_HUD), nameof(Panel_HUD.MaybeUpdateCougarState))]
+    // private static class DisableCougarHUDElements
+    // {
+    //     private static void Postfix(Panel_HUD __instance)
+    //     {
+    //         if (Settings.Instance.DisableCougarHUDElements == false) return;
+    //         __instance.m_CougarWidget.alpha = 0f;
+    //     }
+    // }
     
     [HarmonyPatch(typeof(Panel_MainMenu), nameof(Panel_MainMenu.Initialize))]
     private class RemoveOptionalContentMenus
