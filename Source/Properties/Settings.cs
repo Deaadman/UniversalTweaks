@@ -18,7 +18,7 @@ internal class Settings : JsonModSettings
     [Name("Consistant Old Man's Dressing Weight")] [Description("Changes the old man's dressing weight to be the same as lichen.")]
     public bool ConsistantDressingWeight = false;
 
-    [Name("Feat Progress in Custom Mode")] [Description("Determine weather feat progress counts in custom difficulties.")]
+    [Name("Feat Progress in Custom Mode")] [Description("Determine whether feat progress counts in custom difficulties.")]
     public bool FeatProgressInCustomMode = false;
 
     [Name("Infinite Carry Weight")] [Description("Give the player a semi-infinite carrying weight.")]
@@ -138,10 +138,10 @@ internal class Settings : JsonModSettings
     [Section("Food Tweaks")]
 
     [Name("Insulated Flask Duration Indoors")] [Description("Customise the duration of how long heat is keep inside the flask indoors. Range: 0.1 (1000 in-game minutes) to 0.25 (400 in-game minutes / default). (Requires scene reload).")]
-    [Slider(0.1f, 1, 18, NumberFormat = "{0:0.00} HR")] public float InsulatedFlaskHeatLossPerMinuteIndoors = 0.25f;
+    [Slider(0.1f, 1, 18)] public float InsulatedFlaskHeatLossPerMinuteIndoors = 0.25f;
 
     [Name("Insulated Flask Duration Outdoors")] [Description("Customise the duration of how long heat is keep inside the flask outdoors. Range: 0.1 (1000 in-game minutes) to 0.5 (200 in-game minutes / default). (Requires scene reload).")]
-    [Slider(0.1f, 1, 18, NumberFormat = "{0:0.00} HR")] public float InsulatedFlaskHeatLossPerMinuteOutdoors = 0.5f;
+    [Slider(0.1f, 1, 18)] public float InsulatedFlaskHeatLossPerMinuteOutdoors = 0.5f;
 
     [Name("Remove Headache from Foods")] [Description("Removes the headache debuff from certain foods. (Requires scene reload).")]
     public bool RemoveHeadacheDebuffFromFoods = false;
@@ -393,7 +393,7 @@ internal class Settings : JsonModSettings
     // After doing that, when certain options are selected - hide certain ones. Example being infinite container weight, hide the rest of the options.
     private void RefreshFields()
     {
-        if (ExtendedFunctionality == true)
+        if (ExtendedFunctionality)
         {
             SetFieldVisible(nameof(HighBeamRestrictions), true);
         }
@@ -428,7 +428,7 @@ internal class Settings : JsonModSettings
             SetFieldVisible(nameof(MinersFlashlightBlueValue), false);
         }
 
-        if (CheatingTweaks == true)
+        if (CheatingTweaks)
         {
             SetFieldVisible(nameof(SnowShelterDailyDecayRate), true);
 
@@ -489,11 +489,10 @@ internal class Settings : JsonModSettings
             SetFieldVisible(nameof(InfiniteEncumberWeight), false);
         }
 
-        if (ContainerWeightTweaks == true && CheatingTweaks == true)
-        {
+        if (ContainerWeightTweaks && CheatingTweaks)
             SetFieldVisible(nameof(InfiniteContainerWeight), true);
-        }
-        else if (ContainerWeightTweaks == true)
+        
+        if (ContainerWeightTweaks)
         { 
             SetFieldVisible(nameof(ContainerBackpackCapacity), true);
             SetFieldVisible(nameof(ContainerBriefcaseCapacity), true);
