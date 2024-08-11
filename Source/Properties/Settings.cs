@@ -204,8 +204,8 @@ internal class Settings : JsonModSettings
     #region UI Tweaks
     [Section("UI Tweaks")]
     
-    [Name("Campfire HUD Elements")] [Description("Disables all the elements on the UI that are related to the campfire lives remaining.")] 
-    public bool DisableCampfireHUDElements = false;
+    /*[Name("Campfire HUD Elements")] [Description("Disables all the elements on the UI that are related to the campfire lives remaining.")] 
+    public bool DisableCampfireHUDElements = false;*/
     
     // [Name("Cougar HUD Elements")] [Description("Disables all the elements on the UI that are related to the Cougar.")]
     // public bool DisableCougarHUDElements = false;

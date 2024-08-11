@@ -18,9 +18,9 @@ internal class TweaksUserInterface
 
             return true;
         }
-    }  
+    }
 
-    [HarmonyPatch(typeof(Panel_Actions), nameof(Panel_Actions.UpdateLifeAfterDeath))]
+    /*[HarmonyPatch(typeof(Panel_Actions), nameof(Panel_Actions.UpdateLifeAfterDeath))]
     private static class DisableCampfireLifeElements
     {
         private static void Postfix(Panel_Actions __instance)
@@ -28,24 +28,47 @@ internal class TweaksUserInterface
             if (Settings.Instance.DisableCampfireHUDElements == false) return;
             __instance.m_CampfireGrid.GetComponentInParent<UIWidget>().alpha = 0f;
         }
-    }
+    }*/
+    
+    /* --- */
+    
+    // [HarmonyPatch(typeof(Panel_HUD), nameof(Panel_HUD.Enable))]
+    // private static class Testing
+    // {
+    //     private static void Postfix(Panel_HUD __instance)
+    //     {
+    //         __instance.m_SprintBar.alpha = 1;
+    //         __instance.m_SprintBar.gameObject.SetActive(true);
+    //         __instance.m_ScentIndicator.m_ScentIndicatorRoot.alpha = 1;
+    //         __instance.m_ScentIndicator.SetActive(true);
+    //     }
+    // }
+    
+    // [HarmonyPatch(typeof(Panel_HUD), nameof(Panel_HUD.Update))]
+    // private static class Testing1
+    // {
+    //     private static void Postfix(Panel_HUD __instance)
+    //     {
+    //         __instance.m_SprintBar.alpha = 1;
+    //         __instance.m_SprintBar.gameObject.SetActive(true);
+    //         __instance.m_ScentIndicator.m_ScentIndicatorRoot.alpha = 1;
+    //         __instance.m_ScentIndicator.SetActive(true);
+    //     }
+    // }
     
     // Semi-Working permanent HUD, it stays active when you enable it - but it doesn't show up when you load a save or when you open and close a new panel.
     // Need to convert this to use a settings instance as well, instead of the HudDisplayMode enum.
-    //[HarmonyPatch(typeof(Panel_Actions), nameof(Panel_Actions.Update))]
-    //private static class PermanentHUDPatch2
-    //{
-    //    private static void Postfix(Panel_Actions __instance)
-    //    {
-    //        if (HUDManager.HudDisplayMode == HudDisplayMode.Normal)
-    //        {
-    //            __instance.m_Panel.alpha = 1f;
-    //            InterfaceManager.GetInstance().SetTimeWidgetActive(true);
-    //            __instance.m_DoFadeOut = false;
-    //        }
-    //    }
-    //}
-
+    // [HarmonyPatch(typeof(Panel_Actions), nameof(Panel_Actions.Update))]
+    // private static class Testing3
+    // {
+    //     private static void Postfix(Panel_Actions __instance)
+    //     {
+    //         __instance.m_DoFadeOut = false;
+    //     }
+    // }
+    
+    /* --- */
+    
     [HarmonyPatch(typeof(Panel_ActionsRadial), nameof(Panel_ActionsRadial.GetShouldGreyOut))]
     private static class GreyOutSprayPaintRadial
     {
