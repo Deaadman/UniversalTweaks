@@ -1,6 +1,5 @@
 ﻿using Il2CppTLD.OptionalContent;
 using UniversalTweaks.Properties;
-using static Il2Cpp.Panel_MainMenu.MainMenuItem;
 
 namespace UniversalTweaks;
 
@@ -126,17 +125,17 @@ internal class TweaksUserInterface
 
             if (Settings.Instance.RemoveMainMenuItems == true)
             {
-                RemoveMainMenuItem(MainMenuItemType.TFTFTUpsell, __instance);
+                RemoveMainMenuItem(Panel_MainMenu.MainMenuItem.MainMenuItemType.TFTFTUpsell, __instance);
                 if (!hasWintermute)
                 {
-                    RemoveMainMenuItem(MainMenuItemType.Story, __instance);
+                    RemoveMainMenuItem(Panel_MainMenu.MainMenuItem.MainMenuItemType.Story, __instance);
                 }
             }
         }
 
-        private static void RemoveMainMenuItem(MainMenuItemType removeType, Panel_MainMenu __instance)
+        private static void RemoveMainMenuItem(Panel_MainMenu.MainMenuItem.MainMenuItemType removeType, Panel_MainMenu __instance)
         {
-            for (int i = __instance.m_MenuItems.Count - 1; i >= 0; i--)
+            for (var i = __instance.m_MenuItems.Count - 1; i >= 0; i--)
             {
                 if (__instance.m_MenuItems[i].m_Type == removeType)
                 {
