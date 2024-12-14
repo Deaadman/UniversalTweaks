@@ -1,4 +1,5 @@
-﻿using UniversalTweaks.Properties;
+﻿using Il2CppTLD.Placement;
+using UniversalTweaks.Properties;
 
 namespace UniversalTweaks;
 
@@ -51,7 +52,7 @@ internal class TweaksRockCache
                 {
                     gameObject.name = GameManager.GetRockCacheManager().m_RockCachePrefab.name;
                     gameObject.SetActive(false);
-                    GameManager.GetPlayerManagerComponent().StartPlaceMesh(gameObject, GameManager.GetRockCacheManager().m_BuildRangeMax, PlaceMeshFlags.UseMeshVariant);
+                    GameManager.GetPlayerManagerComponent().StartPlaceMesh(gameObject, GameManager.GetRockCacheManager().m_BuildRangeMax, PlaceMeshFlags.UseMeshVariant, PlaceMeshRules.Default);
                 }
 
                 return false;
