@@ -12,8 +12,8 @@
 
 	<PropertyGroup>
 		<!-- This should point to wherever your games primary EXE is -->
-		<TheLongDarkPath>C:\Program Files (x86)\Steam\steamapps\common\TheLongDark</TheLongDarkPath>
-		<ReleaseFolderPath>D:\The Long Dark\Projects\Maintained\UniversalTweaks\Release</ReleaseFolderPath>
+		<TheLongDarkPath>/Users/trentsandford/Library/Application Support/CrossOver/Bottles/TLD Modding/drive_c/Program Files (x86)/Steam/steamapps/common/TheLongDark</TheLongDarkPath>
+		<ReleaseFolderPath>/Users/trentsandford/Documents/JetBrains IDE Projects/Rider/UniversalTweaks</ReleaseFolderPath>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -46,6 +46,6 @@
 		<!-- This copies the mods files to the games mod dir -->
 		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(TheLongDarkPath)/Mods" />
 		<!-- This copies the mods files to a designated release folder. Speeds up finding the dll after a build -->
-		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ReleaseFolderPath)" />
-	</Target>
+        <!-- <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ReleaseFolderPath)" />  -->
+    </Target>
 </Project>
