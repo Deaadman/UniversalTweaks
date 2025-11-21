@@ -598,7 +598,7 @@ internal class Settings : JsonModSettings
 
     internal static void OnLoad()
     {
-        Instance.AddToModSettings(BuildInfo.GUIName);
+        Instance.AddToModSettings(BuildInfo.GuiName);
         Instance.RefreshFields();
         Instance.RefreshGUI();
     }

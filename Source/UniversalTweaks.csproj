@@ -12,8 +12,8 @@
 
 	<PropertyGroup>
 		<!-- This should point to wherever your games primary EXE is -->
-		<TheLongDarkPath>/Users/trentsandford/Library/Application Support/CrossOver/Bottles/TLD Modding/drive_c/Program Files (x86)/Steam/steamapps/common/TheLongDark</TheLongDarkPath>
-		<ReleaseFolderPath>/Users/trentsandford/Documents/JetBrains IDE Projects/Rider/UniversalTweaks</ReleaseFolderPath>
+		<TheLongDarkPath>D:\SteamLibrary\steamapps\common\TheLongDark</TheLongDarkPath>
+<!--		<ReleaseFolderPath></ReleaseFolderPath>-->
 	</PropertyGroup>
 
 	<ItemGroup>

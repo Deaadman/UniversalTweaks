@@ -10,7 +10,7 @@ internal static class BuildInfo
     public const string Version = "1.4.5";
     public const string AssemblyVersion = $"{Version}.0";
     public const string MelonLoaderVersion = "0.6.6";
-    public const string GUIName = "Universal Tweaks";
+    public const string GuiName = "Universal Tweaks";
 
     // Optional
     public const string Company = null!;
