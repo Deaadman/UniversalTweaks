@@ -17,5 +17,4 @@
 
 [assembly: VerifyLoaderVersion(BuildInfo.MelonLoaderVersion, true)]
 [assembly: MelonPriority(BuildInfo.Priority)]
-[assembly: MelonIncompatibleAssemblies("DisableBreathEffect", "NonPotableToiletWater", "UnlimitedRockCaches", 
-    "EnableFeatProgressInCustomModeLegacy", "CarryWeightMod", "ContainerTweaks", "LimitlessContainerSpace")]
+[assembly: MelonIncompatibleAssemblies("DisableBreathEffect", "NonPotableToiletWater", "UnlimitedRockCaches", "ContainerTweaks", "LimitlessContainerSpace")]
