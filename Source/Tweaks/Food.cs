@@ -15,7 +15,10 @@ internal static class Food
     {
         private static void Postfix(GearItem __instance)
         {
-            string[] headacheFoods = ["GEAR_CookedPiePeach", "GEAR_CookedPieRoseHip", "GEAR_CookedPorridgeFruit"];
+            string[] headacheFoods = 
+            [
+                "GEAR_CookedPiePeach", "GEAR_CookedPieRoseHip", "GEAR_CookedPorridgeFruit", "GEAR_CookedPancakePeach"
+            ];
             string[] insulatedFlasks =
             [
                 "GEAR_InsulatedFlask_A", "GEAR_InsulatedFlask_B", "GEAR_InsulatedFlask_C", "GEAR_InsulatedFlask_D",
