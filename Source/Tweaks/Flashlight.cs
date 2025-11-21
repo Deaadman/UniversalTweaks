@@ -27,6 +27,7 @@ internal static class Flashlight
                 return true;
             }
 
+            __instance.m_AuroraField.Enable(state == FlashlightItem.State.High);
             if (__instance.m_GearItem == GameManager.GetPlayerManagerComponent().m_ItemInHands)
             {
                 state = FlashlightItem.State.Off;
