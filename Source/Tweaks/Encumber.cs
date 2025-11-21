@@ -1,53 +1,57 @@
 ﻿using Il2CppTLD.IntBackedUnit;
 using UniversalTweaks.Properties;
 
-namespace UniversalTweaks;
+namespace UniversalTweaks.Tweaks;
 
-internal class TweaksEncumber
+internal static class Encumber
 {
-    [HarmonyPatch(typeof(Encumber), nameof(Encumber.Start))]
-    internal class StartEncumberTweaks
+    [HarmonyPatch(typeof(Il2Cpp.Encumber), nameof(Il2Cpp.Encumber.Start))]
+    private class StartEncumberTweaks
     {
-        private static void Postfix(Encumber __instance)
+        private static void Postfix(Il2Cpp.Encumber __instance)
         {
             EncumberUpdate(__instance);
         }
     }
-    
+
     [HarmonyPatch(typeof(PlayerManager), nameof(PlayerManager.CalculateModifiedCalorieBurnRate), [typeof(float)])]
-    internal class CalorieBurnRateFix
+    private class CalorieBurnRateFix
     {
         private static void Postfix(PlayerManager __instance, float baseBurnRate, ref float __result)
         {
-            float rate = baseBurnRate;
+            var rate = baseBurnRate;
 
             if (__instance.PlayerIsSprinting() || __instance.PlayerIsWalking() || __instance.PlayerIsClimbing())
             {
-                rate += (GameManager.GetEncumberComponent().GetHourlyCalorieBurnFromWeight() * (30f / GameManager.GetEncumberComponent().m_MaxCarryCapacity.m_Units));
+                rate += GameManager.GetEncumberComponent().GetHourlyCalorieBurnFromWeight() *
+                        (30f / GameManager.GetEncumberComponent().m_MaxCarryCapacity.m_Units);
             }
+
             if (GameManager.GetFreezingComponent().IsFreezing())
             {
                 rate *= GameManager.GetFreezingComponent().m_CalorieBurnMultiplier;
             }
+
             if (__instance.PlayerIsSprinting() || __instance.PlayerIsWalking())
             {
-                float y = GameManager.GetVpFPSPlayer().Controller.Velocity.normalized.y;
-                if (y > 0.1f)
+                var playerVelocity = GameManager.GetVpFPSPlayer().Controller.Velocity.normalized.y;
+                if (playerVelocity > 0.1f)
                 {
-                    float speed = (y - 0.1f) / 0.5f;
+                    var speed = (playerVelocity - 0.1f) / 0.5f;
                     speed = Mathf.Clamp(speed, 0f, 1f);
-                    float speedMod = Mathf.Lerp(1f, 1.5f, speed);
+                    var speedMod = Mathf.Lerp(1f, 1.5f, speed);
                     rate *= speedMod;
                 }
             }
+
             rate *= GameManager.GetExperienceModeManagerComponent().GetCalorieBurnScale();
-            float moddedBurn = rate * GameManager.GetFeatEfficientMachine().ReduceCaloriesScale();
+            var moddedBurn = rate * GameManager.GetFeatEfficientMachine().ReduceCaloriesScale();
 
             __result = moddedBurn;
         }
     }
-    
-    internal static void EncumberUpdate(Encumber encumber)
+
+    internal static void EncumberUpdate(Il2Cpp.Encumber encumber)
     {
         if (Settings.Instance.AdditionalEncumbermentWeight > 0 || Settings.Instance.InfiniteEncumberWeight)
         {

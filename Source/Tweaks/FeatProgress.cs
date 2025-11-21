@@ -1,8 +1,8 @@
 ﻿using UniversalTweaks.Properties;
 
-namespace UniversalTweaks;
+namespace UniversalTweaks.Tweaks;
 
-internal class TweaksFeatProgress
+internal static class FeatProgress
 {
     [HarmonyPatch(typeof(Feat), nameof(Feat.ShouldBlockIncrement))]
     private static class FeatProgressInCustomMode

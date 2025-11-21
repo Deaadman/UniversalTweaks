@@ -2,26 +2,29 @@
 using Il2CppTLD.Interactions;
 using UniversalTweaks.Properties;
 
-namespace UniversalTweaks;
+namespace UniversalTweaks.Tweaks;
 
-internal class TweaksTravois
+internal static class Travois
 {
     [HarmonyPatch(typeof(TravoisBigCarryItem), nameof(TravoisBigCarryItem.CanPerformInteractionWhileCarrying))]
     private static class OverrideInteractionRestrictionsWhileCarrying
     {
         private static void Postfix(ref bool __result, IInteraction interaction)
         {
-            if (Settings.Instance.OverrideTravoisInteractionRestrictions)
+            if (!Settings.Instance.OverrideTravoisInteractionRestrictions)
             {
-                if (GameManager.GetPlayerInVehicle().IsEntering() || GameManager.GetSnowShelterManager().PlayerEnteringShelter())
-                {
-                    __result = false;
-                }
-                else
-                {
-                    __result = true;
-                }
-            }            
+                return;
+            }
+
+            if (GameManager.GetPlayerInVehicle().IsEntering() ||
+                GameManager.GetSnowShelterManager().PlayerEnteringShelter())
+            {
+                __result = false;
+            }
+            else
+            {
+                __result = true;
+            }
         }
     }
 
@@ -33,7 +36,7 @@ internal class TweaksTravois
             if (Settings.Instance.OverrideTravoisMovementRestrictions)
             {
                 __result = CarryDisplayError.None;
-            }            
+            }
         }
     }
 
@@ -46,9 +49,14 @@ internal class TweaksTravois
             __instance.m_TravoisMovement.m_MaxSlopeClimbAngle = Settings.Instance.MaximumSlopeAngleTravois;
             __instance.m_TravoisMovement.m_MaxSlopeDownhillAngle = Settings.Instance.MaximumSlopeAngleTravois;
 
-            __instance.m_BlizzardDecayPerHour = Settings.Instance.CheatingTweaks ? Settings.Instance.DecayBlizzardTravois : 3;
-            __instance.m_DecayHPPerHour = Settings.Instance.CheatingTweaks ? Settings.Instance.DecayHPPerHourTravois / 1000f : 0.01f;
-            __instance.m_MovementDecayPerUnit = Settings.Instance.CheatingTweaks ? Settings.Instance.DecayMovementPerUnitTravois / 100f : 0.05f;
+            __instance.m_BlizzardDecayPerHour =
+                Settings.Instance.CheatingTweaks ? Settings.Instance.DecayBlizzardTravois : 3;
+            __instance.m_DecayHPPerHour = Settings.Instance.CheatingTweaks
+                ? Settings.Instance.DecayHPPerHourTravois / 1000f
+                : 0.01f;
+            __instance.m_MovementDecayPerUnit = Settings.Instance.CheatingTweaks
+                ? Settings.Instance.DecayMovementPerUnitTravois / 100f
+                : 0.05f;
         }
     }
 }

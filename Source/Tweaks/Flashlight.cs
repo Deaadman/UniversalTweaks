@@ -1,9 +1,9 @@
 ﻿using UniversalTweaks.Properties;
 using UniversalTweaks.Utilities;
 
-namespace UniversalTweaks;
+namespace UniversalTweaks.Tweaks;
 
-internal class TweaksFlashlight
+internal static class Flashlight
 {
     [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.Awake))]
     private static class FlashlightCustomization
@@ -22,28 +22,30 @@ internal class TweaksFlashlight
     {
         private static bool Prefix(FlashlightItem __instance, FlashlightItem.State state)
         {
-            if (Settings.Instance.ExtendedFunctionality)
+            if (!Settings.Instance.ExtendedFunctionality)
             {
-                if (__instance.m_GearItem == GameManager.GetPlayerManagerComponent().m_ItemInHands)
-                {
-                    state = FlashlightItem.State.Off;
-                }
-
-                __instance.m_FxObjectLow.SetActive(state == FlashlightItem.State.Low);
-                __instance.m_FxObjectHigh.SetActive(state == FlashlightItem.State.High);
-
-                bool useOutdoorLighting = GameManager.GetWeatherComponent().UseOutdoorLightingForLightSources();
-
-                __instance.m_LightIndoor.enabled = !useOutdoorLighting && (state == FlashlightItem.State.Low || state == FlashlightItem.State.High);
-                __instance.m_LightIndoorHigh.enabled = !useOutdoorLighting && (state == FlashlightItem.State.High);
-
-                __instance.m_LightOutdoor.enabled = useOutdoorLighting && (state == FlashlightItem.State.Low || state == FlashlightItem.State.High);
-                __instance.m_LightOutdoorHigh.enabled = useOutdoorLighting && (state == FlashlightItem.State.High);
-
-                return false;
+                return true;
             }
 
-            return true;
+            if (__instance.m_GearItem == GameManager.GetPlayerManagerComponent().m_ItemInHands)
+            {
+                state = FlashlightItem.State.Off;
+            }
+
+            __instance.m_FxObjectLow.SetActive(state == FlashlightItem.State.Low);
+            __instance.m_FxObjectHigh.SetActive(state == FlashlightItem.State.High);
+
+            var useOutdoorLighting = GameManager.GetWeatherComponent().UseOutdoorLightingForLightSources();
+
+            __instance.m_LightIndoor.enabled =
+                !useOutdoorLighting && state is FlashlightItem.State.Low or FlashlightItem.State.High;
+            __instance.m_LightIndoorHigh.enabled = !useOutdoorLighting && state == FlashlightItem.State.High;
+
+            __instance.m_LightOutdoor.enabled =
+                useOutdoorLighting && state is FlashlightItem.State.Low or FlashlightItem.State.High;
+            __instance.m_LightOutdoorHigh.enabled = useOutdoorLighting && state == FlashlightItem.State.High;
+
+            return false;
         }
     }
 
@@ -67,10 +69,11 @@ internal class TweaksFlashlight
     {
         private static bool Prefix(FlashlightItem __instance, ref bool __result)
         {
-            if (Settings.Instance.HighBeamRestrictions && __instance.m_State == FlashlightItem.State.High && !GameManager.GetAuroraManager().AuroraIsActive())
+            if (Settings.Instance.HighBeamRestrictions && __instance.m_State == FlashlightItem.State.High &&
+                !GameManager.GetAuroraManager().AuroraIsActive())
             {
                 GameAudioManager.PlayGUIError();
-                HUDMessage.AddMessage(Localization.Get("GAMEPLAY_StateHighFail"), false, false);
+                HUDMessage.AddMessage(Localization.Get("GAMEPLAY_StateHighFail"));
                 __result = __instance.IsOn();
                 return true;
             }
@@ -85,18 +88,19 @@ internal class TweaksFlashlight
     {
         private static void Postfix(FlashlightItem __instance)
         {
-            float tODHours = GameManager.GetTimeOfDayComponent().GetTODHours(Time.deltaTime);
+            var todHours = GameManager.GetTimeOfDayComponent().GetTODHours(Time.deltaTime);
 
             if (!GameManager.GetAuroraManager().AuroraIsActive())
             {
                 if (__instance.m_State == FlashlightItem.State.Low)
                 {
-                    __instance.m_CurrentBatteryCharge -= tODHours / __instance.m_LowBeamDuration;
+                    __instance.m_CurrentBatteryCharge -= todHours / __instance.m_LowBeamDuration;
                 }
                 else if (!Settings.Instance.HighBeamRestrictions && __instance.m_State == FlashlightItem.State.High)
                 {
-                    __instance.m_CurrentBatteryCharge -= tODHours / __instance.m_HighBeamDuration;
+                    __instance.m_CurrentBatteryCharge -= todHours / __instance.m_HighBeamDuration;
                 }
+
                 if (__instance.m_CurrentBatteryCharge <= 0f)
                 {
                     __instance.m_CurrentBatteryCharge = 0f;
@@ -109,10 +113,29 @@ internal class TweaksFlashlight
                 __instance.m_CurrentBatteryCharge = 1f;
             }
 
-            bool isMinersFlashlight = __instance.m_GearItem != null && __instance.m_GearItem.name == "GEAR_Flashlight_LongLasting";
-            __instance.m_LowBeamDuration = Settings.Instance.CheatingTweaks ? (isMinersFlashlight ? Settings.Instance.MinersFlashlightLowBeamDuration : Settings.Instance.FlashlightLowBeamDuration) : (isMinersFlashlight ? 1.5f : 1f);
-            __instance.m_HighBeamDuration = Settings.Instance.CheatingTweaks ? (isMinersFlashlight ? Settings.Instance.MinersFlashlightHighBeamDuration : Settings.Instance.FlashlightHighBeamDuration) : (isMinersFlashlight ? 0.08333334f : 0.08333334f);
-            __instance.m_RechargeTime = Settings.Instance.CheatingTweaks ? (isMinersFlashlight ? Settings.Instance.MinersFlashlightRechargeTime : Settings.Instance.FlashlightRechargeTime) : (isMinersFlashlight ? 1.75f : 2f);
+            var isMinersFlashlight = __instance.m_GearItem != null &&
+                                     __instance.m_GearItem.name == "GEAR_Flashlight_LongLasting";
+            __instance.m_LowBeamDuration = Settings.Instance.CheatingTweaks
+                ?
+                isMinersFlashlight
+                    ? Settings.Instance.MinersFlashlightLowBeamDuration
+                    : Settings.Instance.FlashlightLowBeamDuration
+                : isMinersFlashlight
+                    ? 1.5f
+                    : 1f;
+            __instance.m_HighBeamDuration = Settings.Instance.CheatingTweaks
+                ? isMinersFlashlight
+                    ? Settings.Instance.MinersFlashlightHighBeamDuration
+                    : Settings.Instance.FlashlightHighBeamDuration
+                : 0.08333334f;
+            __instance.m_RechargeTime = Settings.Instance.CheatingTweaks
+                ?
+                isMinersFlashlight
+                    ? Settings.Instance.MinersFlashlightRechargeTime
+                    : Settings.Instance.FlashlightRechargeTime
+                : isMinersFlashlight
+                    ? 1.75f
+                    : 2f;
 
             UpdateFlashlightBeamColor(__instance, __instance.m_FxObjectLow, __instance.m_FxObjectHigh);
         }
@@ -123,9 +146,9 @@ internal class TweaksFlashlight
     {
         private static void Postfix(FirstPersonFlashlight __instance)
         {
-            GearItem itemInHands = GameManager.GetPlayerManagerComponent().m_ItemInHands;
+            var itemInHands = GameManager.GetPlayerManagerComponent().m_ItemInHands;
             if (itemInHands == null) return;
-            FlashlightItem flashlightItem = itemInHands.m_FlashlightItem;
+            var flashlightItem = itemInHands.m_FlashlightItem;
 
             UpdateFlashlightBeamColor(flashlightItem, __instance.m_LowFxGameObject, __instance.m_HighFxGameObject);
         }
@@ -136,23 +159,27 @@ internal class TweaksFlashlight
     {
         private static bool Prefix(LightRandomIntensity __instance)
         {
-            if (Settings.Instance.AuroraFlickering == true)
+            if (!Settings.Instance.AuroraFlickering)
             {
-                if ((__instance.gameObject.name == "LightIndoors" || __instance.gameObject.name == "LightOutdoors" || __instance.gameObject.name == "LightExtend") && !GameManager.GetAuroraManager().AuroraIsActive() && Settings.Instance.ExtendedFunctionality)
-                {
-                    return false;
-                }
+                return true;
+            }
+
+            if (__instance.gameObject.name is "LightIndoors" or "LightOutdoors" or "LightExtend" &&
+                !GameManager.GetAuroraManager().AuroraIsActive() && Settings.Instance.ExtendedFunctionality)
+            {
+                return false;
             }
 
             return true;
         }
     }
 
-    #region Methods
     private static Color GetColorFromFlashlight(FlashlightItem flashlightItem)
     {
-        bool isMinersFlashlight = flashlightItem.m_GearItem != null && flashlightItem.m_GearItem.name == "GEAR_Flashlight_LongLasting";
-        return GetColorFromSettings(isMinersFlashlight ? Settings.Instance.MinersFlashlightBeamColor : Settings.Instance.FlashlightBeamColor, isMinersFlashlight);
+        var isMinersFlashlight = flashlightItem.m_GearItem?.name is "GEAR_Flashlight_LongLasting";
+        return GetColorFromSettings(
+            isMinersFlashlight ? Settings.Instance.MinersFlashlightBeamColor : Settings.Instance.FlashlightBeamColor,
+            isMinersFlashlight);
     }
 
     private static Color GetColorFromSettings(FlashlightBeamColor beamColor, bool isMinersFlashlight)
@@ -160,9 +187,15 @@ internal class TweaksFlashlight
         return beamColor switch
         {
             FlashlightBeamColor.Custom => new Color(
-                (isMinersFlashlight ? Settings.Instance.MinersFlashlightRedValue : Settings.Instance.FlashlightRedValue) / 255f,
-                (isMinersFlashlight ? Settings.Instance.MinersFlashlightGreenValue : Settings.Instance.FlashlightGreenValue) / 255f,
-                (isMinersFlashlight ? Settings.Instance.MinersFlashlightBlueValue : Settings.Instance.FlashlightBlueValue) / 255f),
+                (isMinersFlashlight
+                    ? Settings.Instance.MinersFlashlightRedValue
+                    : Settings.Instance.FlashlightRedValue) / 255f,
+                (isMinersFlashlight
+                    ? Settings.Instance.MinersFlashlightGreenValue
+                    : Settings.Instance.FlashlightGreenValue) / 255f,
+                (isMinersFlashlight
+                    ? Settings.Instance.MinersFlashlightBlueValue
+                    : Settings.Instance.FlashlightBlueValue) / 255f),
             FlashlightBeamColor.Default => new Color(0.7215686f, 0.8117647f, 0.9176471f),
             FlashlightBeamColor.Red => Color.red,
             FlashlightBeamColor.Green => Color.green,
@@ -175,11 +208,15 @@ internal class TweaksFlashlight
         };
     }
 
-    private static void UpdateFlashlightBeamColor(FlashlightItem flashlightItem, GameObject lowFxGameObject, GameObject highFxGameObject)
+    private static void UpdateFlashlightBeamColor(FlashlightItem flashlightItem, GameObject lowFxGameObject,
+        GameObject highFxGameObject)
     {
-        if (flashlightItem == null) return;
+        if (flashlightItem == null)
+        {
+            return;
+        }
 
-        Color newColor = GetColorFromFlashlight(flashlightItem);
+        var newColor = GetColorFromFlashlight(flashlightItem);
 
         if (lowFxGameObject != null)
         {
@@ -194,16 +231,12 @@ internal class TweaksFlashlight
 
     private static void UpdateLightColorRecursive(Transform transform, Color color)
     {
-        Light childLight = transform.GetComponent<Light>();
-        if (childLight != null)
-        {
-            childLight.color = color;
-        }
+        var childLight = transform.GetComponent<Light>();
+        childLight?.color = color;
 
-        for (int i = 0; i < transform.childCount; i++)
+        for (var i = 0; i < transform.childCount; i++)
         {
             UpdateLightColorRecursive(transform.GetChild(i), color);
         }
     }
-    #endregion
 }

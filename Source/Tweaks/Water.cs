@@ -1,8 +1,8 @@
 ﻿using UniversalTweaks.Properties;
 
-namespace UniversalTweaks;
+namespace UniversalTweaks.Tweaks;
 
-internal class TweaksWater
+internal static class Water
 {
     [HarmonyPatch(typeof(WaterSource), nameof(WaterSource.Update))]
     private static class NonPotableToiletWater
