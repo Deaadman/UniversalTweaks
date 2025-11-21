@@ -13,14 +13,15 @@ internal sealed class Mod : MelonMod
 
     private static void LoadLocalizations()
     {
-        const string JSONfile = "UniversalTweaks.Resources.Localization.json";
+        const string jsonFile = "UniversalTweaks.Resources.Localization.json";
 
         try
         {
-            using Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(JSONfile) ?? throw new InvalidOperationException($"Failed to load resource: {JSONfile}");
+            using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(jsonFile) ??
+                               throw new InvalidOperationException($"Failed to load resource: {jsonFile}");
             using StreamReader reader = new(stream);
 
-            string results = reader.ReadToEnd();
+            var results = reader.ReadToEnd();
 
             LocalizationManager.LoadJsonLocalization(results);
         }

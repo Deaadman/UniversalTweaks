@@ -2,27 +2,31 @@
 
 internal static class ComponentUtilities
 {
-    private static readonly Dictionary<string, Dictionary<Type, Component>> storedComponents = [];
+    private static readonly Dictionary<string, Dictionary<Type, Component>> StoredComponents = [];
 
     internal static void RemoveComponent<T>(params string[] itemNames) where T : Component
     {
         foreach (var itemName in itemNames)
         {
-            GearItem item = GearItem.LoadGearItemPrefab(itemName);
-            if (item != null)
+            var item = GearItem.LoadGearItemPrefab(itemName);
+            if (item == null)
             {
-                T component = item.gameObject.GetComponent<T>();
-                if (component != null)
-                {
-                    if (!storedComponents.ContainsKey(itemName))
-                    {
-                        storedComponents[itemName] = [];
-                    }
-
-                    storedComponents[itemName][typeof(T)] = component;
-                    UnityEngine.Object.Destroy(component);
-                }
+                continue;
             }
+
+            var component = item.gameObject.GetComponent<T>();
+            if (component == null)
+            {
+                continue;
+            }
+
+            if (!StoredComponents.ContainsKey(itemName))
+            {
+                StoredComponents[itemName] = [];
+            }
+
+            StoredComponents[itemName][typeof(T)] = component;
+            UnityEngine.Object.Destroy(component);
         }
     }
 
@@ -30,13 +34,16 @@ internal static class ComponentUtilities
     {
         foreach (var itemName in itemNames)
         {
-            if (storedComponents.TryGetValue(itemName, out var components) && components.TryGetValue(typeof(T), out var component))
+            if (!StoredComponents.TryGetValue(itemName, out var components) ||
+                !components.TryGetValue(typeof(T), out var component))
             {
-                GearItem item = GearItem.LoadGearItemPrefab(itemName);
-                if (item != null && item.gameObject.GetComponent<T>() == null)
-                {
-                    item.gameObject.AddComponent<T>().CopyFrom(component);
-                }
+                continue;
+            }
+
+            var item = GearItem.LoadGearItemPrefab(itemName);
+            if (item != null && item.gameObject.GetComponent<T>() == null)
+            {
+                item.gameObject.AddComponent<T>().CopyFrom(component);
             }
         }
     }
@@ -44,7 +51,10 @@ internal static class ComponentUtilities
     private static void CopyFrom<T>(this T destination, Component source) where T : Component
     {
         var type = destination.GetType();
-        if (source.GetType() != type) return;
+        if (source.GetType() != type)
+        {
+            return;
+        }
 
         var fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
         foreach (var field in fields)

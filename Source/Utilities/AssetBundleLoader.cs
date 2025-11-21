@@ -1,12 +1,10 @@
 ﻿namespace UniversalTweaks.Utilities;
 
-internal class AssetBundleLoader
+internal static class AssetBundleLoader
 {
     internal static AssetBundle? LoadBundle(string path)
     {
-        AssetBundle? temp;
-        MemoryStream? memory;
-        Stream? stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path);
+        var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path);
 
         if (stream == null)
         {
@@ -14,10 +12,10 @@ internal class AssetBundleLoader
             return null;
         }
 
-        memory = new MemoryStream((int)stream.Length);
+        var memory = new MemoryStream((int)stream.Length);
         stream.CopyTo(memory);
 
-        temp = AssetBundle.LoadFromMemory(memory.ToArray());
+        var temp = AssetBundle.LoadFromMemory(memory.ToArray());
 
         memory.Dispose();
         stream.Dispose();

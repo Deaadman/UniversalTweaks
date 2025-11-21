@@ -6,11 +6,11 @@ internal static class BuildInfo
     public const string Name = "UniversalTweaks";
     public const string Description = "A modification which enhances gameplay mechanics by tweaking specific elements within The Long Dark.";
     public const string Author = "Deadman";
-    public const string Copyright = "Copyright © 2023 - 2024";
-    public const string Version = "1.4.4";
+    public const string Copyright = "Copyright © 2025";
+    public const string Version = "1.4.5";
     public const string AssemblyVersion = $"{Version}.0";
     public const string MelonLoaderVersion = "0.6.6";
-    public const string GUIName = "Universal Tweaks";
+    public const string GuiName = "Universal Tweaks";
 
     // Optional
     public const string Company = null!;
