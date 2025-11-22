@@ -11,16 +11,13 @@ internal static class Snare
         {
             _snareItem = __instance.m_Gear.m_SnareItem;
 
+            InterfaceManager.TryGetPanel<Panel_HUD>(out var hudPanel);
+            var inspectModeUILabel = hudPanel.m_InspectMode_Equip;
+
             if (_snareItem != null && _snareItem.m_State == SnareState.WithRabbit)
             {
-                InterfaceManager.TryGetPanel<Panel_HUD>(out var hudPanel);
-                hudPanel.m_InspectMode_Equip.gameObject.SetActive(true);
-                hudPanel.m_InspectMode_Equip.text = Localization.Get("GAMEPLAY_SetSnare");
-            }
-            else
-            {
-                InterfaceManager.TryGetPanel<Panel_HUD>(out var hudPanel);
-                hudPanel.m_InspectMode_Equip.gameObject.SetActive(false);
+                inspectModeUILabel.gameObject.SetActive(true);
+                inspectModeUILabel.text = Localization.Get("GAMEPLAY_SetSnare");
             }
         }
     }
