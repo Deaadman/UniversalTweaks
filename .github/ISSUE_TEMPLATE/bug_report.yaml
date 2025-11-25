@@ -1,55 +1,67 @@
 name: Bug Report
-description: Report an issue which you are experiencing with this mod installed.
-title: "[Bug Report]: "
-labels: [bug-report]
+description: Report a bug for an issue this mod is causing.
+
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for reporting a bug. Not only will this help you, it will also help others!
-  - type: input
-    id: game_version
-    attributes:
-      label: The Long Dark Version
-      description: Please specify which version of The Long Dark you are using.
-      placeholder: e.g., v2.24
-    validations:
-      required: true
-  - type: input
-    id: mod_version
-    attributes:
-      label: Mod Version
-      description: Please specify the version of the mod you are using.
-      placeholder: e.g., v1.0.0
-    validations:
-      required: true
+        When reporting bugs, follow the guidelines in this template.
+        - Write a descriptive issue title above.
+        - The golden rule is to **always open *one* issue for *one* bug**. If you notice several bugs and want to report them, make sure to create one new issue for each of them.
+        - Search [open](https://github.com/Deaadman/UniversalTweaks/issues) and [closed](https://github.com/Deaadman/UniversalTweaks/issues?q=is%3Aissue%20state%3Aclosed) issues to ensure the bug has not already been reported.
+        - Verify that you are using the [latest mod version](https://github.com/Deaadman/UniversalTweaks/releases/latest), and the latest version of the game.
+
   - type: textarea
-    id: issue_description
     attributes:
-      label: Describe the Issue
-      description: Please describe the problem in detail.
-      placeholder: Describe what happened and what you expected...
+      label: Tested Versions
+      description: |
+        To properly fix a bug, we need to identify if the bug was recently introduced in the mod, or if it was always present.
+        - Specify the version you found the issue in, including the **Git commit hash** if using a nightly build. The exact version (including the commit hash) can be copied from the terminal window that opens with the game.
+        - If you can, **test earlier versions** and, if applicable, newer versions (nightly build). Mention whether the bug is reproducible or not in the versions you tested. You can find all releases [here](https://github.com/Deaadman/UniversalTweaks/releases).
+        - The aim is to identify whether a bug is a **regression**, i.e. an issue that didn't exist in a previous version, but was introduced later on, breaking existing functionality.
+      placeholder: |
+        - Reproducible In: 1.5.0-nightly [d76c1d0e5], 1.4.6, 1.4.5 and later.
+        - Not Reproducible In: 1.4.4, 1.4.3 and earlier.
     validations:
       required: true
+
+  - type: input
+    attributes:
+      label: System Information
+      description: |       
+        As MelonLoader is developing more toward cross-platform support, bugs that arise may be platform specific.
+        - Specify your operating system name and version. If Linux, also list the distribution. Follow the below placeholder as examples.
+      placeholder: |
+        Windows 11 (25H2 - 26200.7171) OR macOS 26.1 Tahoe OR Linux Ubuntu 24.04.3
+    validations:
+      required: true
+
   - type: textarea
-    id: reproduction_steps
+    attributes:
+      label: Issue Description
+      description: |
+        Describe your issue briefly. 
+        - What doesn't work, and how do you expect it to work instead?
+        - **Do not** post screenshots of the logs in your console, instead include the log file produced in the section below.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Log File
+      description: |
+        Upload the log file produced after closing the game. The log file is called `Latest.log` and is usually found underneath the `MelonLoader` folder within your game's directory.
+        - **Ensure** that **all levels** of logging are enabled before uploading the log file. Enable these through the settings [ComplexLogger](https://github.com/Arkhorse/Complex-Logger) provides in the in-game settings menu.
+    validations:
+      required: true
+
+  - type: textarea
     attributes:
       label: Steps to Reproduce
-      description: Please describe the steps required to reproduce the issue.
-      placeholder: |
-        1. Start the game...
-        2. ...
-    validations:
-      required: true
-  - type: textarea
-    id: log_output
-    attributes:
-      label: Log Output
       description: |
-        Please drag and drop your latest Latest.Log here from your MelonLoader folder in your game's directory.
+        List the steps taken to reproduce the issue.
+          - Include how often it happens.
+          - What did you expect to happen, and what actually happened?
+          - If applicable, uploading a short video can help.
     validations:
       required: true
-  - type: markdown
-    attributes:
-      value: |
-        Thank you for providing this information. The more detailed and accurate you can be, the easier it will be for the mod developer to address the issue.
