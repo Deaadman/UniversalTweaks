@@ -5,7 +5,7 @@
 # 1. NeoVim's Nightly Release Workflow: https://github.com/neovim/neovim/blob/master/.github/workflows/release.yml
 # 2. SeasonedInterloping Release Workflow: https://github.com/ds5678/SeasonedInterloping/blob/main/.github/workflows/publish.yml
 
-name: Release
+name: Nightly Release
 
 on:
   push:
@@ -13,10 +13,10 @@ on:
 
 env:
   PROJECT_NAME: UniversalTweaks
-  TAG_NAME: nightly
 
 jobs:
   build:
+    name: Build Artifacts
     runs-on: ubuntu-latest
 
     steps:
@@ -27,9 +27,12 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
-    - name: Build Nightly
-      if: env.TAG_NAME == 'nightly'
-      run: dotnet build -c Release --version-suffix nightly-${GITHUB_SHA::7}
+    - name: Query Date
+      run: |
+        echo "RELEASE_DATE=$(date -u +%Y%m%d)" >> $GITHUB_ENV
+
+    - name: Build .NET Project
+      run: dotnet build -c Release --version-suffix nightly.${{ env.RELEASE_DATE }}+g${GITHUB_SHA::7}
 
     - name: Move Files
       shell: bash
@@ -47,8 +50,9 @@ jobs:
         if-no-files-found: error
 
   publish:
-    needs: [build]
+    name: Publish Nightly Release
     runs-on: ubuntu-latest
+    needs: [build]
 
     env:
       GH_REPO: ${{ github.repository }}
@@ -72,14 +76,12 @@ jobs:
         echo "VERSION=$VERSION" >> "$GITHUB_ENV"
         echo "Version=$VERSION"
 
-    - name: Remove Nightly Release
-      if: env.TAG_NAME == 'nightly'
+    - name: Remove Release
       run: |
         gh release delete nightly --yes || true
         git push origin :refs/tags/nightly || true
 
-    - name: Publish Nightly Release
-      if: env.TAG_NAME == 'nightly'
+    - name: Publish Release
       run: |
         gh release create nightly \
           --prerelease \
