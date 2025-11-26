@@ -7,6 +7,7 @@
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<DebugType>embedded</DebugType>
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
 	</PropertyGroup>
 	
 	<PropertyGroup>
