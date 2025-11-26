@@ -1,3 +1,5 @@
+using LocalizationUtilities;
+
 using UniversalTweaks.Properties;
 using UniversalTweaks.Utilities;
 

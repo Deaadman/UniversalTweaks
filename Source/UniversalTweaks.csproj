@@ -1,20 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<!-- These define the critical project details. Such as the net version, C# language version, null enable and do not generate assembly info (we need a custom one) -->
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<LangVersion>Latest</LangVersion>
+		<LangVersion>default</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<DebugType>none</DebugType>
-        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<DebugType>embedded</DebugType>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 	</PropertyGroup>
-
+	
 	<PropertyGroup>
-		<!-- This should point to wherever your games primary EXE is -->
+		<Authors>Deadman</Authors>
+		<Copyright>Copyright (c) 2025 $(Authors)</Copyright>
+		<Product>Universal Tweaks</Product>
+		<VersionPrefix>1.5.0</VersionPrefix>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<BuildInfoFile>$(IntermediateOutputPath)BuildInfo.g.cs</BuildInfoFile>
 		<TheLongDarkPath>D:\SteamLibrary\steamapps\common\TheLongDark</TheLongDarkPath>
-<!--		<ReleaseFolderPath></ReleaseFolderPath>-->
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -22,31 +26,50 @@
 	  <EmbeddedResource Include="Resources\Localization.json" />
 	</ItemGroup>
 
-	<!-- List of used references -->
 	<ItemGroup>
 		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="2.42.0" />
 		<PackageReference Include="STBlade.Modding.TLD.LocalizationUtilities" Version="2.0.0" />
 		<PackageReference Include="STBlade.Modding.TLD.ModSettings" Version="1.9.0" />
 	</ItemGroup>
 
-	<!-- Most commonly used using's. Add to this so you dont need to define them in the cs files -->
 	<ItemGroup>
-		<Using Include="System.Reflection" />
-		<Using Include="System.Diagnostics.CodeAnalysis" />
-		<Using Include="Il2Cpp" />
 		<Using Include="HarmonyLib" />
+		<Using Include="Il2Cpp" />
 		<Using Include="MelonLoader" />
 		<Using Include="UnityEngine" />
-		
-		<Using Include="LocalizationUtilities" />
-		<Using Include="ModSettings" />
+		<Using Include="System.Reflection" />
+		<Using Include="System.Diagnostics.CodeAnalysis" />
 	</ItemGroup>
 
-	<!-- This is a build event. It will copy your dll to the currently defined TheLongDarkPath's Mods folder -->
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<!-- This copies the mods files to the games mod dir -->
+	<Target Name="CopyToModsFolder" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
 		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(TheLongDarkPath)/Mods" />
-		<!-- This copies the mods files to a designated release folder. Speeds up finding the dll after a build -->
-        <!-- <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ReleaseFolderPath)" />  -->
     </Target>
+	
+	<Target Name="WriteVersion" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+		<WriteLinesToFile File="$(BaseIntermediateOutputPath)Version.txt" Lines="$(InformationalVersion)" Overwrite="true" />
+	</Target>
+
+	<Target Name="GenerateBuildInfo" BeforeTargets="CoreCompile">
+
+		<WriteLinesToFile
+				File="$(BuildInfoFile)"
+				Overwrite="true"
+				Lines="
+namespace UniversalTweaks.Properties%3B
+
+internal static class BuildInfo
+{
+	public const string Name = &quot;$(Product)&quot;%3B
+	public const string Version = &quot;$(InformationalVersion)&quot;%3B
+	public const string Author = &quot;$(Authors)&quot;%3B
+	public const string DownloadLink = &quot;https://github.com/Deaadman/UniversalTweaks/releases/latest/download/UniversalTweaks.dll&quot;%3B
+	public const int Priority = 0%3B
+	public const string MelonLoaderVersion = &quot;0.6.6&quot;%3B
+}
+" />
+
+		<ItemGroup>
+			<Compile Include="$(BuildInfoFile)" />
+		</ItemGroup>
+	</Target>
 </Project>
