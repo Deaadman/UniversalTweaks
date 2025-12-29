@@ -232,8 +232,8 @@ internal static class Flashlight
 
     private static void UpdateLightColorRecursive(Transform transform, Color color)
     {
-        var childLight = transform.GetComponent<Light>();
-        childLight?.color = color;
+        Light childLight = transform.GetComponent<Light>();
+        childLight.color = color;
 
         for (var i = 0; i < transform.childCount; i++)
         {
