@@ -11,11 +11,10 @@ internal static class AssetBundleLoader
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
             stream!.CopyTo(memory);
 
-            Il2CppSystem.IO.MemoryStream memoryStream = new(memory.ToArray()); // workaround to deal with span unstripping not working properly as of 2.51
+            Il2CppSystem.IO.MemoryStream memoryStream = new(memory.ToArray()); // workaround to deal with span unstripping not working properly as of 2.51 && v0.7.2-ci.2385
             AssetBundle bundle = AssetBundle.LoadFromStream(memoryStream);
 
             return bundle;
-        }
-        ;
+        };
     }
 }
