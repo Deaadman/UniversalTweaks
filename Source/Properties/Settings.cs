@@ -1,4 +1,6 @@
-﻿using UniversalTweaks.Utilities;
+﻿using ModSettings;
+
+using UniversalTweaks.Utilities;
 
 namespace UniversalTweaks.Properties;
 
@@ -759,7 +761,7 @@ internal class Settings : JsonModSettings
 
     internal static void OnLoad()
     {
-        Instance.AddToModSettings(BuildInfo.GuiName);
+        Instance.AddToModSettings(BuildInfo.Name);
         Instance.RefreshFields();
         Instance.RefreshGUI();
     }
