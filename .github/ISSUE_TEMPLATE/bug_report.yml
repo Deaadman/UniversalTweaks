@@ -25,17 +25,6 @@ body:
     validations:
       required: true
 
-  - type: input
-    attributes:
-      label: System Information
-      description: |       
-        As MelonLoader is developing more toward cross-platform support, bugs that arise may be platform specific.
-        - Specify your operating system name and version. If Linux, also list the distribution. Follow the below placeholder as examples.
-      placeholder: |
-        Windows 11 (25H2 - 26200.7171) OR macOS 26.1 Tahoe OR Linux Ubuntu 24.04.3
-    validations:
-      required: true
-
   - type: textarea
     attributes:
       label: Issue Description
