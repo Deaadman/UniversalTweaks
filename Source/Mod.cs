@@ -19,16 +19,14 @@ internal sealed class Mod : MelonMod
 
 		try
 		{
-#pragma warning disable CS8600, CS8604 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8600, CS8604
 			using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(jsonFile))
 			{
 				using StreamReader reader = new(stream);
 				string results = reader.ReadToEnd();
 				LocalizationManager.LoadJsonLocalization(results);
-			};
-#pragma warning restore CS8600,CS8604 // Converting null literal or possible null value to non-nullable type.
-
-
+			}
+#pragma warning restore CS8600,CS8604 
 		}
 		catch (Exception ex)
 		{
