@@ -1,10 +1,11 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Deaadman/UniversalTweaks/release/Images/MainHeading.png" alt="Universal Tweaks Banner">
+<img src="https://raw.githubusercontent.com/Deaadman/UniversalTweaks/release/Images/Banner.webp" alt="Universal Tweaks Banner">
+
+[![Latest Release](https://img.shields.io/github/v/release/Deaadman/UniversalTweaks?style=for-the-badge&label=Latest%20Release)](https://github.com/Deaadman/UniversalTweaks/releases/latest)
 
 [![All Downloads](https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/total?style=for-the-badge&label=All%20Downloads)](https://github.com/Deaadman/UniversalTweaks/releases)
 [![Latest Downloads](https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/latest/total?style=for-the-badge&label=Latest%20Downloads)](https://github.com/Deaadman/UniversalTweaks/releases/latest)
-[![Latest Release](https://img.shields.io/github/v/release/Deaadman/UniversalTweaks?style=for-the-badge&label=Latest%20Release)](https://github.com/Deaadman/UniversalTweaks/releases/latest)
 
 [![Nightly Workflow](https://img.shields.io/github/actions/workflow/status/Deaadman/UniversalTweaks/release_nightly.yml?style=for-the-badge&label=Nightly%20Build)](https://github.com/Deaadman/UniversalTweaks/actions/workflows/release_nightly.yml)
 [![Nightly Downloads](https://img.shields.io/github/downloads/Deaadman/UniversalTweaks/nightly/total?style=for-the-badge&label=Nightly%20Downloads)](https://github.com/Deaadman/UniversalTweaks/releases/tag/nightly)

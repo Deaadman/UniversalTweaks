@@ -64,7 +64,7 @@ jobs:
     steps:
     - uses: actions/checkout@v6
 
-    - uses: actions/download-artifact@v6
+    - uses: actions/download-artifact@v7
       with:
         name: ${{ env.PROJECT_NAME }}
         path: out
@@ -81,11 +81,19 @@ jobs:
         gh release delete nightly --yes || true
         git push origin :refs/tags/nightly || true
 
+    - name: Get Latest Release Tag
+      id: latest
+      run: |
+        latest_tag="$(gh api repos/${{ github.repository }}/releases/latest --jq '.tag_name')"
+        echo "latest_tag=$latest_tag" >> "$GITHUB_OUTPUT"
+
     - name: Publish Release
       run: |
+        compare_url="https://github.com/${{ github.repository }}/compare/${{ steps.latest.outputs.latest_tag }}...nightly"
+        
         gh release create nightly \
           --prerelease \
           --title "${{ env.VERSION }}" \
-          --notes "See the [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/develop/CHANGELOG.md) file for more details." \
-          --target "$GITHUB_SHA" \
+          --notes "Click on [this comparison](${compare_url}) to see what has changed since the latest release." \
+          --target "${{ github.sha }}" \
           out/${{ env.PROJECT_NAME }}.dll
