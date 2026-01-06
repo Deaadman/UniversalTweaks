@@ -100,8 +100,8 @@ https://github.com/user-attachments/assets/943ec975-7efd-465b-9b12-969956964a0c
 ### Required Dependencies
 For this mod to work, ensure you have the following mods below:
 
-- [**Localization Utilities**](https://github.com/dommrogers/LocalizationUtilities/releases)
-- [**Mod Settings**](https://github.com/DigitalzombieTLD/ModSettings)
+- [**ModComponent**](https://github.com/dommrogers/ModComponent/releases)
+- [**ModSettings**](https://github.com/DigitalzombieTLD/ModSettings)
 
 ### Incompatible Mods
 
